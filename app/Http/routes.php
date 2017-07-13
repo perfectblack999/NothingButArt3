@@ -48,3 +48,6 @@ Route::get('/nextSearchImages', 'SearchArtistController@NextSearchImages');
 Route::post('/saveSelectedImages', 'SearchArtistController@SaveSelectedImages');
 
 Route::get('/searchResults', 'SearchArtistController@SearchResults');
+
+Route::get('/behance', 'BehanceController@ShowForm');
+Route::get('/behanceLookup', 'BehanceController@GetData');

@@ -38,22 +38,28 @@
                     <div class="col-md-4"></div>
                 </div>
                 <div class="row">
-                    <div class="col-md-1"></div><div class="col-md-10"><h3>Add some more art:</h3></div>
+                    <div class="col-md-1"></div><div class="col-md-10" style="text-align: center"><h3>Add some more art:</h3></div><div class="col-md-1"></div>
                 </div>
-                    <div class="panel-body">                     
-                        {!! Form::open(array('url' => '/editArt/uploadArt', 
-                        'enctype' => 'multipart/form-data', 'method' => 'POST',
-                        'files' => true)) !!}
-                            {!! csrf_field() !!}
-                            <div class="col-md-12">
-                                <div class="col-md-3">{!! Form::file('art_upload[]', array('multiple' => true)) !!}</div>
-                            </div><br><br><br>
+                <div class="row">
+                    <div class="col-md-1"></div><div class="col-md-10" style="text-align: center"><div><h4>Import from Behance</h4></div><div class="col-md-1"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"></div><div class="col-md-4"><div><a href="/behance"><img src="assets/behace_icon.png"></a></div><div class="col-md-4"></div>
+                </div>
+                <div class="panel-body">                     
+                    {!! Form::open(array('url' => '/editArt/uploadArt', 
+                    'enctype' => 'multipart/form-data', 'method' => 'POST',
+                    'files' => true)) !!}
+                        {!! csrf_field() !!}
+                        <div class="col-md-12">
+                            <div class="col-md-3">{!! Form::file('art_upload[]', array('multiple' => true)) !!}</div>
+                        </div><br><br><br>
 
-                            <div class="col-md-12">
-                                <div class="col-md-3">{!! Form::submit('Add designs') !!}</div>
-                            </div>
-                        {!! Form::close() !!}
-                    </div>
+                        <div class="col-md-12">
+                            <div class="col-md-3">{!! Form::submit('Add designs') !!}</div>
+                        </div>
+                    {!! Form::close() !!}
+                </div>
             </div>
         </div>
     </div>
