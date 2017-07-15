@@ -17,21 +17,14 @@
     </div>
     <div class="col-md-2"></div>
 </div>
-<!--<form action = "nextImages" method = "post">-->
-    <div class="row">
-        <!--<div class="col-md-12" style="text-align: center;"><a class="btn btn-primary" href="/nextSearchImages">Next</a></div>-->
-        <div class="col-md-12" style="text-align: center;">
-<!--            <input class="btn btn-primary" type="submit" value="Next" name="next" 
-                   onclick="nextSearchImage(<?php echo $searchID ?>, <?php echo $numberOfScreens ?>, 
-                   <?php echo htmlspecialchars(json_encode($imageDisplayLines)) ?>)" 
-                   style="text-align: center; display: inline-block;">-->
-                   
-            <input class="btn btn-primary" type="submit" value="Next" name="next" 
-                onclick="nextSearchImage(<?php echo $searchID ?>, <?php echo $numberOfScreens ?>, 
-                <?php echo htmlspecialchars(json_encode($gridArtIDs)) ?>)" 
-                style="text-align: center; display: inline-block;">
-        </div>
+<div class="row">
+    <div class="col-md-12" style="text-align: center;">
+
+        <input class="btn btn-primary" type="submit" value="Next" name="next" 
+            onclick="nextSearchImage(<?php echo $searchID ?>, <?php echo $numberOfScreens ?>, 
+            <?php echo htmlspecialchars(json_encode($gridArtIDs)) ?>)" 
+            style="text-align: center; display: inline-block;">
     </div>
-<!--</form>-->
+</div>
 
 @endsection

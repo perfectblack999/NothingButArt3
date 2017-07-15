@@ -41,10 +41,13 @@
                     <div class="col-md-1"></div><div class="col-md-10" style="text-align: center"><h3>Add some more art:</h3></div><div class="col-md-1"></div>
                 </div>
                 <div class="row">
-                    <div class="col-md-1"></div><div class="col-md-10" style="text-align: center"><div><h4>Import from Behance</h4></div><div class="col-md-1"></div>
+                    <div class="col-md-1"></div><div class="col-md-10" style="text-align: center"><h4>Import from Behance</h4></div><div class="col-md-1"></div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4"></div><div class="col-md-4"><div><a href="/behance"><img src="assets/behace_icon.png"></a></div><div class="col-md-4"></div>
+                    <div class="col-md-4"></div><div class="col-md-4" style="text-align: center"><div><a href="/behance"><img src="assets/behance_icon.png"></a></div><div class="col-md-4"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div><div class="col-md-10" style="text-align: center"><h4>or, upload from computer:</h4></div><div class="col-md-1"></div>
                 </div>
                 <div class="panel-body">                     
                     {!! Form::open(array('url' => '/editArt/uploadArt', 

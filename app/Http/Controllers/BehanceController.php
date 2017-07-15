@@ -14,10 +14,10 @@ class BehanceController extends Controller
         return $display;
     }
     
-    public function GetData()
+    public function GetData(Request $request)
     {
         $apiKey = "1BC1t2W67XUIaT8q4yiMyiibgxXPnytd";
-        $apiUsername = $_GET['username'];
+        $apiUsername = $request->username;
 
         $client = new Behance\Client($apiKey);
         $images = [];
@@ -59,5 +59,10 @@ class BehanceController extends Controller
         }
         
         return $images;
+    }
+    
+    public function ImportImages(Request $request)
+    {
+        
     }
 }
