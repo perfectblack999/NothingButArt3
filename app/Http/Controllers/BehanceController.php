@@ -63,11 +63,12 @@ class BehanceController extends Controller
         return $images;
     }
     
-    public function ImportImages(Request $request)
+    public function ImportImages()
     {
         $selectedImages = filter_input(INPUT_POST, 'selected_images', FILTER_SANITIZE_STRING);
         $selectedImagesArray = explode(",", $selectedImages);
         $fileNames = $this->StoreArt($selectedImagesArray);
+        $this->PutArtInDB($fileNames);
     }
     
     private function GetImages($user)
