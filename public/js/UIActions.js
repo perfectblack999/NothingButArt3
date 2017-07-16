@@ -167,7 +167,6 @@ function nextSearchImage(searchID, numberOfScreens, gridArtIDs)
 {
     myApp.screenNumber++;
     var myData = '';
-    
 
     $.ajaxSetup({
         headers: {
@@ -192,7 +191,6 @@ function nextSearchImage(searchID, numberOfScreens, gridArtIDs)
             dataType:"text", // Data type, HTML, json etc.
             data: myData,
             success: function(response) {   
-//                console.log("done");
 //                console.log("Screen number js: " + myApp.screenNumber);
                 window.location.href = '/searchResults?search_id=' + searchID;
             }
@@ -272,4 +270,37 @@ function saveSelectedImages()
     }
 
     return myData;
+}
+
+function saveBehanceImages()
+{
+    var myData = '';
+    
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    
+    for (i = 0; i < $('.grid-item.selected').children().length; i++)
+    {
+        myApp.selectedImages.push($('.grid-item.selected').children()[i].src);
+    }
+    
+    myData = myApp.selectedImages;
+    myData.toString();
+    myData = "selected_images=" + myData;
+    console.log(myData);
+    
+    $.ajax({
+            type: "POST",
+            url: "importBehanceImages",
+            dataType:"text", // Data type, HTML, json etc.
+            data: myData,
+            success: function(response) {   
+                console.log(myData);
+//                console.log("Screen number js: " + myApp.screenNumber);
+                window.location.href = '/homeBehanceImport';
+            }
+    });
 }

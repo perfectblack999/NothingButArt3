@@ -51,4 +51,6 @@ Route::get('/searchResults', 'SearchArtistController@SearchResults');
 
 Route::get('/behance', 'BehanceController@ShowForm');
 Route::get('/behanceLookup', 'BehanceController@GetData');
+
 Route::post('/importBehanceImages', 'BehanceController@ImportImages');
+Route::get('/homeBehanceImport', 'BehanceController@HomeBehanceImport');
