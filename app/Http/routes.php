@@ -54,3 +54,6 @@ Route::get('/behanceLookup', 'BehanceController@GetData');
 
 Route::post('/importBehanceImages', 'BehanceController@ImportImages');
 Route::get('/homeBehanceImport', 'BehanceController@HomeBehanceImport');
+
+Route::get('/redirect', 'SocialAuthController@redirect');
+Route::get('/callback', 'SocialAuthController@callback');

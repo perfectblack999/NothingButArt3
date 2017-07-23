@@ -120,4 +120,16 @@ class AuthController extends Controller
         }
         abort(404);
     }
+    
+    public function redirectToProvider()
+    {
+        return Socialize::with('facebook')->redirect();
+    }
+
+    public function handleProviderCallback()
+    {
+        $user = Socialize::with('facebook')->user();
+
+        // $user->token;
+    }
 }

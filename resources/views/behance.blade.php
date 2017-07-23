@@ -24,7 +24,6 @@
         </div>
 
         <?php if(!empty($images)){ ?>
-            <!--<form method="POST" action="importBehanceImages">-->
                 <div class="row" id="image_container">
                     <div class="col-md-2"></div>
                     <div class="col-md-8 grid" style="text-align: center">
@@ -39,14 +38,12 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4"></div>
-                    <!--<div class="col-md-4" style="text-align:center"><button class="btn btn-default" type="submit">Import Images</button></div>-->
                     <div class="col-md-4" style="text-align:center">
                         <input class="btn btn-primary" type="submit" value="Import Images" name="importImages" 
                         onclick="saveBehanceImages()" style="text-align: center; display: inline-block;">
                     </div>
                     <div class="col-md-4"></div>
                 </div>
-            <!--</form>-->
         <?php } else { ?>
             <span>No Images</span>
         <?php } ?> 
