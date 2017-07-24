@@ -11,7 +11,6 @@ class SocialAccountService
     
     public function __construct(ActivationService $activationService)
     {
-//        $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
         $this->activationService = $activationService;
     }
     

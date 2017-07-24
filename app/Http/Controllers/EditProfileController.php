@@ -10,10 +10,11 @@ use DB;
 
 class editProfileController extends Controller
 {
-    public function ActivateProfile()
+    public function ActivateProfile(Request $request)
     {
         $user = Auth::user();
         $user->profile_state = Enumerations::ACTIVATED;
+        $user->type = $request->input('type');
         $user->save();
         
         if ($user->type == "recruiter")
