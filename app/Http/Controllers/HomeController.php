@@ -52,7 +52,14 @@ class HomeController extends Controller
     
     private function checkProfileState($user)
     {
+        $display = '';
+        
         if($user->profile_state == Enumerations::REGISTERED)
+        {
+            auth()->logout();
+            return back()->with('warning', 'You need to confirm your account. We have sent you an activation code, please check your email.');;
+        }
+        elseif($user->profile_state == Enumerations::EMAIL_CONFIRMED)
         {
             $display = view('activate');
         }

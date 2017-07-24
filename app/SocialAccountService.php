@@ -7,6 +7,14 @@ use Laravel\Socialite\Contracts\User as ProviderUser;
 
 class SocialAccountService
 {
+    protected $activationService;
+    
+    public function __construct(ActivationService $activationService)
+    {
+//        $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
+        $this->activationService = $activationService;
+    }
+    
     public function createOrGetUser(ProviderUser $providerUser)
     {
         $account = SocialAccount::whereProvider('facebook')
@@ -34,7 +42,8 @@ class SocialAccountService
 
             $account->user()->associate($user);
             $account->save();
-
+            $this->activationService->sendActivationMail($user);
+            
             return $user;
 
         }
