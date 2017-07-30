@@ -9,7 +9,7 @@
 
                 <div class="panel-body">
                     <h1>Complete Your Profile</h1>
-                    {!! Form::open(array('url' => '/artist/update', 'enctype' => 'multipart/form-data')) !!}
+                    {!! Form::open(array('url' => '/artist/update', 'enctype' => 'multipart/form-data', 'method' => 'post')) !!}
                         {!! csrf_field() !!}
                         <div class="col-md-6"> 
                             <div class="col-md-3">First Name</div><br>
@@ -84,15 +84,15 @@
                             <div class="col-md-3">Resume</div>
                         </div>
                         <div class="col-md-12">
-                            <div class="col-md-3">{!! Form::file('resume', $user->resume) !!}</div>
+                            <div class="col-md-3">{!! Form::file('resume') !!}</div>
                         </div>
-                        @if ($errors->has('resume'))
+<!--                        @if ($errors->has('resume'))
                             <div class="col-md-12">
                                 <div class="col-md-12">
                                     <span class="help-block"><strong>{{ $errors->first('resume') }}</strong></span>
                                 </div>
                             </div>
-                        @endif
+                        @endif-->
                         
                         <div class="col-md-12">
                             <div class="col-md-3">Portfolio</div>
