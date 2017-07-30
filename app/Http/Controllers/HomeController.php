@@ -61,7 +61,7 @@ class HomeController extends Controller
         }
         elseif($user->profile_state == Enumerations::EMAIL_CONFIRMED)
         {
-            $display = view('activate');
+            $display = view('activate', ['user' => $user]);
         }
         elseif($user->profile_state == Enumerations::ACTIVATED && $user->type == "recruiter")
         {

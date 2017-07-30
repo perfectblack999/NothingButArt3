@@ -83,6 +83,11 @@
                             <div class="col-md-3"><input type = 'submit' value = "Update"/></div>
                             <div class="col-md-3"><a href='home'>Cancel</a></div>
                         </div>
+                        @if (isset($dOption))
+                            <div class="col-md-12">
+                                <a href="deleteAccount">Delete Account</a>
+                            </div>
+                        @endif
                    </form>
                 </div>
             </div>

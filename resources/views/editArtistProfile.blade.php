@@ -9,22 +9,21 @@
 
                 <div class="panel-body">
                     <h1>Complete Your Profile</h1>
-                    <div class="col-md-6"> 
-                        <div class="col-md-3">First Name</div><br>
-                        <div class="col-md-3">{!! Form::text('first_name', $user->first_name) !!}</div>
-                    </div>
-                    <div class="col-md-6"> 
-                        <div class="col-md-3">Last Name</div><br>
-                        <div class="col-md-3">{!! Form::text('last_name', $user->last_name) !!}</div>
-                    </div>
-                    <div class="col-md-12"> 
-                            <div class="col-md-3">Email</div><br>
-                            <div class="col-md-3">{{$user->email}}</div>
-                    </div><br>
-                    
-                    
                     {!! Form::open(array('url' => '/artist/update', 'enctype' => 'multipart/form-data')) !!}
                         {!! csrf_field() !!}
+                        <div class="col-md-6"> 
+                            <div class="col-md-3">First Name</div><br>
+                            <div class="col-md-3">{!! Form::text('first_name', $user->first_name) !!}</div>
+                        </div>
+                        <div class="col-md-6"> 
+                            <div class="col-md-3">Last Name</div><br>
+                            <div class="col-md-3">{!! Form::text('last_name', $user->last_name) !!}</div>
+                        </div>
+                        <div class="col-md-12"> 
+                                <div class="col-md-3">Email</div><br>
+                                <div class="col-md-3">{{$user->email}}</div>
+                        </div><br>
+                        
                         <div class="col-md-12">
                             <div class="col-md-3">Phone</div>
                         </div>
@@ -113,6 +112,12 @@
                             <div class="col-md-3">{!! Form::submit('Update') !!}</div>
                             <div class="col-md-3"><a href='home'>Cancel</a></div>
                         </div>
+                        
+                        @if (isset($dOption))
+                            <div class="col-md-12">
+                                <a href="deleteAccount">Delete Account</a>
+                            </div>
+                        @endif
                     {!! Form::close() !!}
                     
                 </div>

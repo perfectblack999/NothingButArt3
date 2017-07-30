@@ -62,3 +62,6 @@ Route::get('500', function()
 {
     abort(500);
 });
+
+Route::get('/deleteAccount', 'EditProfileController@DeleteProfile');
+Route::get('/confirmDeleteProfile', 'EditProfileController@ConfirmDeleteProfile');

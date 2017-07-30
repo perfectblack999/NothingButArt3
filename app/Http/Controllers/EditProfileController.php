@@ -14,7 +14,10 @@ class editProfileController extends Controller
     {
         $user = Auth::user();
         $user->profile_state = Enumerations::ACTIVATED;
-        $user->type = $request->input('type');
+        if($request->input('type') !== null)
+        {
+            $user->type = $request->input('type');
+        }
         $user->save();
         
         if ($user->type == "recruiter")
@@ -29,11 +32,12 @@ class editProfileController extends Controller
         return $profileView;
     }
     
-    public function EditRecruiterProfile()
+    public function EditRecruiterProfile(Request $request)
     {
         $user = Auth::user();
+        $dOption = $request->input('dOption');
 
-        return view('editRecruiterProfile', ['user' => $user]);
+        return view('editRecruiterProfile', ['user' => $user, 'dOption' => $dOption]);
     }
     
     public function EditArtistProfile()
@@ -87,6 +91,7 @@ class editProfileController extends Controller
         $user->latitude = $zipCodeLatLon[0]->latitude;
         $user->longitude = $zipCodeLatLon[0]->longitude;
         $user->profile_state = Enumerations::COMPLETE;
+        $user->type = "recruiter";
         $user->save();
         
         return redirect()->route('home', ['user' => $user]);
@@ -120,6 +125,7 @@ class editProfileController extends Controller
             $user->resume = $resumeName;
         }
         $user->profile_state = Enumerations::COMPLETE;
+        $user->type = "artist";
         $user->save();
         
         return redirect()->route('home', ['user' => $user]);
@@ -242,5 +248,20 @@ class editProfileController extends Controller
         }
         
         $user->save();
+    }
+    
+    public function DeleteProfile(Request $request)
+    {
+        $user = $request->user();
+        
+        return view('deleteProfile', ['user' => $user]);
+    }
+    
+    public function ConfirmDeleteProfile()
+    {
+        $user = Auth::user();
+        $user->destroy($user->id);
+        
+        return view('home');
     }
 }

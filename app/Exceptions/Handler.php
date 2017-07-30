@@ -43,15 +43,15 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $e
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $e)
-    {
-        // ... other checks like for TokenMismatchException
-
-        // custom error message
-        if ($e instanceof \ErrorException) {
-            return response()->view('errors.500', [], 500);
-        } else {
-            return parent::render($request, $e);
-        }
-    }
+//    public function render($request, Exception $e)
+//    {
+//        // ... other checks like for TokenMismatchException
+//
+//        // custom error message
+//        if ($e instanceof \ErrorException) {
+//            return response()->view('errors.500', [], 500);
+//        } else {
+//            return parent::render($request, $e);
+//        }
+//    }
 }
