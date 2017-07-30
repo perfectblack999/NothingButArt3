@@ -64,6 +64,11 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                @if (Auth::user()->type == 'artist')
+                                    <li><a href="{{ url('/editArtistProfile') }}"><i class="fa fa-btn"></i>Profile</a></li>
+                                @else
+                                    <li><a href="{{ url('/editRecruiterProfile') }}"><i class="fa fa-btn"></i>Profile</a></li>
+                                @endif
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>

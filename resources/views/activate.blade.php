@@ -18,8 +18,13 @@
             <div class="row">
                 <div class="col-md-6"></div>
                 <div class="col-md-6">
-                    <input type="radio" id="name" name="type" value="artist" checked="true">Artist &nbsp;
-                    <input type="radio" name="type" value="recruiter">Recruiter</br>
+                    <?php if($user->type == 'recruiter') { ?>
+                        <input type="radio" id="name" name="type" value="artist">Artist &nbsp;
+                        <input type="radio" name="type" value="recruiter" checked="true">Recruiter</br>
+                    <?php } else { ?>
+                        <input type="radio" id="name" name="type" value="artist" checked="true">Artist &nbsp;
+                        <input type="radio" name="type" value="recruiter">Recruiter</br>
+                    <?php } ?>
                 </div>
             </div>
         </div>
