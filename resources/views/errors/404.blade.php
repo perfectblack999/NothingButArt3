@@ -41,8 +41,8 @@
         <div class="container">
             <div class="content">
                 <div class="title">Oops! Looks like something went wrong here.</div>
+                <div style="text-align:center">Take me <a href="/home">home</a>.</div>
             </div>
-            <div style="text-align:center">Take me <a href="/home">home</a>.</div>
         </div>
     </body>
 </html>

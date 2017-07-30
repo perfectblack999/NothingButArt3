@@ -57,3 +57,8 @@ Route::get('/homeBehanceImport', 'BehanceController@HomeBehanceImport');
 
 Route::get('/redirect', 'SocialAuthController@redirect');
 Route::get('/callback', 'SocialAuthController@callback');
+
+Route::get('500', function()
+{
+    abort(500);
+});
