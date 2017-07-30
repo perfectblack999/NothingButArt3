@@ -75,6 +75,8 @@ class editProfileController extends Controller
         $zipCodeLatLon = DB::select('SELECT latitude, longitude from zip_codes where zip = (?)', array($request->input('zip_code')));
         
         $user = Auth::user();
+        $user->first_name = $request->input('first_name');
+        $user->last_name = $request->input('last_name');
         $user->phone = $request->input('phone');
         $user->company = $request->input('company');
         $user->street_address1 = $request->input('street_address1');
@@ -104,6 +106,8 @@ class editProfileController extends Controller
         $zipCodeLatLon = DB::select('SELECT latitude, longitude from zip_codes where zip = (?)', array($request->input('zip_code')));
 
         $user = Auth::user();
+        $user->first_name = $request->input('first_name');
+        $user->last_name = $request->input('last_name');
         $user->phone = $request->input('phone');
         $user->city = $request->input('city');
         $user->state = $request->input('state');

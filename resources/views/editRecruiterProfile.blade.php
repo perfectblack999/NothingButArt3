@@ -12,7 +12,14 @@
                     <form action = "/recruiter/update" method = "post" style="display: inline;">
                       <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
                         
-                        
+                        <div class="col-md-6"> 
+                            <div class="col-md-3">First Name</div><br>
+                            <div class="col-md-3"><input type='text' name='first_name' value="{{$user->first_name}}" /></div>
+                        </div>
+                        <div class="col-md-6"> 
+                            <div class="col-md-3">Last Name</div><br>
+                            <div class="col-md-3"><input type='text' name='last_name' value="{{$user->last_name}}" /></div>
+                        </div>
                         <div class="col-md-12"> 
                             <div class="col-md-3">Email</div><br>
                             <div class="col-md-3">{{$user->email}}</div>
