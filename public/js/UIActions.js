@@ -304,3 +304,28 @@ function saveBehanceImages()
             }
     });
 }
+
+function deletePicClick(clickedID)
+{   
+    var str = $('#slide-list.flex-active-slide').children()[0].src.toString();
+    var revStr = str.split("").reverse().join("");
+    var picFile = str.substring(str.length - revStr.indexOf('/'), str.length);
+    var myData = 'fileName=' + picFile; //build a post data structure
+    console.log(myData);
+        
+    jQuery.ajax({
+        type: "POST", // HTTP method POST or GET
+        url: "deletePic", //Where to make Ajax calls
+        dataType:"text", // Data type, HTML, json etc.
+        data:myData, //Form variables
+        success:function(response)
+        {
+            console.log("deleted \n");
+            console.log(response);
+        },
+        error:function (xhr, ajaxOptions, thrownError){
+            console.log(thrownError);
+            console.log(response);
+        }
+    });
+}

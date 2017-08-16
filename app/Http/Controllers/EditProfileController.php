@@ -40,12 +40,13 @@ class editProfileController extends Controller
         return view('editRecruiterProfile', ['user' => $user, 'dOption' => $dOption]);
     }
     
-    public function EditArtistProfile()
+    public function EditArtistProfile(Request $request)
     {
         $user = Auth::user();
         $images = $this->GetImages($user);
+        $dOption = $request->input('dOption');
         
-        return view('editArtistProfile', ['user' => $user, 'images' => $images]);
+        return view('editArtistProfile', ['user' => $user, 'images' => $images, 'dOption' => $dOption]);
     }
     
     private function GetImages($user)
@@ -262,6 +263,6 @@ class editProfileController extends Controller
         $user = Auth::user();
         $user->destroy($user->id);
         
-        return view('home');
+        return redirect()->route('home');;
     }
 }

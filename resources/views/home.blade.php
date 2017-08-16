@@ -43,7 +43,7 @@
                         {!! Form::close() !!}
                     
                         <div class="col-md-12">    
-                            <div class="col-md-3"><a href="/editArt">Add new art!</a></div>
+                            <div class="col-md-3"><a href="/editArt">Add or edit art!</a></div>
                         </div>
                     @endif
                     

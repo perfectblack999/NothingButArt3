@@ -34,7 +34,7 @@
                     </section>
                 <div class="row">
                     <div class="col-md-4"></div>
-                    <div class="col-md-4" style="text-align: center;"><a href="/tagArt">Don't forget to tag your work!</a></div>
+                    <div class="col-md-4" style="text-align: center;"><a href="/tagArt">Tag your work if you want employers to find you!</a></div>
                     <div class="col-md-4"></div>
                 </div>
                 <div class="row">

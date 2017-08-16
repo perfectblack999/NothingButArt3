@@ -65,3 +65,5 @@ Route::get('500', function()
 
 Route::get('/deleteAccount', 'EditProfileController@DeleteProfile');
 Route::get('/confirmDeleteProfile', 'EditProfileController@ConfirmDeleteProfile');
+
+Route::post('/deletePic', 'TagArtController@DeletePic');

@@ -106,6 +106,14 @@
                 </div>
             </div>
         </div>
+        
+    </div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4" style="text-align: center">
+            <button class="btn btn-primary" type="button" name="deletePic" onclick="deletePicClick(this.id)">Delete Image</button>
+        </div>
+        <div class="col-md-4"></div>
     </div>
 </div>
 @endsection
