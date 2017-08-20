@@ -64,6 +64,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/inviteFriends') }}"><i class="fa fa-btn"></i>Invite Friends</a></li>
                                 @if (Auth::user()->type == 'artist')
                                     <li><a href="{{ url('/editArtistProfile?dOption=1') }}"><i class="fa fa-btn"></i>Profile</a></li>
                                 @else

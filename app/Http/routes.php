@@ -67,3 +67,6 @@ Route::get('/deleteAccount', 'EditProfileController@DeleteProfile');
 Route::get('/confirmDeleteProfile', 'EditProfileController@ConfirmDeleteProfile');
 
 Route::post('/deletePic', 'TagArtController@DeletePic');
+
+Route::get('/inviteFriends', 'InviteFriendsController@Display');
+Route::post('/emailInvites', 'InviteFriendsController@EmailInvites');
