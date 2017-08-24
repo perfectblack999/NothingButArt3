@@ -70,3 +70,5 @@ Route::post('/deletePic', 'TagArtController@DeletePic');
 
 Route::get('/inviteFriends', 'InviteFriendsController@Display');
 Route::post('/emailInvites', 'InviteFriendsController@EmailInvites');
+
+Route::post('/search/downloadResume', 'SearchArtistController@DownloadResume');

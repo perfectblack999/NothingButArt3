@@ -588,4 +588,13 @@ class SearchArtistController extends Controller
         
         return $topArtists;
     }
+    
+    public function DownloadResume(Request $request)
+    {
+        $resumeFileName = DB::select("SELECT resume FROM users WHERE id = (?)", 
+                array($request->input('artist_id')));
+        
+        $pathToFile = "resume/".$resumeFileName[0]->resume;
+        return response()->download($pathToFile);
+    }
 }
