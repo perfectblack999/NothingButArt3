@@ -16,17 +16,16 @@ class BrowseArtController extends Controller
         $user = Auth::user();
         $totalImageCount = DB::select('SELECT COUNT(id) as count FROM images WHERE user <> 0');
         $numberOfImageRequests = floor($totalImageCount[0]->count/90);
-        $imageRequestArray = range(0, $numberOfImageRequests);
-        shuffle($imageRequestArray);
-        $firstOffset = array_shift($imageRequestArray) * 90;
-        $gridArtIDPaths = DB::select("SELECT id,path FROM images WHERE user <> 0 LIMIT 90 OFFSET $firstOffset");
+        $offset = rand(0, $numberOfImageRequests);
+        $offset = $offset * 90;
+        $gridArtIDPaths = DB::select("SELECT id,path FROM images WHERE user <> 0 LIMIT 90 OFFSET $offset");
         shuffle($gridArtIDPaths);
         $numberOfScreens = ceil(count($gridArtIDPaths)/$imagesPerScreen);
         $artArrays = $this->createGrid($gridArtIDPaths);
         
         return view('browseArtGrid', ['user' => $user, 'imageDisplayLines' => $artArrays[2], 
             'numberOfScreens' => $numberOfScreens, 'screenNumber' => 1, 'gridArtIDs' => $artArrays[0],
-            'imageRequestArray' => $imageRequestArray, 'imagePaths' => $artArrays[1]]);
+            'imagePaths' => $artArrays[1]]);
     }
     
     public function NextBrowsePage()
@@ -34,7 +33,7 @@ class BrowseArtController extends Controller
         $screenNumber = filter_input(INPUT_GET, 'screen_number', FILTER_SANITIZE_STRING);
         $gridArtIDs = explode(",", filter_input(INPUT_GET, 'grid_art_ids', FILTER_SANITIZE_STRING));
         $imagePaths = explode(",", filter_input(INPUT_GET, 'image_paths', FILTER_SANITIZE_STRING));
-        var_dump($imagePaths);
+
         for ($i = ($screenNumber - 1) * 9; $i < (($screenNumber - 1) * 9) + 9; $i++)
         {
             if (isset($gridArtIDs[$i]) && isset($imagePaths[$i]))
@@ -46,7 +45,6 @@ class BrowseArtController extends Controller
     
     private function createGrid($gridArtIDPaths)
     {
-        $artArrays = array();
         $imageDisplayLines = array();
         $imagePaths = array();
         $imageIDs = array();
@@ -58,9 +56,7 @@ class BrowseArtController extends Controller
             array_push($imageIDs, $gridArtIDPath->id);
         }
         
-        array_push($artArrays, $imageIDs);
-        array_push($artArrays, $imagePaths);
-        array_push($artArrays, $imageDisplayLines);
+        $artArrays = array($imageIDs, $imagePaths, $imageDisplayLines);
         
         return $artArrays;
     }

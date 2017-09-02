@@ -22,7 +22,6 @@
         <input class="btn btn-primary" type="submit" value="More Pics" name="next" 
             onclick="nextBrowsePage(<?php echo $numberOfScreens ?>, 
             <?php echo htmlspecialchars(json_encode($gridArtIDs)) ?>, 
-            <?php echo htmlspecialchars(json_encode($imageRequestArray)) ?>,
             <?php echo htmlspecialchars(json_encode($imagePaths)) ?>)" 
             style="text-align: center; display: inline-block;">
     </div>

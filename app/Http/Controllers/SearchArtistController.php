@@ -89,10 +89,14 @@ class SearchArtistController extends Controller
     {
         $imageDisplayLines = array();
         
-        foreach ($gridArtIDs as $gridArtID)
+        $imagePaths = DB::select(sprintf("SELECT path FROM images WHERE id in (%s)", 
+                implode(',',array_fill(0,count($gridArtIDs),'?'))), $gridArtIDs);
+        
+        for($i = 0; $i < count($imagePaths); $i++)
         {
-            $imageURL = DB::select("SELECT path FROM images WHERE id = (?)", array($gridArtID));
-            array_push($imageDisplayLines, "<option data-img-src='art/".$imageURL[0]->path."' value='".$gridArtID."'>Image ".$gridArtID."</option>");
+            array_push($imageDisplayLines, "<option data-img-src='art/"
+                .$imagePaths[$i]->path."' value='".$gridArtIDs[$i]."'>Image "
+                .$gridArtIDs[$i]."</option>");
         }
         
         return $imageDisplayLines;
@@ -553,15 +557,18 @@ class SearchArtistController extends Controller
         // Get artist associated w/each image
         foreach($imageNames as $imageName)
         {
-            $user = DB::select('SELECT user FROM images WHERE path = (?)', array($imageName))[0]->user;
+            if($imageName != "")
+            {
+                $user = DB::select('SELECT user FROM images WHERE path = (?)', array($imageName))[0]->user;
 
-            if(isset($artistCounts[$user]))
-            {
-                $artistCounts[$user] += 1;
-            }
-            else
-            {
-                $artistCounts[$user] = 1;
+                if(isset($artistCounts[$user]))
+                {
+                    $artistCounts[$user] += 1;
+                }
+                else
+                {
+                    $artistCounts[$user] = 1;
+                }
             }
         }
         

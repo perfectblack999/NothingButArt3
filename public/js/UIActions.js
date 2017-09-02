@@ -330,7 +330,7 @@ function deletePicClick(clickedID)
     });
 }
     
-function nextBrowsePage(numberOfScreens, gridArtIDs, imageRequestArray, imagePaths)
+function nextBrowsePage(numberOfScreens, gridArtIDs, imagePaths)
 {
     myApp.screenNumber++;
     var myData = '';
@@ -343,13 +343,12 @@ function nextBrowsePage(numberOfScreens, gridArtIDs, imageRequestArray, imagePat
 
     if (myApp.screenNumber > numberOfScreens)
     {
-
+        window.location.href = '/browseArt'
     }
     else
     {
         myData = myData + '&screen_number=' + myApp.screenNumber +
             '&grid_art_ids=' + gridArtIDs + '&number_of_screens=' + numberOfScreens
-            + '&image_request_array=' + imageRequestArray 
             + '&image_paths=' + imagePaths;
 
         $.ajax({
