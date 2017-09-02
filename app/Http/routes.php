@@ -72,3 +72,6 @@ Route::get('/inviteFriends', 'InviteFriendsController@Display');
 Route::post('/emailInvites', 'InviteFriendsController@EmailInvites');
 
 Route::post('/search/downloadResume', 'SearchArtistController@DownloadResume');
+
+Route::get('/browseArt', 'BrowseArtController@Display');
+Route::get('/nextBrowsePage', 'BrowseArtController@NextBrowsePage');

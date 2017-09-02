@@ -227,7 +227,7 @@ function nextSearchImage(searchID, numberOfScreens, gridArtIDs)
                 });
                 
                 // update the images selected for the grid
-                $('#artHolderFake').html(response);
+//                $('#artHolderFake').html(response);
                 $('#artHolder').html(response);
                 
                 // re-initialize the image-picker
@@ -328,4 +328,79 @@ function deletePicClick(clickedID)
             console.log(response);
         }
     });
+}
+    
+function nextBrowsePage(numberOfScreens, gridArtIDs, imageRequestArray, imagePaths)
+{
+    myApp.screenNumber++;
+    var myData = '';
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    if (myApp.screenNumber > numberOfScreens)
+    {
+
+    }
+    else
+    {
+        myData = myData + '&screen_number=' + myApp.screenNumber +
+            '&grid_art_ids=' + gridArtIDs + '&number_of_screens=' + numberOfScreens
+            + '&image_request_array=' + imageRequestArray 
+            + '&image_paths=' + imagePaths;
+
+        $.ajax({
+            type: "GET",
+            url: "nextBrowsePage",
+            dataType:"text", // Data type, HTML, json etc.
+            data: myData,
+            success: function(response) {   
+//                console.log("next screen");
+//                console.log("Screen number js: " + myApp.screenNumber);
+//                console.log(response);
+
+                $('#image_container').imagesLoaded()
+                .always( function( instance ) {
+//                  console.log('all images loaded');
+                })
+                .done( function( instance ) {
+//                  console.log('all images successfully loaded');
+                })
+                .fail( function() {
+//                  console.log('all images loaded, at least one is broken');
+                })
+                .progress( function( instance, image ) {
+                  var result = image.isLoaded ? 'loaded' : 'broken';
+//                  console.log( 'image is ' + result + ' for ' + image.img.src );
+                });
+
+                // update the images selected for the grid
+//                $('#artHolderFake').html(response);
+                $('#artHolder').html(response);
+
+                // re-initialize the image-picker
+                $("select").imagepicker();
+
+                // re-initialize masonry 
+                var grid = $( '.grid' );
+                grid.masonry({
+                    itemSelector: '.grid-item',
+                    columnWidth: 200
+                });
+
+                //reload and layout masonry again
+                $(grid).masonry('reloadItems');
+                $grid.imagesLoaded().progress( function() {
+                    $grid.masonry('layout');
+                });
+            },
+            error:function (xhr, ajaxOptions, thrownError){
+                console.log(thrownError);
+                console.log(response);
+            }
+        });
+    }
 }

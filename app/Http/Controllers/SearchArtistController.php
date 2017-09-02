@@ -84,6 +84,7 @@ class SearchArtistController extends Controller
         return $searchID;
     }
     
+    // Need to change to make less queries
     private function createGrid($gridArtIDs)
     {
         $imageDisplayLines = array();
@@ -486,7 +487,6 @@ class SearchArtistController extends Controller
         $screenNumber = filter_input(INPUT_GET, 'screen_number', FILTER_SANITIZE_STRING);
         $gridArtIDs = explode(",", filter_input(INPUT_GET, 'grid_art_ids', FILTER_SANITIZE_STRING));
         $imageDisplayLines = $this->createGrid($gridArtIDs);
-        
         
         for ($i = ($screenNumber - 1) * 9; $i < (($screenNumber - 1) * 9) + 9; $i++)
         {
