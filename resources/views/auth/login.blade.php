@@ -1,19 +1,27 @@
-@extends('layouts.app')
+@extends('layouts.homeApp')
 
 @section('content')
-<div class="container">
+<div id="homeContainer" class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                        {{ csrf_field() }}
+        <div class="col-md-9">
+            <div class="row" style="text-align: center;"><h1 class="homeBanner">Find Work. Get Work.</h1></div>
+            <div class="row" style="text-align: center;"></div>
+            <div class="row" style="text-align: center; padding-top: 75px;">
+                <button class="btn btn-primary" style="font-size: 36px;"onclick="window.location='/browseArt'">Browse Art</button>
+            </div>
+        </div>
+        <div id="loginForm" class="col-md-3">
+            <div class="row"><div class="col-md-offset-1"><h2>Login</h2></div></div>
+                <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+                    {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-11"><label for="email" class="control-label">E-Mail Address</label></div>
+                        </div>
 
-                            <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-11">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
 
                                 @if ($errors->has('email'))
@@ -23,11 +31,15 @@
                                 @endif
                             </div>
                         </div>
+                    </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
+                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-11"><label for="password" class="control-label">Password</label></div>
+                        </div>
+                            
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-11">
                                 <input id="password" type="password" class="form-control" name="password">
 
                                 @if ($errors->has('password'))
@@ -37,40 +49,41 @@
                                 @endif
                             </div>
                         </div>
+                    </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
+                    <div class="row">
+                        <div class="col-md-offset-1 col-md-11">
+                            <div class="form-group">
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" name="remember"> Remember Me
                                     </label>
                                 </div>
                             </div>
-                        </div>
-                        
-                        @if (session('status'))
-                            <div class="alert alert-success">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-                        @if (session('warning'))
-                            <div class="alert alert-warning">
-                                {{ session('warning') }}
-                            </div>
-                        @endif
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-sign-in"></i> Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
-                            </div>
+                            @if (session('status'))
+                                <div class="alert alert-success">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
+                            @if (session('warning'))
+                                <div class="alert alert-warning">
+                                    {{ session('warning') }}
+                                </div>
+                            @endif
                         </div>
-                        <a href="redirect">FB Login</a>
-                    </form>
-                </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group" style="text-align: center;">
+                            <div class="col-md-6"><button type="submit" class="btn btn-primary">Login</button></div>
+                            <div class="col-md-6"><a href="redirect"><img id="fbLoginBtn" src="../assets/facebook_login.png"></a></div>
+                        </div>
+                    </div>
+                    <div class="row" style="text-align: center;">
+                        <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Password?</a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

@@ -14,4 +14,54 @@
     padding-bottom: 5px;
 }
 
-.grid-item { width: 20%; }
+.grid-item 
+{ 
+    width: 20%; 
+}
+
+body
+{
+    padding-bottom: 70px;
+}
+
+.homeBody 
+{
+    background-image: url("../assets/nba-backgroud-light.jpg");
+    background-size: cover;
+}
+
+.homeBanner
+{
+    font-size: 72px;
+    color: #31363d;
+    font-family: arial;
+}
+
+.navbar
+{
+    background-color: #31363d;
+    border-color: #31363d;
+}
+
+#logo
+{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#fbLoginBtn
+{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/*#loginForm
+{
+    background-image: url("../assets/login-shield.png");
+    background-size: cover;
+}*/
+
+/*.form-background
+{
+    background-color: #007991;
+}*/

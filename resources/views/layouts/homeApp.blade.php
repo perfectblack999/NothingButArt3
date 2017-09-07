@@ -27,7 +27,7 @@
         }
     </style>
 </head>
-<body id="app-layout">
+<body id="app-layout" class="homeBody">
     <nav class="navbar navbar-default sticky-top">
         <div class="container">
             <div class="navbar-header">
@@ -56,7 +56,6 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
                     @else
                         <li class="dropdown">

@@ -1,5 +1,4 @@
 @extends('layouts.app')
-<link rel="stylesheet" href="css/custom_styles.css">
 <link rel="stylesheet" href="css/image-picker.css">
 
 @section('content')

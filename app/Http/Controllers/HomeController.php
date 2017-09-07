@@ -117,5 +117,4 @@ class HomeController extends Controller
         $pathToFile = "resume/".$user->resume;
         return response()->download($pathToFile);
     }
-    
 }
