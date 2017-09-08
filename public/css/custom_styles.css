@@ -8,11 +8,11 @@
     padding:5px;
 }
 
-.row
+/*.row
 {
     padding-top: 5px;
     padding-bottom: 5px;
-}
+}*/
 
 .grid-item 
 { 
@@ -35,6 +35,19 @@ body
     font-size: 72px;
     color: #31363d;
     font-family: arial;
+}
+
+.homeBannerDivider
+{
+    font-size: 125px;
+    color: #31363d;
+    font-family: arial;
+}
+
+#paintbrush
+{
+    height: 50%;
+    width: 50%; 
 }
 
 .navbar

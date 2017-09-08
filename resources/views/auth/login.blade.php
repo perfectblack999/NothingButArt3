@@ -4,10 +4,17 @@
 <div id="homeContainer" class="container">
     <div class="row">
         <div class="col-md-9">
-            <div class="row" style="text-align: center;"><h1 class="homeBanner">Find Work. Get Work.</h1></div>
-            <div class="row" style="text-align: center;"></div>
-            <div class="row" style="text-align: center; padding-top: 75px;">
-                <button class="btn btn-primary" style="font-size: 36px;"onclick="window.location='/browseArt'">Browse Art</button>
+            <div class="row" style="text-align: center;">
+                <div style="text-align: center;">
+                    <h1 class="homeBanner">
+                        Find Work 
+                        <span class="homeBannerDivider">|</span> 
+                        Get Work
+                    </h1>
+                </div>
+            </div>
+            <div class="row" style="text-align: center; padding-top: 100px">
+                <a href="/browseArt"><img src="../assets/browse-art-btn.png"></a>
             </div>
         </div>
         <div id="loginForm" class="col-md-3">
@@ -75,9 +82,11 @@
                     </div>
 
                     <div class="row">
-                        <div class="form-group" style="text-align: center;">
-                            <div class="col-md-6"><button type="submit" class="btn btn-primary">Login</button></div>
-                            <div class="col-md-6"><a href="redirect"><img id="fbLoginBtn" src="../assets/facebook_login.png"></a></div>
+                        <div class="col-md-offset-1">
+                            <div class="form-group" style="text-align: center;">
+                                <div class="col-md-6"><a href="redirect"><img id="fbLoginBtn" src="../assets/login-btn.png"></a></div>
+                                <div class="col-md-6"><a href="redirect"><img id="fbLoginBtn" src="../assets/fb-login-btn.png"></a></div>
+                            </div>
                         </div>
                     </div>
                     <div class="row" style="text-align: center;">
