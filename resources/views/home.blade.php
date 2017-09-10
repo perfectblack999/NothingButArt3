@@ -8,6 +8,7 @@
 @section('content')
 <div class="container">
     @if($user->type == "artist")
+    <div class="row" style="text-align: center; padding-bottom: 25px"><h1>Your Portfolio</h1></div>
         <div id="imageContainer" class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8 grid" style="text-align: center;">
@@ -22,10 +23,10 @@
             <div class="col-md-2"></div>
         </div>
 
-        <div class="row">
+        <div class="row" style="padding-bottom: 35px">
             <div class="col-md-12" style="text-align: center;">
 
-                <input class="btn btn-primary" type="submit" value="More Pics" name="next" 
+                <input type="image" src="../assets/more-pics-btn.png" name="next" 
                     onclick="nextBrowsePage(<?php echo $numberOfScreens ?>, 
                     <?php echo htmlspecialchars(json_encode($gridArtIDs)) ?>, 
                     <?php echo htmlspecialchars(json_encode($imagePaths)) ?>,
@@ -33,15 +34,18 @@
                     style="text-align: center; display: inline-block;">
             </div>
         </div>
-
-        {!! Form::open(array('url' => '/home/downloadResume', 'enctype' => 'multipart/form-data')) !!}
-            <div class="col-md-12">
-                <div class="col-md-3">{!! Form::submit('Download Resume') !!}</div>
+        <div class="row">
+            {!! Form::open(array('url' => '/home/downloadResume', 'enctype' => 'multipart/form-data')) !!}
+                <div class="col-md-2"></div>
+                <div class="col-md-3" style="text-align: center;">
+                    <input type="image" src="../assets/download-resume-btn.png"/>
+                </div>
+            {!! Form::close() !!}
+            <div class="col-md-2"></div>
+            <div class="col-md-3" style="text-align: center;">    
+                <a href="/editArt"><input type="image" src="../assets/add-edit-art-btn.png"/></a>
             </div>
-        {!! Form::close() !!}
-
-        <div class="col-md-12">    
-            <div class="col-md-3"><a href="/editArt">Add or edit art!</a></div>
+            <div class="col-md-2"></div>
         </div>
     @endif
 
