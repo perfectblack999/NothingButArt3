@@ -155,7 +155,8 @@ $("select").imagepicker();
 var $grid = $('.grid').masonry({
   // options
   itemSelector: '.grid-item',
-  columnWidth: 200
+  columnWidth: 150,
+  fitWidth: true
 });
 
 // layout Masonry after each image loads
@@ -237,7 +238,8 @@ function nextSearchImage(searchID, numberOfScreens, gridArtIDs)
                 var grid = $( '.grid' );
                 grid.masonry({
                     itemSelector: '.grid-item',
-                    columnWidth: 200
+                    columnWidth: 150,
+                    fitWidth: true
                 });
                 
                 //reload and layout masonry again
@@ -330,7 +332,7 @@ function deletePicClick(clickedID)
     });
 }
     
-function nextBrowsePage(numberOfScreens, gridArtIDs, imagePaths)
+function nextBrowsePage(numberOfScreens, gridArtIDs, imagePaths, view)
 {
     myApp.screenNumber++;
     var myData = '';
@@ -343,7 +345,14 @@ function nextBrowsePage(numberOfScreens, gridArtIDs, imagePaths)
 
     if (myApp.screenNumber > numberOfScreens)
     {
-        window.location.href = '/browseArt'
+        if(view === 1)
+        {
+            window.location.href = '/browseArt';
+        }
+        else if(view === 2)
+        {
+            window.location.href = '/home'
+        }
     }
     else
     {
@@ -387,7 +396,8 @@ function nextBrowsePage(numberOfScreens, gridArtIDs, imagePaths)
                 var grid = $( '.grid' );
                 grid.masonry({
                     itemSelector: '.grid-item',
-                    columnWidth: 200
+                    columnWidth: 150,
+                    fitWidth: true
                 });
 
                 //reload and layout masonry again

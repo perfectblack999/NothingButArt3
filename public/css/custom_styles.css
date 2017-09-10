@@ -19,6 +19,12 @@
     width: 20%; 
 }
 
+/* center container with CSS */
+.grid 
+{
+  margin: 0 auto;
+}
+
 body
 {
     padding-bottom: 70px;
@@ -68,13 +74,7 @@ body
     max-height: 100%;
 }
 
-/*#loginForm
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover 
 {
-    background-image: url("../assets/login-shield.png");
-    background-size: cover;
-}*/
-
-/*.form-background
-{
-    background-color: #007991;
-}*/
+    color: #fff;
+}

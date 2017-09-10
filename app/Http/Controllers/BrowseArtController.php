@@ -11,7 +11,7 @@ class BrowseArtController extends Controller
 {
     public function Display(Request $request)
     {
-        $request_number = 0;
+        $browseArtView = 1;
         $imagesPerScreen = 9;
         $user = Auth::user();
         $totalImageCount = DB::select('SELECT COUNT(id) as count FROM images WHERE user <> 0');
@@ -25,7 +25,7 @@ class BrowseArtController extends Controller
         
         return view('browseArtGrid', ['user' => $user, 'imageDisplayLines' => $artArrays[2], 
             'numberOfScreens' => $numberOfScreens, 'screenNumber' => 1, 'gridArtIDs' => $artArrays[0],
-            'imagePaths' => $artArrays[1]]);
+            'imagePaths' => $artArrays[1], 'browseArtView' => $browseArtView]);
     }
     
     public function NextBrowsePage()
