@@ -6,65 +6,42 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-                    <section class="slider">
-                        <div id="slider" class="flexslider">
-                            <ul class="slides">
-                                @foreach($images as $image)
-                                    <li id="slide-list">
-                                        <?php echo $image[1] ?>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <div id="carousel-holder">
-                            <div id="carousel" class="flexslider">
-                                <ul class="slides" id="carousel-list">
-                                    @foreach($images as $image)
-                                        <li>
-                                            <?php echo $image[1] ?>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
-                <div class="row">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4" style="text-align: center;"><a href="/tagArt">Tag your work if you want employers to find you!</a></div>
-                    <div class="col-md-4"></div>
+    <div class="row" style="text-align: center; padding-bottom: 50px">
+        <h1>Craft Your Portfolio</h1>
+        <p>Show the world what you've made.</p>
+    </div>
+    <div class="row" style="text-align:center; padding-bottom: 25px; vertical-align: central">
+        <div class="col-md-3" style="text-align: center">
+            {!! Form::open(array('url' => '/editArt/uploadArt', 
+                'enctype' => 'multipart/form-data', 'method' => 'POST',
+                'files' => true, 'id' => 'img-upload-form')) !!}
+                {!! csrf_field() !!}
+                <div class="image-upload">
+                    <label for="art_upload">
+                        <img src="../assets/add-art-btn.png"/>
+                    </label>
+                    {!! Form::file('art_upload[]', array('multiple' => true, 'id' => 'art_upload')) !!}
                 </div>
-                <div class="row">
-                    <div class="col-md-1"></div><div class="col-md-10" style="text-align: center"><h3>Add some more art:</h3></div><div class="col-md-1"></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-1"></div><div class="col-md-10" style="text-align: center"><h4>Import from Behance</h4></div><div class="col-md-1"></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4"></div><div class="col-md-4" style="text-align: center"><div><a href="/behance"><img src="assets/behance_icon.png"></a></div><div class="col-md-4"></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-1"></div><div class="col-md-10" style="text-align: center"><h4>or, upload from computer:</h4></div><div class="col-md-1"></div>
-                </div>
-                <div class="panel-body">                     
-                    {!! Form::open(array('url' => '/editArt/uploadArt', 
-                    'enctype' => 'multipart/form-data', 'method' => 'POST',
-                    'files' => true)) !!}
-                        {!! csrf_field() !!}
-                        <div class="col-md-12">
-                            <div class="col-md-3">{!! Form::file('art_upload[]', array('multiple' => true)) !!}</div>
-                        </div><br><br><br>
-
-                        <div class="col-md-12">
-                            <div class="col-md-3">{!! Form::submit('Add designs') !!}</div>
-                        </div>
-                    {!! Form::close() !!}
-                </div>
+            {!! Form::close() !!}
+        </div>
+        <div class="col-md-3" style="text-align: center">
+            <div class="row" style="text-align: center"><p>Import from Behance:</p></div>
+            <div class="row" style="text-align: center">
+                <a href="/behance"><img src="assets/behance_icon.png"></a>
+            </div>
+        </div>
+        <div class="col-md-3" style="text-align: center">
+            <h1>Then</h1>
+        </div>
+        <div class="col-md-3" style="text-align: center">
+            <div class="row" style="text-align: center">
+                <p>Tag your work to have employers find you.</p>
+            </div>
+            <div class="row" style="text-align: center">
+                <a href="/tagArt"><img src="../assets/tag-btn.png"></a>
             </div>
         </div>
     </div>
-</div>
+    
+    
 @endsection

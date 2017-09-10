@@ -23,8 +23,14 @@
             <div class="col-md-2"></div>
         </div>
 
-        <div class="row" style="padding-bottom: 35px">
-            <div class="col-md-12" style="text-align: center;">
+        <div class="row" style="padding-bottom: 35px; vertical-align: middle;">
+            <div class="col-md-2"></div>
+            <div class="col-md-2" style="text-align: center;">
+                {!! Form::open(array('url' => '/home/downloadResume', 'enctype' => 'multipart/form-data')) !!}
+                    <input type="image" src="../assets/download-resume-btn.png"/>
+                {!! Form::close() !!}
+            </div>
+            <div class="col-md-4" style="text-align: center;">
 
                 <input type="image" src="../assets/more-pics-btn.png" name="next" 
                     onclick="nextBrowsePage(<?php echo $numberOfScreens ?>, 
@@ -33,16 +39,7 @@
                     <?php echo htmlspecialchars(json_encode($homeView)) ?>)" 
                     style="text-align: center; display: inline-block;">
             </div>
-        </div>
-        <div class="row">
-            {!! Form::open(array('url' => '/home/downloadResume', 'enctype' => 'multipart/form-data')) !!}
-                <div class="col-md-2"></div>
-                <div class="col-md-3" style="text-align: center;">
-                    <input type="image" src="../assets/download-resume-btn.png"/>
-                </div>
-            {!! Form::close() !!}
-            <div class="col-md-2"></div>
-            <div class="col-md-3" style="text-align: center;">    
+            <div class="col-md-2" style="text-align: center;">
                 <a href="/editArt"><input type="image" src="../assets/add-edit-art-btn.png"/></a>
             </div>
             <div class="col-md-2"></div>

@@ -23,6 +23,13 @@ $(document).ready(function()
     });
 });
 
+if(document.getElementById("art_upload") != null)
+{
+    document.getElementById("art_upload").onchange = function() {
+        document.getElementById("img-upload-form").submit();
+    };
+}
+
 function getTags(state)
 {
     var str = $('#slide-list.flex-active-slide').children()[0].src.toString(); 

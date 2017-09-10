@@ -78,9 +78,7 @@ class HomeController extends Controller
             
             $display = view('home', ['user' => $user, 'imageDisplayLines' => $gridDetails[0], 
             'numberOfScreens' => $gridDetails[1], 'screenNumber' => 1, 'gridArtIDs' => $gridDetails[2],
-            'imagePaths' => $gridDetails[3], 'homeView' => 2]);
-            
-//            $display = view('home', ['user' => $user, 'images' => $images]);
+            'imagePaths' => $gridDetails[3], 'homeView' => 2]);            
         }
         else
         {
