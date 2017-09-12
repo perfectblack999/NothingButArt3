@@ -1,16 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-
-<p>Thanks for signing up. Click below to complete your registration:</p>
+<div class="row" style="text-align: center; padding-bottom: 25px">
+    <h3>Thanks for signing up. Click below to complete your registration:</h3>
+</div>
 
 <form action = "activateProfile" method = "post">
     <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
     <?php if(!isset($user->type)){ ?>
         <div class="form-group">
-            <div class="row">
+            <div class="row" style="text-align: center;">
                 <div class="col-md-4"></div>
-                <div class="col-md-4">
+                <div class="col-md-4" style="text-align: center;">
                     <h3>Who are you?</h3>
                 </div>
                 <div class="col-md-4"></div>
@@ -30,6 +31,8 @@
         </div>
     <?php } ?>
     <input type = "hidden" name = "activation" value = "activate">
-    <input type="submit" value="Complete Registration" name="complete_registration" />
+    <div class="row" style="text-align: center;">
+        <input name="complete_registration" type="image" src="../assets/complete-registration-btn.png"/>
+    </div>
 </form>
 @endsection

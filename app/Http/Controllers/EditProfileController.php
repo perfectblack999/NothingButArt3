@@ -138,6 +138,7 @@ class editProfileController extends Controller
             'phone' => 'required',
             'resume' => 'required',
             'portfolio' => 'required',
+            'zip_code' => 'required'
         ]);
     }
     
