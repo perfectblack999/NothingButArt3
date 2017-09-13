@@ -7,7 +7,7 @@
         {!! Form::open(array('url' => '/artist/update', 'enctype' => 'multipart/form-data', 'method' => 'post')) !!}
             {!! csrf_field() !!}
             
-            <div class="row">
+            <div class="row spaceForm">
                 <div class="col-md-4"></div>
                 <div class="col-md-2">First Name</div>
                 <div class="col-md-2">Last Name</div>
@@ -20,7 +20,7 @@
                 <div class="col-md-4"></div>
             </div>
             
-            <div class="row">
+            <div class="row spaceForm">
                 <div class="col-md-4"></div>
                 <div class="col-md-2">Email</div> 
                 <div class="col-md-2"></div>
@@ -33,7 +33,7 @@
                 <div class="col-md-4"></div>
             </div>
             
-            <div class="row">
+            <div class="row spaceForm">
                 <div class="col-md-4"></div>
                 <div class="col-md-2">Phone</div> 
                 <div class="col-md-2"></div>
@@ -56,7 +56,7 @@
                 </div>
             @endif
             
-            <div class="row">
+            <div class="row spaceForm">
                 <div class="col-md-4"></div>
                 <div class="col-md-2">City</div> 
                 <div class="col-md-2">State</div>
@@ -99,7 +99,7 @@
                 </div>
             @endif
             
-            <div class="row">
+            <div class="row spaceForm">
                 <div class="col-md-4"></div>
                 <div class="col-md-2">Zip Code</div> 
                 <div class="col-md-2"></div>
@@ -122,43 +122,66 @@
                 </div>
             @endif
 
-
-            <div class="col-md-12">
-                <div class="col-md-3">Resume</div>
+            <div class="row spaceForm">
+                <div class="col-md-4"></div>
+                <div class="col-md-2">Resume</div> 
+                <div class="col-md-2"></div>
+                <div class="col-md-4"></div>
             </div>
-            <div class="col-md-12">
-                <div class="col-md-3">{!! Form::file('resume') !!}</div>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-2">{!! Form::file('resume') !!}</div> 
+                <div class="col-md-2"></div>
+                <div class="col-md-4"></div>
             </div>
-            @if ($errors->has('resume'))
-                <div class="col-md-12">
-                    <div class="col-md-12">
+            @if ($errors->has('resume') && isset($first_time_completing))
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-2">
                         <span class="help-block"><strong>{{ $errors->first('resume') }}</strong></span>
-                    </div>
+                    </div> 
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4"></div>
                 </div>
             @endif
-
-            <div class="col-md-12">
-                <div class="col-md-3">Portfolio</div>
+            
+            <div class="row spaceForm">
+                <div class="col-md-4"></div>
+                <div class="col-md-2">Portfolio</div> 
+                <div class="col-md-2"></div>
+                <div class="col-md-4"></div>
             </div>
-            <div class="col-md-12">
-                <div class="col-md-3">{!! Form::text('portfolio', $user->portfolio) !!}</div>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-2">{!! Form::text('portfolio', $user->portfolio) !!}</div> 
+                <div class="col-md-2"></div>
+                <div class="col-md-4"></div>
             </div>
             @if ($errors->has('portfolio'))
-                <div class="col-md-12">
-                    <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-2">
                         <span class="help-block"><strong>{{ $errors->first('portfolio') }}</strong></span>
-                    </div>
+                    </div> 
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4"></div>
                 </div>
             @endif
 
-            <div class="col-md-12">
-                <div class="col-md-3">{!! Form::submit('Update') !!}</div>
-                <div class="col-md-3"><a href='home'>Cancel</a></div>
+            <div class="row spaceForm">
+                <div class="col-md-4"></div>
+                <div class="col-md-2"><input name="update" type="image" src="../assets/update-btn.png"/></div>
+                <div class="col-md-2"><a href='home'><img type="image" src="../assets/cancel.png"></a></div>
+                <div class="col-md-4"></div>
             </div>
 
             @if (isset($dOption))
-                <div class="col-md-12">
-                    <a href="deleteAccount">Delete Account</a>
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <a href="deleteAccount">Delete Account</a>
+                    </div>
+                    <div class="col-md-4"></div>
                 </div>
             @endif
         {!! Form::close() !!}

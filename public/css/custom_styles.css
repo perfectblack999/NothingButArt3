@@ -105,3 +105,19 @@ input
     margin: 5px 1px 3px 0px;
     border: 1px solid #DDDDDD;
 }
+
+input[type="image"]
+{   
+    padding: 0px;
+    margin: 0px;
+}
+
+.spaceForm
+{
+    padding-top: 15px;
+}
+
+.help-block
+{
+    color: red;
+}

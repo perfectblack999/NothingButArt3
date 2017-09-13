@@ -65,12 +65,12 @@ class HomeController extends Controller
         }
         elseif($user->profile_state == Enumerations::ACTIVATED && $user->type == "recruiter")
         {
-            $display = view('editRecruiterProfile', ['user' => $user]);
+            $display = view('editRecruiterProfile', ['user' => $user, 'first_time_completing' => 1]);
         }
         elseif($user->profile_state == Enumerations::ACTIVATED && $user->type == "artist")
         {
             $images = $this->GetImages($user);
-            $display = view('editArtistProfile', ['user' => $user, 'images' => $images]);
+            $display = view('editArtistProfile', ['user' => $user, 'images' => $images, 'first_time_completing' => 1]);
         }
         elseif($user->profile_state == Enumerations::COMPLETE && $user->type == "artist")
         {
