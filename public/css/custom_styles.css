@@ -8,12 +8,6 @@
     padding:5px;
 }
 
-/*.row
-{
-    padding-top: 5px;
-    padding-bottom: 5px;
-}*/
-
 .grid-item 
 { 
     width: 20%; 
@@ -48,12 +42,6 @@ body
     font-size: 125px;
     color: #31363d;
     font-family: arial;
-}
-
-#paintbrush
-{
-    height: 50%;
-    width: 50%; 
 }
 
 .navbar
@@ -120,4 +108,41 @@ input[type="image"]
 .help-block
 {
     color: red;
+}
+
+.art-checkboxes label
+{
+    background-color: #36bfa0;
+    border-color: #36bfa0;
+}
+
+.art-checkboxes label:hover
+{
+    background-color: #1a9f81;
+    border-color: #1a9f81;
+}
+
+.art-checkboxes label:active
+{
+    background-color: #36bfa0;
+    border-color: #36bfa0;
+}
+
+.art-checkboxes label:active:hover
+{
+    background-color: #36bfa0;
+    border-color: #36bfa0;
+}
+
+.art-checkboxes .active:hover
+{
+    background-color: #1a9f81;
+    border-color: #1a9f81;
+    box-shadow: 0 0 2px rgba(0, 0, 0, .75) inset;
+}
+
+.art-checkboxes .active
+{
+    background-color: #1a9f81;
+    border-color: #1a9f81;
 }

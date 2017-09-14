@@ -358,7 +358,7 @@ function nextBrowsePage(numberOfScreens, gridArtIDs, imagePaths, view)
         }
         else if(view === 2)
         {
-            window.location.href = '/home'
+            window.location.href = '/home';
         }
     }
     else
@@ -375,21 +375,21 @@ function nextBrowsePage(numberOfScreens, gridArtIDs, imagePaths, view)
             success: function(response) {   
 //                console.log("next screen");
 //                console.log("Screen number js: " + myApp.screenNumber);
-//                console.log(response);
+                console.log(response);
 
                 $('#image_container').imagesLoaded()
                 .always( function( instance ) {
-//                  console.log('all images loaded');
+                  console.log('all images loaded');
                 })
                 .done( function( instance ) {
-//                  console.log('all images successfully loaded');
+                  console.log('all images successfully loaded');
                 })
                 .fail( function() {
-//                  console.log('all images loaded, at least one is broken');
+                  console.log('all images loaded, at least one is broken');
                 })
                 .progress( function( instance, image ) {
                   var result = image.isLoaded ? 'loaded' : 'broken';
-//                  console.log( 'image is ' + result + ' for ' + image.img.src );
+                  console.log( 'image is ' + result + ' for ' + image.img.src );
                 });
 
                 // update the images selected for the grid
