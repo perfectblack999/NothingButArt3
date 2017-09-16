@@ -160,9 +160,9 @@ $('#image_container').imagesLoaded()
 $("select").imagepicker();
     
 var $grid = $('.grid').masonry({
-  // options
-  itemSelector: '.grid-item',
-  columnWidth: 100
+    // options
+    itemSelector: '.grid-item',
+    columnWidth: 175
 });
 
 // layout Masonry after each image loads
@@ -242,10 +242,7 @@ function nextSearchImage(searchID, numberOfScreens, gridArtIDs)
                 
                 // re-initialize masonry 
                 var grid = $( '.grid' );
-                grid.masonry({
-                    itemSelector: '.grid-item',
-                    columnWidth: 100
-                });
+                grid = fitWidthHandling(grid, myApp.screenNumber, numberOfScreens);
                 
                 //reload and layout masonry again
                 $(grid).masonry('reloadItems');
@@ -399,10 +396,7 @@ function nextBrowsePage(numberOfScreens, gridArtIDs, imagePaths, view)
 
                 // re-initialize masonry 
                 var grid = $( '.grid' );
-                grid.masonry({
-                    itemSelector: '.grid-item',
-                    columnWidth: 100
-                });
+                grid = fitWidthHandling(grid, myApp.screenNumber, numberOfScreens);
 
                 //reload and layout masonry again
                 $(grid).masonry('reloadItems');
@@ -416,4 +410,26 @@ function nextBrowsePage(numberOfScreens, gridArtIDs, imagePaths, view)
             }
         });
     }
+}
+
+//used to avoid bug in fitWidth where images are shrunk on last page
+function fitWidthHandling(gridObject, screenNumber, numberOfScreens)
+{
+    if (screenNumber === numberOfScreens)
+    {
+        gridObject.masonry({
+            itemSelector: '.grid-item',
+            columnWidth: 175
+        });
+    }
+    else
+    {
+        gridObject.masonry({
+                    itemSelector: '.grid-item',
+                    columnWidth: 175,
+                    percentPosition: true
+                });
+    }
+    
+    return gridObject;
 }

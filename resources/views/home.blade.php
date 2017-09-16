@@ -11,7 +11,7 @@
     <div class="row" style="text-align: center; padding-bottom: 25px"><h1>Your Portfolio</h1></div>
         <div id="imageContainer" class="row">
             <div class="col-md-2"></div>
-            <div class="col-md-8 grid" style="text-align: center;">
+            <div class="col-md-10 grid" style="text-align: center;">
                 <select id="artHolder" multiple="multiple" class="image-picker show-html masonry">    
                     @for ($i = ($screenNumber - 1) * 9; $i < (($screenNumber - 1) * 9) + 9; $i++)
                         @if (isset($imageDisplayLines[$i]))
@@ -20,7 +20,6 @@
                     @endfor
                 </select>
             </div>
-            <div class="col-md-2"></div>
         </div>
 
         <div class="row" style="padding-bottom: 35px; vertical-align: middle;">
