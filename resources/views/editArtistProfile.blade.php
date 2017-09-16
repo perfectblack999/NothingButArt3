@@ -170,15 +170,15 @@
 
             <div class="row spaceForm">
                 <div class="col-md-4"></div>
-                <div class="col-md-2"><input name="update" type="image" src="../assets/update-btn.png"/></div>
-                <div class="col-md-2"><a href='home'><img type="image" src="../assets/cancel.png"></a></div>
+                <div class="col-md-2" style="text-align: center;"><input name="update" type="image" src="../assets/update-btn.png"/></div>
+                <div class="col-md-2" style="text-align: center;"><a href='home'><img type="image" src="../assets/cancel.png"></a></div>
                 <div class="col-md-4"></div>
             </div>
 
             @if (isset($dOption))
                 <div class="row">
                     <div class="col-md-4"></div>
-                    <div class="col-md-4">
+                    <div class="col-md-4" style="text-align: center;">
                         <a href="deleteAccount">Delete Account</a>
                     </div>
                     <div class="col-md-4"></div>

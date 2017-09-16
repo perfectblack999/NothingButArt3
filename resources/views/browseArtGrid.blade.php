@@ -18,7 +18,7 @@
 <div class="row">
     <div class="col-md-12" style="text-align: center;">
 
-        <input class="btn btn-primary" type="submit" value="More Pics" name="next" 
+        <input type="image" name="next" src="../assets/more-pics.png" 
             onclick="nextBrowsePage(<?php echo $numberOfScreens ?>, 
             <?php echo htmlspecialchars(json_encode($gridArtIDs)) ?>, 
             <?php echo htmlspecialchars(json_encode($imagePaths)) ?>,
