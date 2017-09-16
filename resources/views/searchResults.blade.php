@@ -1,26 +1,28 @@
 @extends('layouts.app')
 
 @section('content')
-<h2>Your Top Creators</h2>
-<div>
-    @if(count($topArtistData) > 0)
-        @for($i = 0; $i < 10; $i++)
-            @if(isset($topArtistData[$i]))
-                <h3><?php echo ($i+1)."." ?></h3>
-                <p><?php echo $topArtistData[$i]->first_name." ".$topArtistData[$i]->last_name ?><br>
-                <p>
+<h2 style="text-align: center;">Your Top Creators</h2>
+
+@if(count($topArtistData) > 0)
+    @for($i = 0; $i < 10; $i++)
+        @if(isset($topArtistData[$i]))
+            <div class="row" style="padding-bottom: 20px; padding-top: 20px;">
+                <div class="row" style="text-align:center; padding-bottom: 20px;">
+                    <img src="../assets/unknown-portrait.png">
+                </div>
+                <div class="row" style="text-align:center;">
                     {!! Form::open(array('url' => '/search/downloadResume', 'enctype' => 'multipart/form-data')) !!}
-                        {{ Form::hidden('artist_id', $topArtistData[$i]->id) }}   
-                        <div class="col-md-12">
-                            <div class="col-md-3">{!! Form::submit('Download Resume') !!}</div>
-                        </div>
+                        {{ Form::hidden('artist_id', $topArtistData[$i]->id) }}
+                        <input name="download_resume" type="image" src="../assets/download-resume.png"/>
                     {!! Form::close() !!}
-                </p>
-            @endif
-        @endfor
-    @else
+                </div>
+            </div>
+        @endif
+    @endfor
+@else
+<div class="row" style="text-align: center;">
     <p>Sorry, we couldn't find anyone. Try some different search criteria!</p>
-    @endif
 </div>
+@endif
 
 @endsection

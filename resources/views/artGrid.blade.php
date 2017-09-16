@@ -18,8 +18,7 @@
 </div>
 <div class="row">
     <div class="col-md-12" style="text-align: center;">
-
-        <input class="btn btn-primary" type="submit" value="Next" name="next" 
+        <input type="image" name="next" src="../assets/next.png"
             onclick="nextSearchImage(<?php echo $searchID ?>, <?php echo $numberOfScreens ?>, 
             <?php echo htmlspecialchars(json_encode($gridArtIDs)) ?>)" 
             style="text-align: center; display: inline-block;">
