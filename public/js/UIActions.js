@@ -162,8 +162,7 @@ $("select").imagepicker();
 var $grid = $('.grid').masonry({
   // options
   itemSelector: '.grid-item',
-  columnWidth: 150,
-  fitWidth: true
+  columnWidth: 100
 });
 
 // layout Masonry after each image loads
@@ -245,8 +244,7 @@ function nextSearchImage(searchID, numberOfScreens, gridArtIDs)
                 var grid = $( '.grid' );
                 grid.masonry({
                     itemSelector: '.grid-item',
-                    columnWidth: 150,
-                    fitWidth: true
+                    columnWidth: 100
                 });
                 
                 //reload and layout masonry again
@@ -403,8 +401,7 @@ function nextBrowsePage(numberOfScreens, gridArtIDs, imagePaths, view)
                 var grid = $( '.grid' );
                 grid.masonry({
                     itemSelector: '.grid-item',
-                    columnWidth: 150,
-                    fitWidth: true
+                    columnWidth: 100
                 });
 
                 //reload and layout masonry again

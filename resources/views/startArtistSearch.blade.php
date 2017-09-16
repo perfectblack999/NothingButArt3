@@ -80,7 +80,7 @@
                 </div>
                 <div class="row">    
                     <div class="col-md-12" style="text-align: center;">
-                        <input id="zip" name="zip" type="text">
+                        <input id="zip" name="zip" type="text" class="smoothForm">
                     </div>
                 </div>
                 @if ($errors->has('zip'))
@@ -97,7 +97,7 @@
                 </div>
                 <div class="row">    
                     <div class="col-md-12" style="text-align: center;">
-                        <input id="distance" name="distance" type="text">
+                        <input id="distance" name="distance" type="text" class="smoothForm">
                     </div>
                 </div>
                 @if ($errors->has('distance'))

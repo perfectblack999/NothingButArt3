@@ -29,7 +29,7 @@
 
                         <div class="row">
                             <div class="col-md-offset-1 col-md-11">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
+                                <input id="email" type="email" class="form-control smoothForm" name="email" value="{{ old('email') }}">
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -47,7 +47,7 @@
                             
                         <div class="row">
                             <div class="col-md-offset-1 col-md-11">
-                                <input id="password" type="password" class="form-control" name="password">
+                                <input id="password" type="password" class="form-control smoothForm" name="password">
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">

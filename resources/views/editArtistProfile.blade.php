@@ -15,8 +15,8 @@
             </div>
             <div class="row">
                 <div class="col-md-4"></div>
-                <div class="col-md-2">{!! Form::text('first_name', $user->first_name) !!}</div>
-                <div class="col-md-2">{!! Form::text('last_name', $user->last_name) !!}</div>
+                <div class="col-md-2">{!! Form::text('first_name', $user->first_name, array('class' => 'smoothForm')) !!}</div>
+                <div class="col-md-2">{!! Form::text('last_name', $user->last_name, array('class' => 'smoothForm')) !!}</div>
                 <div class="col-md-4"></div>
             </div>
             
@@ -41,7 +41,7 @@
             </div>
             <div class="row">
                 <div class="col-md-4"></div>
-                <div class="col-md-2">{!! Form::text('phone',$user->phone) !!}</div> 
+                <div class="col-md-2">{!! Form::text('phone',$user->phone, array('class' => 'smoothForm')) !!}</div> 
                 <div class="col-md-2"></div>
                 <div class="col-md-4"></div>
             </div>
@@ -64,8 +64,8 @@
             </div>
             <div class="row">
                 <div class="col-md-4"></div>
-                <div class="col-md-2">{!! Form::text('city',$user->city) !!}</div> 
-                <div class="col-md-2">{!! Form::text('state',$user->state) !!}</div>
+                <div class="col-md-2">{!! Form::text('city',$user->city, array('class' => 'smoothForm')) !!}</div> 
+                <div class="col-md-2">{!! Form::text('state',$user->state, array('class' => 'smoothForm')) !!}</div>
                 <div class="col-md-4"></div>
             </div>
             @if ($errors->has('city') && $errors->has('state'))
@@ -107,7 +107,7 @@
             </div>
             <div class="row">
                 <div class="col-md-4"></div>
-                <div class="col-md-2">{!! Form::text('zip_code',$user->zip_code) !!}</div> 
+                <div class="col-md-2">{!! Form::text('zip_code',$user->zip_code, array('class' => 'smoothForm')) !!}</div> 
                 <div class="col-md-2"></div>
                 <div class="col-md-4"></div>
             </div>
@@ -153,7 +153,7 @@
             </div>
             <div class="row">
                 <div class="col-md-4"></div>
-                <div class="col-md-2">{!! Form::text('portfolio', $user->portfolio) !!}</div> 
+                <div class="col-md-2">{!! Form::text('portfolio', $user->portfolio, array('class' => 'smoothForm')) !!}</div> 
                 <div class="col-md-2"></div>
                 <div class="col-md-4"></div>
             </div>
