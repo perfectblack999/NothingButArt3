@@ -42,31 +42,6 @@ class TagArtController extends Controller
         return $valid;
     }
     
-//    private function GetImages($user)
-//    {
-//        $artIDs = null;
-//        $images = array();
-//        
-//        if($user->image_ids != "")
-//        {
-//            $artIDs = explode(",", $user->image_ids);
-//        }
-//        
-//        if($artIDs != null)
-//        {
-//            foreach ($artIDs as $artID)
-//            {
-//                $artFile = DB::select('select path from images where id = (?)', array($artID));
-//                $image = '<img src="art/'.$artFile[0]->path.'" style="width:50%;height:50%;">';
-//                $idAndImage = array($artID, $image);
-//
-//                array_push($images, $idAndImage);
-//            }
-//        }
-//        
-//        return $images;
-//    }
-    
     private function GetImages($user)
     {
         $artIDs = null;
@@ -85,7 +60,8 @@ class TagArtController extends Controller
     
     private function createGrid($gridArtIDPaths)
     {
-        $imageDisplayLines = array();
+        // initialized with blank so nothing is initially selected
+        $imageDisplayLines = array('<option value=""></option>');
         $imagePaths = array();
         $imageIDs = array();
         

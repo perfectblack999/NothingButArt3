@@ -30,9 +30,41 @@ if(document.getElementById("art_upload") != null)
     };
 }
 
-function getTags(state)
+$(window).load(function(){
+  $('#carousel').flexslider({
+    animation: "slide",
+    controlNav: false,
+    animationLoop: false,
+    slideshow: false,
+    itemWidth: 210,
+    itemMargin: 5,
+    asNavFor: '#slider'
+  });
+
+  $('#slider').flexslider({
+    animation: "slide",
+    controlNav: false,
+    animationLoop: false,
+    slideshow: false,
+    sync: "#carousel",
+    before:function(){
+        saveTags();
+    },
+    after:function(){
+        getTags();
+    },
+    start: function(slider){
+        $('body').removeClass('loading');
+        getTags();
+    }
+  });
+});
+
+function getTags()
 {
-    var str = $('#slide-list.flex-active-slide').children()[0].src.toString(); 
+//    var str = $('#slide-list.flex-active-slide').children()[0].src.toString();
+    var str = $('div.thumbnail.grid-item.selected').children()[0].src.toString();
+//    console.log(str);
     var revStr = str.split("").reverse().join("");
     var picFile = str.substring(str.length - revStr.indexOf('/'), str.length);
     var myData = 'fileName=' + picFile; //build a post data structure
@@ -111,36 +143,6 @@ function saveTags()
     myApp.animationNumber++;
 }
 
-$(window).load(function(){
-  $('#carousel').flexslider({
-    animation: "slide",
-    controlNav: false,
-    animationLoop: false,
-    slideshow: false,
-    itemWidth: 210,
-    itemMargin: 5,
-    asNavFor: '#slider'
-  });
-
-  $('#slider').flexslider({
-    animation: "slide",
-    controlNav: false,
-    animationLoop: false,
-    slideshow: false,
-    sync: "#carousel",
-    before:function(){
-        saveTags();
-    },
-    after:function(){
-        getTags();
-    },
-    start: function(slider){
-        $('body').removeClass('loading');
-        getTags();
-    }
-  });
-});
-
 $('#image_container').imagesLoaded()
   .always( function( instance ) {
 //    console.log('all images loaded');
@@ -157,8 +159,13 @@ $('#image_container').imagesLoaded()
   });
 
 // initialize the image-picker
-$("select").imagepicker();
-    
+$("select").imagepicker({
+    selected: function(){
+        getTags();
+        console.log("image selected");
+    } 
+});
+
 var $grid = $('.grid').masonry({
     // options
     itemSelector: '.grid-item',
@@ -294,7 +301,7 @@ function saveBehanceImages()
     myData = myApp.selectedImages;
     myData.toString();
     myData = "selected_images=" + myData;
-    console.log(myData);
+//    console.log(myData);
     
     $.ajax({
             type: "POST",
@@ -302,7 +309,7 @@ function saveBehanceImages()
             dataType:"text", // Data type, HTML, json etc.
             data: myData,
             success: function(response) {   
-                console.log(myData);
+//                console.log(myData);
 //                console.log("Screen number js: " + myApp.screenNumber);
                 window.location.href = '/homeBehanceImport';
             }
@@ -315,7 +322,7 @@ function deletePicClick(clickedID)
     var revStr = str.split("").reverse().join("");
     var picFile = str.substring(str.length - revStr.indexOf('/'), str.length);
     var myData = 'fileName=' + picFile; //build a post data structure
-    console.log(myData);
+//    console.log(myData);
         
     jQuery.ajax({
         type: "POST", // HTTP method POST or GET
@@ -324,8 +331,8 @@ function deletePicClick(clickedID)
         data:myData, //Form variables
         success:function(response)
         {
-            console.log("deleted \n");
-            console.log(response);
+//            console.log("deleted \n");
+//            console.log(response);
         },
         error:function (xhr, ajaxOptions, thrownError){
             console.log(thrownError);
@@ -374,29 +381,34 @@ function nextBrowsePage(numberOfScreens, gridArtIDs, imagePaths, view)
             success: function(response) {   
 //                console.log("next screen");
 //                console.log("Screen number js: " + myApp.screenNumber);
-                console.log(response);
+//                console.log(response);
 
                 $('#image_container').imagesLoaded()
                 .always( function( instance ) {
-                  console.log('all images loaded');
+//                  console.log('all images loaded');
                 })
                 .done( function( instance ) {
-                  console.log('all images successfully loaded');
+//                  console.log('all images successfully loaded');
                 })
                 .fail( function() {
-                  console.log('all images loaded, at least one is broken');
+//                  console.log('all images loaded, at least one is broken');
                 })
                 .progress( function( instance, image ) {
                   var result = image.isLoaded ? 'loaded' : 'broken';
-                  console.log( 'image is ' + result + ' for ' + image.img.src );
+//                  console.log( 'image is ' + result + ' for ' + image.img.src );
                 });
 
                 // update the images selected for the grid
 //                $('#artHolderFake').html(response);
-                $('#artHolder').html(response);
+                $('#artHolder').html('<option value=""></option>' + response);
 
                 // re-initialize the image-picker
-                $("select").imagepicker();
+                $("select").imagepicker({
+                    selected: function(){
+                        getTags();
+                        console.log("image selected");
+                    }
+                });
 
                 // re-initialize masonry 
                 var grid = $( '.grid' );
