@@ -355,6 +355,10 @@ function nextBrowsePage(numberOfScreens, gridArtIDs, imagePaths, view)
         {
             window.location.href = '/home';
         }
+        else if(view === 3)
+        {
+            window.location.href = '/tagArt';
+        }
     }
     else
     {

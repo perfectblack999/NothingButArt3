@@ -14,13 +14,19 @@ class TagArtController extends Controller
         
         if($this->CheckUser($user))
         {
-            $images = $this->GetImages($user);
+//            $images = $this->GetImages($user);
+            
+            $gridDetails = $this->GetImages($user);
 
-            return view('tagArt', ['user' => $user, 'images' => $images]);
+            return view('tagArt', ['user' => $user, 'imageDisplayLines' => $gridDetails[0], 
+            'numberOfScreens' => $gridDetails[1], 'screenNumber' => 1, 'gridArtIDs' => $gridDetails[2],
+            'imagePaths' => $gridDetails[3], 'view' => 3]); 
+            
+//            return view('tagArt', ['user' => $user, 'images' => $images]);
         }
         else
         {
-            return redirect()->route('home');
+            return redirect()->route('home', ['homeView' => 1]);
         }
     }
     
@@ -36,29 +42,63 @@ class TagArtController extends Controller
         return $valid;
     }
     
+//    private function GetImages($user)
+//    {
+//        $artIDs = null;
+//        $images = array();
+//        
+//        if($user->image_ids != "")
+//        {
+//            $artIDs = explode(",", $user->image_ids);
+//        }
+//        
+//        if($artIDs != null)
+//        {
+//            foreach ($artIDs as $artID)
+//            {
+//                $artFile = DB::select('select path from images where id = (?)', array($artID));
+//                $image = '<img src="art/'.$artFile[0]->path.'" style="width:50%;height:50%;">';
+//                $idAndImage = array($artID, $image);
+//
+//                array_push($images, $idAndImage);
+//            }
+//        }
+//        
+//        return $images;
+//    }
+    
     private function GetImages($user)
     {
         $artIDs = null;
-        $images = array();
         
         if($user->image_ids != "")
         {
             $artIDs = explode(",", $user->image_ids);
         }
         
-        if($artIDs != null)
+        $imagesPerScreen = 9;
+        $gridArtIDPaths = DB::select("SELECT id,path FROM images WHERE user = (?) LIMIT 90", array($user->id));
+        $numberOfScreens = ceil(count($gridArtIDPaths)/$imagesPerScreen);
+        $artArrays = $this->createGrid($gridArtIDPaths);
+        return array($artArrays[2], $numberOfScreens, $artArrays[0], $artArrays[1]);
+    }
+    
+    private function createGrid($gridArtIDPaths)
+    {
+        $imageDisplayLines = array();
+        $imagePaths = array();
+        $imageIDs = array();
+        
+        foreach ($gridArtIDPaths as $gridArtIDPath)
         {
-            foreach ($artIDs as $artID)
-            {
-                $artFile = DB::select('select path from images where id = (?)', array($artID));
-                $image = '<img src="art/'.$artFile[0]->path.'" style="width:50%;height:50%;">';
-                $idAndImage = array($artID, $image);
-
-                array_push($images, $idAndImage);
-            }
+            array_push($imageDisplayLines, "<option data-img-src='art/".$gridArtIDPath->path."' value='".$gridArtIDPath->id."'>Image ".$gridArtIDPath->id."</option>");
+            array_push($imagePaths, $gridArtIDPath->path);
+            array_push($imageIDs, $gridArtIDPath->id);
         }
         
-        return $images;
+        $artArrays = array($imageIDs, $imagePaths, $imageDisplayLines);
+        
+        return $artArrays;
     }
     
     public function SaveTag()

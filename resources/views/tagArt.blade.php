@@ -14,106 +14,104 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-                <section class="slider">
-                    <div id="slider" class="flexslider">
-                        <ul class="slides">
-                            @foreach($images as $image)
-                                <li id="slide-list">
-                                    <?php echo $image[1] ?>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <div id="carousel-holder">
-                        <div id="carousel" class="flexslider">
-                            <ul class="slides" id="carousel-list">
-                                @foreach($images as $image)
-                                    <li>
-                                        <?php echo $image[1] ?>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-                <div id="tag-group">
-                    <div class="btn-group" data-toggle="buttons">
-                        <label id="business_cards_label" class="btn btn-primary">
-                          <input id="business_cards" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Business Cards
-                        </label>
-                        <label id="logos_label" class="btn btn-primary">
-                          <input id="logos" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Logos
-                        </label>
-                        <label id="letterhead_label" class="btn btn-primary">
-                          <input id="letterhead" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Letterhead
-                        </label>
-                        <label id="brochures_label" class="btn btn-primary">
-                          <input id="brochures" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Brochures
-                        </label>
-                        <label id="flyers_label" class="btn btn-primary">
-                          <input id="flyers" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Flyers
-                        </label>
-                        <label id="postcards_label" class="btn btn-primary">
-                          <input id="postcards" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Postcards
-                        </label>
-                    </div>
-                    <div class="btn-group" data-toggle="buttons">
-                        <label id="posters_label" class="btn btn-primary">
-                          <input id="posters" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Posters
-                        </label>
-                        <label id="magazines_label" class="btn btn-primary">
-                          <input id="magazines" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Magazines
-                        </label>
-                        <label id="books_label" class="btn btn-primary">
-                          <input id="books" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Books
-                        </label>
-                        <label id="catalogs_label" class="btn btn-primary">
-                          <input id="catalogs" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Catalogs
-                        </label>
-                        <label id="packaging_label" class="btn btn-primary">
-                          <input id="packaging" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Packaging
-                        </label>
-                        <label id="presentations_label" class="btn btn-primary">
-                          <input id="presentations" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Presentation
-                        </label>
-                    </div>
-                    <div class="btn-group" data-toggle="buttons">
-                        <label id="illustrations_label" class="btn btn-primary">
-                          <input id="illustrations" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Illustrations
-                        </label>
-                        <label id="website_label" class="btn btn-primary">
-                          <input id="website" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Website
-                        </label>
-                        <label id="mobile_app_label" class="btn btn-primary">
-                          <input id="mobile_app" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Mobile App
-                        </label>
-                        <label id="web_app_label" class="btn btn-primary">
-                          <input id="web_app" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Web App
-                        </label>
-                        <label id="3d_label" class="btn btn-primary">
-                          <input id="3d" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> 3D
-                        </label>
-                        <label id="desktop_app_label" class="btn btn-primary">
-                          <input id="desktop_app" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Desktop App
-                        </label>
-                    </div>
+        <div class="col-md-8">
+            <div id="imageContainer" class="row">
+                <div class="col-md-12 grid" style="text-align: center;">
+                    <select id="artHolder" multiple="multiple" class="image-picker show-html masonry">    
+                        @for ($i = ($screenNumber - 1) * 9; $i < (($screenNumber - 1) * 9) + 9; $i++)
+                            @if (isset($imageDisplayLines[$i]))
+                                <?php echo $imageDisplayLines[$i] ?>
+                            @endif
+                        @endfor
+                    </select>
                 </div>
-                <div style="padding-top:50px;text-align: center; ">
-                    <a class="btn btn-primary" href="/artistBio" style="display: inline-block">Done</a>
+            </div>
+            <div class="row" style="text-align: center;">
+                <input type="image" src="../assets/more-pics-btn.png" name="next" 
+                    onclick="nextBrowsePage(<?php echo $numberOfScreens ?>, 
+                    <?php echo htmlspecialchars(json_encode($gridArtIDs)) ?>, 
+                    <?php echo htmlspecialchars(json_encode($imagePaths)) ?>,
+                    <?php echo htmlspecialchars(json_encode($view)) ?>)" 
+                    style="text-align: center; display: inline-block;">
+            </div>
+        </div>
+        <div class="col-md-4 tagPanel">
+            <div id="tag-group" class="row" style="text-align: center;">
+                <div class="btn-group art-checkboxes" data-toggle="buttons">
+                    <label id="business_cards_label" class="btn btn-primary">
+                      <input id="business_cards" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Business Cards
+                    </label>
+                    <label id="logos_label" class="btn btn-primary">
+                      <input id="logos" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Logos
+                    </label>
+                    <label id="letterhead_label" class="btn btn-primary">
+                      <input id="letterhead" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Letterhead
+                    </label>
+                    <label id="brochures_label" class="btn btn-primary">
+                      <input id="brochures" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Brochures
+                    </label>
+                </div>
+                <div class="btn-group art-checkboxes" data-toggle="buttons">   
+                    <label id="flyers_label" class="btn btn-primary">
+                      <input id="flyers" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Flyers
+                    </label>
+                    <label id="postcards_label" class="btn btn-primary">
+                      <input id="postcards" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Postcards
+                    </label>
+                    <label id="posters_label" class="btn btn-primary">
+                      <input id="posters" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Posters
+                    </label>
+                    <label id="magazines_label" class="btn btn-primary">
+                      <input id="magazines" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Magazines
+                    </label>
+                </div>
+                <div class="btn-group art-checkboxes" data-toggle="buttons">
+                    <label id="books_label" class="btn btn-primary">
+                      <input id="books" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Books
+                    </label>
+                    <label id="catalogs_label" class="btn btn-primary">
+                      <input id="catalogs" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Catalogs
+                    </label>
+                    <label id="packaging_label" class="btn btn-primary">
+                      <input id="packaging" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Packaging
+                    </label>
+                    <label id="presentations_label" class="btn btn-primary">
+                      <input id="presentations" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Presentation
+                    </label>
+                </div>
+                <div class="btn-group art-checkboxes" data-toggle="buttons">
+                    <label id="illustrations_label" class="btn btn-primary">
+                      <input id="illustrations" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Illustrations
+                    </label>
+                    <label id="website_label" class="btn btn-primary">
+                      <input id="website" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Website
+                    </label>
+                    <label id="mobile_app_label" class="btn btn-primary">
+                      <input id="mobile_app" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Mobile App
+                    </label>
+                    <label id="web_app_label" class="btn btn-primary">
+                      <input id="web_app" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Web App
+                    </label>
+                </div>
+                <div class="btn-group art-checkboxes" data-toggle="buttons">
+                    <label id="3d_label" class="btn btn-primary">
+                      <input id="3d" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> 3D
+                    </label>
+                    <label id="desktop_app_label" class="btn btn-primary">
+                      <input id="desktop_app" type="checkbox" autocomplete="off" onchange="tagClick(this.id)"> Desktop App
+                    </label>
+                </div>
+            </div>
+            <hr>
+            <div class="row" style="padding-top: 30px">
+                <div class="col-md-6" style="text-align: center;">
+                    <a href="/artistBio" style="display: inline-block"><img src="../assets/done.png"></a>
+                </div>
+                <div class="col-md-6" style="text-align: center;">
+                    <input type="image" name="deletePic" src="../assets/delete-image.png" onclick="deletePicClick(this.id)">
                 </div>
             </div>
         </div>
-        
-    </div>
-    <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4" style="text-align: center">
-            <button class="btn btn-primary" type="button" name="deletePic" onclick="deletePicClick(this.id)">Delete Image</button>
-        </div>
-        <div class="col-md-4"></div>
     </div>
 </div>
 @endsection
