@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
-<link rel="stylesheet" href="css/image_slider.css">
+<link rel="stylesheet" href="css/image-picker.css">
 <link rel="stylesheet" href="css/custom_styles.css">
 <link rel="stylesheet" href="css/demo.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
@@ -17,7 +17,7 @@
         <div class="col-md-8">
             <div id="imageContainer" class="row">
                 <div class="col-md-12 grid" style="text-align: center;">
-                    <select id="artHolder" multiple="multiple" class="image-picker show-html masonry">    
+                    <select id="artHolder" class="image-picker show-html masonry">    
                         @for ($i = ($screenNumber - 1) * 9; $i < (($screenNumber - 1) * 9) + 9; $i++)
                             @if (isset($imageDisplayLines[$i]))
                                 <?php echo $imageDisplayLines[$i] ?>
