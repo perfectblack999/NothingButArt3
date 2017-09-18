@@ -30,45 +30,18 @@ if(document.getElementById("art_upload") != null)
     };
 }
 
-$(window).load(function(){
-  $('#carousel').flexslider({
-    animation: "slide",
-    controlNav: false,
-    animationLoop: false,
-    slideshow: false,
-    itemWidth: 210,
-    itemMargin: 5,
-    asNavFor: '#slider'
-  });
-
-  $('#slider').flexslider({
-    animation: "slide",
-    controlNav: false,
-    animationLoop: false,
-    slideshow: false,
-    sync: "#carousel",
-    before:function(){
-        saveTags();
-    },
-    after:function(){
-        getTags();
-    },
-    start: function(slider){
-        $('body').removeClass('loading');
-        getTags();
+// initialize the image-picker
+$("select").imagepicker({
+    changed: function(previousSelection, currentSelection){
+        saveTags(previousSelection);
+        getTags(currentSelection);
     }
-  });
 });
 
-function getTags()
+function getTags(currentSelection)
 {
-//    var str = $('#slide-list.flex-active-slide').children()[0].src.toString();
-    var str = $('div.thumbnail.grid-item.selected').children()[0].src.toString();
-//    console.log(str);
-    var revStr = str.split("").reverse().join("");
-    var picFile = str.substring(str.length - revStr.indexOf('/'), str.length);
-    var myData = 'fileName=' + picFile; //build a post data structure
-        
+    var myData = 'imageID=' + currentSelection;
+    console.log(currentSelection);
     jQuery.ajax({
         type: "GET", // HTTP method POST or GET
         url: "getTag", //Where to make Ajax calls
@@ -92,29 +65,13 @@ function getTags()
     });
 }
 
-function tagClick(clickedID)
+function saveTags(currentSelection)
 {   
-    var limit = 3;
-    
-    if($('input:checked').length > limit) 
-    {
-        $("#" + clickedID).prop('checked', false).parent().removeClass('active');
-    }
-}
-
-function saveTags()
-{   
-    var str = $('#slide-list.flex-active-slide').children()[0].src.toString();
-    var revStr = str.split("").reverse().join("");
-    var picFile = str.substring(str.length - revStr.indexOf('/'), str.length);
     var selectedTags = ['','',''];
-    
-//    console.log("Pre: " + picFile);
-    
+        
     for(i = 0; i < $('input:checked').length; i++)
     {
         selectedTags[i] = $('input:checked')[i].id;
-//        console.log("Selected Tag " + i.toString() + " " + selectedTags[i]);
     }
     
     $.ajaxSetup({
@@ -123,7 +80,7 @@ function saveTags()
         }
     });
     
-    var myData = 'fileName=' + picFile + '&tag1=' + selectedTags[0] + 
+    var myData = 'imageID=' + currentSelection + '&tag1=' + selectedTags[0] + 
             '&tag2=' + selectedTags[1] + '&tag3=' + selectedTags[2]; //build a post data structure
     
     jQuery.ajax({
@@ -143,6 +100,16 @@ function saveTags()
     myApp.animationNumber++;
 }
 
+function tagClick(clickedID)
+{   
+    var limit = 3;
+    
+    if($('input:checked').length > limit) 
+    {
+        $("#" + clickedID).prop('checked', false).parent().removeClass('active');
+    }
+}
+
 $('#image_container').imagesLoaded()
   .always( function( instance ) {
 //    console.log('all images loaded');
@@ -158,13 +125,6 @@ $('#image_container').imagesLoaded()
 //    console.log( 'image is ' + result + ' for ' + image.img.src );
   });
 
-// initialize the image-picker
-$("select").imagepicker({
-    selected: function(){
-        getTags();
-        console.log("image selected");
-    } 
-});
 
 var $grid = $('.grid').masonry({
     // options
@@ -364,11 +324,15 @@ function nextBrowsePage(numberOfScreens, gridArtIDs, imagePaths, view)
         }
         else if(view === 3)
         {
-            window.location.href = '/tagArt';
+            saveTags($("select").data("picker").selected_values());
+            setTimeout(window.location.href = '/tagArt', 1000);
         }
     }
     else
     {
+        // clear tag selections
+        resetTags();
+        
         myData = myData + '&screen_number=' + myApp.screenNumber +
             '&grid_art_ids=' + gridArtIDs + '&number_of_screens=' + numberOfScreens
             + '&image_paths=' + imagePaths;
@@ -379,9 +343,6 @@ function nextBrowsePage(numberOfScreens, gridArtIDs, imagePaths, view)
             dataType:"text", // Data type, HTML, json etc.
             data: myData,
             success: function(response) {   
-//                console.log("next screen");
-//                console.log("Screen number js: " + myApp.screenNumber);
-//                console.log(response);
 
                 $('#image_container').imagesLoaded()
                 .always( function( instance ) {
@@ -400,13 +361,13 @@ function nextBrowsePage(numberOfScreens, gridArtIDs, imagePaths, view)
 
                 // update the images selected for the grid
 //                $('#artHolderFake').html(response);
-                $('#artHolder').html('<option value=""></option>' + response);
+                $('#artHolder').html('<option value="0"></option>' + response);
 
                 // re-initialize the image-picker
                 $("select").imagepicker({
-                    selected: function(){
-                        getTags();
-                        console.log("image selected");
+                    changed: function(previousSelection, currentSelection){
+                        saveTags(previousSelection);
+                        getTags(currentSelection);
                     }
                 });
 
@@ -426,6 +387,11 @@ function nextBrowsePage(numberOfScreens, gridArtIDs, imagePaths, view)
             }
         });
     }
+}
+
+function resetTags()
+{
+    $(":checkbox").prop('checked', false).parent().removeClass('active');
 }
 
 //used to avoid bug in fitWidth where images are shrunk on last page

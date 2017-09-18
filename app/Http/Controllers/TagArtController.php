@@ -61,7 +61,7 @@ class TagArtController extends Controller
     private function createGrid($gridArtIDPaths)
     {
         // initialized with blank so nothing is initially selected
-        $imageDisplayLines = array('<option value=""></option>');
+        $imageDisplayLines = array('<option value="0"></option>');
         $imagePaths = array();
         $imageIDs = array();
         
@@ -80,23 +80,23 @@ class TagArtController extends Controller
     public function SaveTag()
     {
         
-        $fileName = filter_input(INPUT_POST, 'fileName', FILTER_SANITIZE_STRING);
+        $imageID = filter_input(INPUT_POST, 'imageID', FILTER_SANITIZE_STRING);
         $tag1 = filter_input(INPUT_POST, 'tag1', FILTER_SANITIZE_STRING);
         $tag2 = filter_input(INPUT_POST, 'tag2', FILTER_SANITIZE_STRING);
         $tag3 = filter_input(INPUT_POST, 'tag3', FILTER_SANITIZE_STRING);
 
         $picRow = DB::update('UPDATE images SET tag1 = (?), tag2 = (?), tag3 = (?) '
-                . 'where path = (?)', array($tag1, $tag2, $tag3, $fileName));
+                . 'where id = (?)', array($tag1, $tag2, $tag3, $imageID));
         
         return $picRow;
     }
     
     public function GetTag()
     {
-        $fileName = filter_input(INPUT_GET, 'fileName', FILTER_SANITIZE_STRING);
+        $imageID = filter_input(INPUT_GET, 'imageID', FILTER_SANITIZE_STRING);
 
         $picRow = DB::select('SELECT tag1, tag2, tag3 from images where '
-                . 'path = (?)', array($fileName));
+                . 'id = (?)', array($imageID));
         
         return $picRow;
     }
