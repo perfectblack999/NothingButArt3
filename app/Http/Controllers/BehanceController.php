@@ -100,9 +100,9 @@ class BehanceController extends Controller
     {
         $user = Auth::user();
         $images = $this->GetImages($user);
-        $display = view('home', ['user' => $user, 'images' => $images]);
+//        $display = view('home', ['user' => $user, 'images' => $images, 'screenNumber' => 1]);
         
-        return $display;
+        return redirect()->route('home', ['user' => $user]);
     }
     
     private function StoreArt($imageURLs)

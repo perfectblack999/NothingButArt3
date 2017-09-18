@@ -5,15 +5,17 @@
 
 @section('content')
     <div class="container">
-        <h1>Import Images from Behance</h1>
+        <div class="row" style="text-align: center;">
+            <h1>Import Images from Behance</h1>
+        </div>
 
         <form method="GET" action="behanceLookup">
-            <div class="input-group">
-                <input type="text" class="form-control" name="username" placeholder="Search Your Behance Username">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="submit">Submit</button>
-                </span>
-            </div><!-- /input-group -->
+            <div class='row' style="padding-bottom: 30px;">
+                <input type="text" class="form-control smoothForm" name="username" placeholder="Search Your Behance Username">
+            </div>
+            <div class='row' style="text-align: center;">
+                <input type='image' src='../assets/find-art.png'>
+            </div>
         </form>
         <br/>
 
@@ -39,7 +41,7 @@
                 <div class="row">
                     <div class="col-md-4"></div>
                     <div class="col-md-4" style="text-align:center">
-                        <input class="btn btn-primary" type="submit" value="Import Images" name="importImages" 
+                        <input type="image" name="importImages" src="../assets/import-images.png"
                         onclick="saveBehanceImages()" style="text-align: center; display: inline-block;">
                     </div>
                     <div class="col-md-4"></div>
