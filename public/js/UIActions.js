@@ -278,11 +278,7 @@ function saveBehanceImages()
 
 function deletePicClick(clickedID)
 {   
-    var str = $('#slide-list.flex-active-slide').children()[0].src.toString();
-    var revStr = str.split("").reverse().join("");
-    var picFile = str.substring(str.length - revStr.indexOf('/'), str.length);
-    var myData = 'fileName=' + picFile; //build a post data structure
-//    console.log(myData);
+    var myData = 'imageID=' + $("select").data("picker").selected_values(); //build a post data structure
         
     jQuery.ajax({
         type: "POST", // HTTP method POST or GET
@@ -291,6 +287,7 @@ function deletePicClick(clickedID)
         data:myData, //Form variables
         success:function(response)
         {
+            window.location.href = '/tagArt';
 //            console.log("deleted \n");
 //            console.log(response);
         },

@@ -103,13 +103,11 @@ class TagArtController extends Controller
     
     public function DeletePic()
     {
-        $user = Auth::user();
-        
         try
         {
-            $fileName = filter_input(INPUT_POST, 'fileName', FILTER_SANITIZE_STRING);
-            $picIdAndUser = DB::select('SELECT id, user FROM images WHERE path = (?)', array($fileName));
-            $picRowResult = DB::update('UPDATE images SET user = (?) WHERE path = (?)', array("", $fileName));
+            $imageID = filter_input(INPUT_POST, 'imageID', FILTER_SANITIZE_STRING);
+            $picIdAndUser = DB::select('SELECT id, user FROM images WHERE id = (?)', array($imageID));
+            $picRowResult = DB::update('UPDATE images SET user = (?) WHERE id = (?)', array("", $imageID));
             
             if($picRowResult)
             {

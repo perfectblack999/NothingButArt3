@@ -108,7 +108,7 @@
                     <a href="/artistBio" style="display: inline-block"><img src="../assets/done.png"></a>
                 </div>
                 <div class="col-md-6" style="text-align: center;">
-                    <input type="image" name="deletePic" src="../assets/delete-image.png" onclick="deletePicClick(this.id)">
+                    <input type="image" name="deletePic" src="../assets/delete-image.png" onclick="deletePicClick()">
                 </div>
             </div>
         </div>
