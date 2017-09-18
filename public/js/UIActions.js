@@ -23,7 +23,7 @@ $(document).ready(function()
     });
 });
 
-if(document.getElementById("art_upload") != null)
+if(document.getElementById("art_upload") !== null)
 {
     document.getElementById("art_upload").onchange = function() {
         document.getElementById("img-upload-form").submit();
@@ -129,7 +129,8 @@ $('#image_container').imagesLoaded()
 var $grid = $('.grid').masonry({
     // options
     itemSelector: '.grid-item',
-    columnWidth: 175
+    columnWidth: 150,
+    fitWidth: true
 });
 
 // layout Masonry after each image loads
@@ -181,9 +182,6 @@ function nextSearchImage(searchID, numberOfScreens, gridArtIDs)
             dataType:"text", // Data type, HTML, json etc.
             data: myData,
             success: function(response) {   
-//                console.log("next screen");
-//                console.log("Screen number js: " + myApp.screenNumber);
-//                console.log(response);
                 
                 $('#image_container').imagesLoaded()
                 .always( function( instance ) {
@@ -209,7 +207,10 @@ function nextSearchImage(searchID, numberOfScreens, gridArtIDs)
                 
                 // re-initialize masonry 
                 var grid = $( '.grid' );
-                grid = fitWidthHandling(grid, myApp.screenNumber, numberOfScreens);
+                grid.masonry({
+                    itemSelector: '.grid-item',
+                    columnWidth: 150
+                });
                 
                 //reload and layout masonry again
                 $(grid).masonry('reloadItems');
@@ -293,7 +294,6 @@ function deletePicClick(clickedID)
         },
         error:function (xhr, ajaxOptions, thrownError){
             console.log(thrownError);
-            console.log(response);
         }
     });
 }
@@ -370,7 +370,10 @@ function nextBrowsePage(numberOfScreens, gridArtIDs, imagePaths, view)
 
                 // re-initialize masonry 
                 var grid = $( '.grid' );
-                grid = fitWidthHandling(grid, myApp.screenNumber, numberOfScreens);
+                grid.masonry({
+                    itemSelector: '.grid-item',
+                    columnWidth: 150
+                });
 
                 //reload and layout masonry again
                 $(grid).masonry('reloadItems');
@@ -380,7 +383,6 @@ function nextBrowsePage(numberOfScreens, gridArtIDs, imagePaths, view)
             },
             error:function (xhr, ajaxOptions, thrownError){
                 console.log(thrownError);
-                console.log(response);
             }
         });
     }
@@ -389,26 +391,4 @@ function nextBrowsePage(numberOfScreens, gridArtIDs, imagePaths, view)
 function resetTags()
 {
     $(":checkbox").prop('checked', false).parent().removeClass('active');
-}
-
-//used to avoid bug in fitWidth where images are shrunk on last page
-function fitWidthHandling(gridObject, screenNumber, numberOfScreens)
-{
-    if (screenNumber === numberOfScreens)
-    {
-        gridObject.masonry({
-            itemSelector: '.grid-item',
-            columnWidth: 175
-        });
-    }
-    else
-    {
-        gridObject.masonry({
-                    itemSelector: '.grid-item',
-                    columnWidth: 175,
-                    percentPosition: true
-                });
-    }
-    
-    return gridObject;
 }
