@@ -30,7 +30,7 @@
                     <div class="col-md-2"></div>
                     <div class="col-md-8 grid" style="text-align: center">
 
-                        <select id="artHolder" multiple="multiple" class="image-picker show-html masonry">
+                        <select id="artHolder" multiple="multiple" class="image-picker masonry">
                             <?php foreach($images as $image){ ?>
                                 <option data-img-src="<?php echo $image ?>" value="<?php echo $image ?>"><?php echo $image ?></option>          
                             <?php } ?>

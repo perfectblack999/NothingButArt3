@@ -17,7 +17,7 @@
         <div class="col-md-8">
             <div id="imageContainer" class="row">
                 <div class="col-md-12 grid" style="text-align: center;">
-                    <select id="artHolder" class="image-picker show-html masonry">    
+                    <select id="artHolder" class="image-picker masonry">    
                         @for ($i = ($screenNumber - 1) * 9; $i < (($screenNumber - 1) * 9) + 9; $i++)
                             @if (isset($imageDisplayLines[$i]))
                                 <?php echo $imageDisplayLines[$i] ?>
