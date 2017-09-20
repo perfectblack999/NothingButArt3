@@ -87,16 +87,23 @@ class SearchArtistController extends Controller
     // Need to change to make less queries
     private function createGrid($gridArtIDs)
     {
-        $imageDisplayLines = array();
-        
-        $imagePaths = DB::select(sprintf("SELECT path FROM images WHERE id in (%s)", 
-                implode(',',array_fill(0,count($gridArtIDs),'?'))), $gridArtIDs);
-        
-        for($i = 0; $i < count($imagePaths); $i++)
+        if(count($gridArtIDs) > 0)
         {
-            array_push($imageDisplayLines, "<option data-img-src='art/"
-                .$imagePaths[$i]->path."' value='".$gridArtIDs[$i]."'>Image "
-                .$gridArtIDs[$i]."</option>");
+            $imageDisplayLines = array();
+            
+            $imagePaths = DB::select(sprintf("SELECT path FROM images WHERE id in (%s)", 
+                    implode(',',array_fill(0,count($gridArtIDs),'?'))), $gridArtIDs);
+
+            for($i = 0; $i < count($imagePaths); $i++)
+            {
+                array_push($imageDisplayLines, "<option data-img-src='art/"
+                    .$imagePaths[$i]->path."' value='".$gridArtIDs[$i]."'>Image "
+                    .$gridArtIDs[$i]."</option>");
+            }
+        }
+        else
+        {
+            $imageDisplayLines = view('searchResults', ['topArtistData' => array()]);
         }
         
         return $imageDisplayLines;

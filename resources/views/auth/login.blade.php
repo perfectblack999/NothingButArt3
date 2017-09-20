@@ -13,6 +13,9 @@
                     </h1>
                 </div>
             </div>
+            <div class="row" style="text-align: center;">
+                <h2>Merit based job searching for creatives</h2>
+            </div>
             <div class="row" style="text-align: center; padding-top: 100px">
                 <a href="/browseArt"><img src="../assets/browse-art-btn.png"></a>
             </div>

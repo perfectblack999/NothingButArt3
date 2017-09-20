@@ -103,6 +103,7 @@ class editProfileController extends Controller
         $this->validate($request, [
             'phone' => 'required',
             'company' => 'required',
+            'zip_code' => 'required',
         ]);
     }
 
