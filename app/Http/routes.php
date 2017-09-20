@@ -21,7 +21,7 @@ Route::post('/home/downloadResume', 'HomeController@downloadResume');
 Route::get('/recruiterProfile/{id}', 'ProfileViewController@showRecruiterProfile');
 
 Route::get('/editRecruiterProfile', ['as' => 'editRecruiterProfile', 'uses' => 'EditProfileController@EditRecruiterProfile']);
-Route::post('/recruiter/update', 'editProfileController@UpdateRecruiterProfile');
+Route::post('/recruiter/update', 'EditProfileController@UpdateRecruiterProfile');
 
 Route::get('/editArtistProfile', ['as' => 'editArtistProfile', 'uses' => 'EditProfileController@EditArtistProfile']);
 Route::post('/artist/update', 'EditProfileController@UpdateArtistProfile');
