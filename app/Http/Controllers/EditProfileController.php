@@ -154,32 +154,16 @@ class editProfileController extends Controller
         return $fileName;
     }
     
-    public function EditArt()
+    public function EditArt(Request $request)
     {
         $user = Auth::user();
-        $artIDs = null;
-        $images = array();
-        $artFiles = array();
         
-        if($user->image_ids != "")
+        if(!isset($user))
         {
-            $artIDs = explode(",", $user->image_ids);
-        }
-        
-        if($artIDs != null)
-        {
-            foreach($artIDs as $artID)
-            {
-                $artFile = DB::select('select path from images where id = (?)', array($artID));
-                $image = '<img src="art/'.$artFile[0]->path.'" style="width:50%;height:50%;">';
-                $idAndImage = array($artID, $image);
-
-                array_push($images, $idAndImage);
-                array_push($artFiles, $artID);
-            }
+            return redirect()->route('home');
         }
 
-        return view('editArt', ['user' => $user, 'art_files' => $artFiles, 'images' => $images]);
+        return view('editArt', ['fileTypeError' => $request->input('fileTypeError')]);
     }
     
     public function UploadArt(Request $request)
@@ -187,17 +171,27 @@ class editProfileController extends Controller
         $user = Auth::user();
         
         if($request->hasFile('art_upload'))
-        {
+        {          
             $files = Input::file('art_upload');
+            $allowed =  array('png' ,'jpg', 'jpeg');
+            
+            foreach($files as $file)
+            {
+                $ext = strtolower($file->getClientOriginalExtension());
+                
+                if(!in_array($ext, $allowed)) 
+                {
+                    $fileTypeError = 1;
+                    return redirect()->route('editArt', ['fileTypeError' => $fileTypeError]);
+                }
+            }
             
             $imageFileNames = $this->StoreArt($files);
             
             $this->PutArtInDB($imageFileNames);
         }
         
-//        $images = $this->GetImages($user);
-
-        return redirect()->route('tagArt', ['user' => $user]);
+        return redirect()->route('tagArt');
     }
     
     private function PutArtInDB($imageFileNames)
@@ -224,17 +218,166 @@ class editProfileController extends Controller
     private function StoreArt($files)
     {
         $fileNames = array();
-        
+                
         foreach ($files as $file)
         {
-            $destinationPath = 'art';
-            $extension = $file->getClientOriginalExtension(); 
+            $extension = $file->getClientOriginalExtension();
             $fileName = rand(111111111111,999999999999).'.'.$extension;
-            $file->move($destinationPath, $fileName);
+            $destinationDir = 'art';
+            $compressedImage = $this->CompressImage($file, $fileName, $extension);
+            rename($compressedImage, $destinationDir."/".$fileName);
             array_push($fileNames, $fileName);
         }
-        
+                
         return $fileNames;
+    }
+    
+    private function CompressImage($file, $fileName, $extension)
+    {
+        $tmpDir = "tmp";
+        $tmpPath = "";
+        echo phpinfo();
+        
+        if(strtolower($extension) == 'jpg')
+        {
+            $img = imagecreatefromjpeg($file);
+            $tmpPath = $tmpDir."/".$fileName;
+            
+            if(filesize($file) >= 5000000)
+            {
+                imagejpeg($img, $tmpPath, 12); 
+            }
+            elseif(filesize($file) >= 4000000)
+            {
+                imagejpeg($img, $tmpPath, 12);
+            }
+            elseif(filesize($file) >= 3000000)
+            {
+                imagejpeg($img, $tmpPath, 18);
+            }
+            elseif(filesize($file) >= 2000000)
+            {
+                imagejpeg($img, $tmpPath, 30);
+            }
+            elseif(filesize($file) >= 1000000)
+            {
+                imagejpeg($img, $tmpPath, 60);
+            }
+            elseif(filesize($file) >= 800000)
+            {   
+                imagejpeg($img, $tmpPath, 72);
+            }
+            elseif(filesize($file) >= 600000)
+            {
+                imagejpeg($img, $tmpPath, 90);
+            }
+            elseif(filesize($file) >= 400000)
+            {
+                imagejpeg($img, $tmpPath, 90);
+            }
+            elseif(filesize($file) >= 200000)
+            {
+                imagejpeg($img, $tmpPath, 90);
+            }
+            else
+            {
+                imagejpeg($img, $tmpPath, 100);
+            }
+        }
+        elseif(strtolower($extension) == 'jpeg')
+        {
+            $img = imagecreatefromjpeg($file);
+            $tmpPath = $tmpDir."/".$fileName;
+            
+            if(filesize($file) >= 5000000)
+            {
+                imagejpeg($img, $tmpPath, 6); 
+            }
+            elseif(filesize($file) >= 4000000)
+            {
+                imagejpeg($img, $tmpPath, 6);
+            }
+            elseif(filesize($file) >= 3000000)
+            {
+                imagejpeg($img, $tmpPath, 9);
+            }
+            elseif(filesize($file) >= 2000000)
+            {
+                imagejpeg($img, $tmpPath, 15);
+            }
+            elseif(filesize($file) >= 1000000)
+            {
+                imagejpeg($img, $tmpPath, 30);
+            }
+            elseif(filesize($file) >= 800000)
+            {
+                imagejpeg($img, $tmpPath, 36);
+            }
+            elseif(filesize($file) >= 600000)
+            {
+                imagejpeg($img, $tmpPath, 48);
+            }
+            elseif(filesize($file) >= 400000)
+            {
+                imagejpeg($img, $tmpPath, 75);
+            }
+            elseif(filesize($file) >= 200000)
+            {
+                imagejpeg($img, $tmpPath, 90);
+            }
+            else
+            {
+                imagejpeg($img, $tmpPath, 100);
+            }
+        }
+        elseif(strtolower($extension) == 'png')
+        {
+            $img = imagecreatefrompng($file);
+            $tmpPath = $tmpDir."/".$fileName;
+            
+            if(filesize($file) >= 5000000)
+            {
+                imagepng($img, $tmpPath, 2); 
+            }
+            elseif(filesize($file) >= 4000000)
+            {
+                imagepng($img, $tmpPath, 2);
+            }
+            elseif(filesize($file) >= 3000000)
+            {
+                imagepng($img, $tmpPath, 3);
+            }
+            elseif(filesize($file) >= 2000000)
+            {
+                imagepng($img, $tmpPath, 5);
+            }
+            elseif(filesize($file) >= 1000000)
+            {
+                imagepng($img, $tmpPath, 10);
+            }
+            elseif(filesize($file) >= 800000)
+            {
+                imagepng($img, $tmpPath, 12);
+            }
+            elseif(filesize($file) >= 600000)
+            {
+                imagepng($img, $tmpPath, 16);
+            }
+            elseif(filesize($file) >= 400000)
+            {
+                imagepng($img, $tmpPath, 25);
+            }
+            elseif(filesize($file) >= 200000)
+            {
+                imagepng($img, $tmpPath, 50);
+            }
+            else
+            {
+                imagejpeg($img, $tmpPath, 100);
+            }
+        }
+        
+        return $tmpPath;
     }
     
     private function AddArtID($id)

@@ -42,6 +42,9 @@
             </div>
         </div>
     </div>
-    
+    @if(isset($fileTypeError))
+        <div class="row" style='text-align: center;'><p style="color:red">Sorry, we only support jpg's and png's right now!</p></div>
+    @endif
+</div>
     
 @endsection

@@ -31,8 +31,9 @@ Route::post('/activateProfile', 'EditProfileController@ActivateProfile');
 
 Route::get('/newSearch', 'SearchArtistController@NewSearch');
 
-Route::get('/editArt', ['middleware' => 'web', 'uses' => 'EditProfileController@EditArt']);
+Route::get('/editArt', ['as' => 'editArt', 'middleware' => 'web', 'uses' => 'EditProfileController@EditArt']);
 Route::post('/editArt/uploadArt', ['middleware' => 'web', 'uses' => 'EditProfileController@UploadArt']);
+//Route::get('/editArt/{fileTypeError}', ['as' => 'editArt', 'middleware' => 'web', 'uses' => 'EditProfileController@EditArt']);
 
 Route::get('/tagArt', ['as' => 'tagArt', 'uses' => 'TagArtController@ShowArt']);
 
