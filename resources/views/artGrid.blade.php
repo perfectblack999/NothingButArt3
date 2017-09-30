@@ -3,10 +3,12 @@
 <link rel="stylesheet" href="css/image-picker.css">
 
 @section('content')
+<h3 style="text-align: center; padding-bottom: 20px;">See something you like? Select the image and click next!</h3>
 <div class="row" id="image_container">
-    <div class="col-md-12 grid" style="text-align: center;">
+    <div class="col-md-1"></div>
+    <div class="col-md-11 grid" style="text-align: center;">
         <select id="artHolder" multiple="multiple" class="image-picker masonry">    
-            @for ($i = ($screenNumber - 1) * 9; $i < (($screenNumber - 1) * 9) + 9; $i++)
+            @for ($i = ($screenNumber - 1) * 8; $i < (($screenNumber - 1) * 8) + 8; $i++)
                 @if (isset($imageDisplayLines[$i]))
                     <?php echo $imageDisplayLines[$i] ?>
                 @endif

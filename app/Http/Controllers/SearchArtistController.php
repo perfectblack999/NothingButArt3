@@ -499,7 +499,7 @@ class SearchArtistController extends Controller
         $gridArtIDs = explode(",", filter_input(INPUT_GET, 'grid_art_ids', FILTER_SANITIZE_STRING));
         $imageDisplayLines = $this->createGrid($gridArtIDs);
         
-        for ($i = ($screenNumber - 1) * 9; $i < (($screenNumber - 1) * 9) + 9; $i++)
+        for ($i = ($screenNumber - 1) * 8; $i < (($screenNumber - 1) * 8) + 8; $i++)
         {
             if (isset($imageDisplayLines[$i]))
             {

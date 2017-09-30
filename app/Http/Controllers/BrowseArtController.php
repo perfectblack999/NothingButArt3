@@ -12,12 +12,12 @@ class BrowseArtController extends Controller
     public function Display(Request $request)
     {
         $browseArtView = 1;
-        $imagesPerScreen = 9;
+        $imagesPerScreen = 8;
         $user = Auth::user();
         $totalImageCount = DB::select('SELECT COUNT(id) as count FROM images WHERE user <> 0');
-        $numberOfImageRequests = floor($totalImageCount[0]->count/90);
+        $numberOfImageRequests = floor($totalImageCount[0]->count/80);
         $offset = rand(0, $numberOfImageRequests);
-        $offset = $offset * 90;
+        $offset = $offset * 80;
         $gridArtIDPaths = DB::select("SELECT id,path FROM images WHERE user <> 0 LIMIT 90 OFFSET $offset");
         shuffle($gridArtIDPaths);
         $numberOfScreens = ceil(count($gridArtIDPaths)/$imagesPerScreen);
@@ -34,7 +34,7 @@ class BrowseArtController extends Controller
         $gridArtIDs = explode(",", filter_input(INPUT_GET, 'grid_art_ids', FILTER_SANITIZE_STRING));
         $imagePaths = explode(",", filter_input(INPUT_GET, 'image_paths', FILTER_SANITIZE_STRING));
 
-        for ($i = ($screenNumber - 1) * 9; $i < (($screenNumber - 1) * 9) + 9; $i++)
+        for ($i = ($screenNumber - 1) * 8; $i < (($screenNumber - 1) * 8) + 8; $i++)
         {
             if (isset($gridArtIDs[$i]) && isset($imagePaths[$i]))
             {
