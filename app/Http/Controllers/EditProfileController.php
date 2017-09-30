@@ -221,12 +221,12 @@ class editProfileController extends Controller
                 
         foreach ($files as $file)
         {
-            $extension = $file->getClientOriginalExtension();
-            $fileName = rand(111111111111,999999999999).'.'.$extension;
+            $extension = strtolower($file->getClientOriginalExtension());
+            $fileName = strtolower(rand(111111111111,999999999999));
             $destinationDir = 'art';
             $compressedImage = $this->CompressImage($file, $fileName, $extension);
-            rename($compressedImage, $destinationDir."/".$fileName);
-            array_push($fileNames, $fileName);
+            rename($compressedImage, $destinationDir."/".$fileName.".jpg");
+            array_push($fileNames, $fileName.".jpg");
         }
                 
         return $fileNames;
@@ -236,7 +236,6 @@ class editProfileController extends Controller
     {
         $tmpDir = "tmp";
         $tmpPath = "";
-        echo phpinfo();
         
         if(strtolower($extension) == 'jpg')
         {
@@ -283,6 +282,8 @@ class editProfileController extends Controller
             {
                 imagejpeg($img, $tmpPath, 100);
             }
+            
+            imagedestroy($img);
         }
         elseif(strtolower($extension) == 'jpeg')
         {
@@ -329,52 +330,61 @@ class editProfileController extends Controller
             {
                 imagejpeg($img, $tmpPath, 100);
             }
+            
+            imagedestroy($img);
         }
         elseif(strtolower($extension) == 'png')
         {
             $img = imagecreatefrompng($file);
+            $bg = imagecreatetruecolor(imagesx($img), imagesy($img));
+            imagefill($bg, 0, 0, imagecolorallocate($bg, 255, 255, 255));
+            imagealphablending($bg, TRUE);
+            imagecopy($bg, $img, 0, 0, 0, 0, imagesx($img), imagesy($img));
+            imagedestroy($img);
             $tmpPath = $tmpDir."/".$fileName;
             
             if(filesize($file) >= 5000000)
             {
-                imagepng($img, $tmpPath, 2); 
+                imagejpeg($bg, $tmpPath, 12); 
             }
             elseif(filesize($file) >= 4000000)
             {
-                imagepng($img, $tmpPath, 2);
+                imagejpeg($bg, $tmpPath, 12);
             }
             elseif(filesize($file) >= 3000000)
             {
-                imagepng($img, $tmpPath, 3);
+                imagejpeg($bg, $tmpPath, 18);
             }
             elseif(filesize($file) >= 2000000)
             {
-                imagepng($img, $tmpPath, 5);
+                imagejpeg($bg, $tmpPath, 30);
             }
             elseif(filesize($file) >= 1000000)
             {
-                imagepng($img, $tmpPath, 10);
+                imagejpeg($bg, $tmpPath, 60);
             }
             elseif(filesize($file) >= 800000)
-            {
-                imagepng($img, $tmpPath, 12);
+            {   
+                imagejpeg($bg, $tmpPath, 72);
             }
             elseif(filesize($file) >= 600000)
             {
-                imagepng($img, $tmpPath, 16);
+                imagejpeg($bg, $tmpPath, 90);
             }
             elseif(filesize($file) >= 400000)
             {
-                imagepng($img, $tmpPath, 25);
+                imagejpeg($bg, $tmpPath, 90);
             }
             elseif(filesize($file) >= 200000)
             {
-                imagepng($img, $tmpPath, 50);
+                imagejpeg($bg, $tmpPath, 90);
             }
             else
             {
-                imagejpeg($img, $tmpPath, 100);
+                imagejpeg($bg, $tmpPath, 100);
             }
+            
+            imagedestroy($bg);
         }
         
         return $tmpPath;
