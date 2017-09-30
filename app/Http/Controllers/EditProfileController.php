@@ -244,27 +244,27 @@ class editProfileController extends Controller
             
             if(filesize($file) >= 5000000)
             {
-                imagejpeg($img, $tmpPath, 12); 
+                imagejpeg($img, $tmpPath, 24); 
             }
             elseif(filesize($file) >= 4000000)
             {
-                imagejpeg($img, $tmpPath, 12);
+                imagejpeg($img, $tmpPath, 24);
             }
             elseif(filesize($file) >= 3000000)
             {
-                imagejpeg($img, $tmpPath, 18);
+                imagejpeg($img, $tmpPath, 36);
             }
             elseif(filesize($file) >= 2000000)
             {
-                imagejpeg($img, $tmpPath, 30);
+                imagejpeg($img, $tmpPath, 60);
             }
             elseif(filesize($file) >= 1000000)
             {
-                imagejpeg($img, $tmpPath, 60);
+                imagejpeg($img, $tmpPath, 80);
             }
             elseif(filesize($file) >= 800000)
             {   
-                imagejpeg($img, $tmpPath, 72);
+                imagejpeg($img, $tmpPath, 90);
             }
             elseif(filesize($file) >= 600000)
             {
@@ -272,11 +272,11 @@ class editProfileController extends Controller
             }
             elseif(filesize($file) >= 400000)
             {
-                imagejpeg($img, $tmpPath, 90);
+                imagejpeg($img, $tmpPath, 100);
             }
             elseif(filesize($file) >= 200000)
             {
-                imagejpeg($img, $tmpPath, 90);
+                imagejpeg($img, $tmpPath, 100);
             }
             else
             {
@@ -292,39 +292,39 @@ class editProfileController extends Controller
             
             if(filesize($file) >= 5000000)
             {
-                imagejpeg($img, $tmpPath, 6); 
+                imagejpeg($img, $tmpPath, 24); 
             }
             elseif(filesize($file) >= 4000000)
             {
-                imagejpeg($img, $tmpPath, 6);
+                imagejpeg($img, $tmpPath, 24);
             }
             elseif(filesize($file) >= 3000000)
             {
-                imagejpeg($img, $tmpPath, 9);
+                imagejpeg($img, $tmpPath, 36);
             }
             elseif(filesize($file) >= 2000000)
             {
-                imagejpeg($img, $tmpPath, 15);
+                imagejpeg($img, $tmpPath, 60);
             }
             elseif(filesize($file) >= 1000000)
             {
-                imagejpeg($img, $tmpPath, 30);
+                imagejpeg($img, $tmpPath, 80);
             }
             elseif(filesize($file) >= 800000)
-            {
-                imagejpeg($img, $tmpPath, 36);
+            {   
+                imagejpeg($img, $tmpPath, 90);
             }
             elseif(filesize($file) >= 600000)
             {
-                imagejpeg($img, $tmpPath, 48);
+                imagejpeg($img, $tmpPath, 90);
             }
             elseif(filesize($file) >= 400000)
             {
-                imagejpeg($img, $tmpPath, 75);
+                imagejpeg($img, $tmpPath, 100);
             }
             elseif(filesize($file) >= 200000)
             {
-                imagejpeg($img, $tmpPath, 90);
+                imagejpeg($img, $tmpPath, 100);
             }
             else
             {
@@ -345,27 +345,27 @@ class editProfileController extends Controller
             
             if(filesize($file) >= 5000000)
             {
-                imagejpeg($bg, $tmpPath, 12); 
+                imagejpeg($bg, $tmpPath, 24); 
             }
             elseif(filesize($file) >= 4000000)
             {
-                imagejpeg($bg, $tmpPath, 12);
+                imagejpeg($bg, $tmpPath, 24);
             }
             elseif(filesize($file) >= 3000000)
             {
-                imagejpeg($bg, $tmpPath, 18);
+                imagejpeg($bg, $tmpPath, 36);
             }
             elseif(filesize($file) >= 2000000)
             {
-                imagejpeg($bg, $tmpPath, 30);
+                imagejpeg($bg, $tmpPath, 60);
             }
             elseif(filesize($file) >= 1000000)
             {
-                imagejpeg($bg, $tmpPath, 60);
+                imagejpeg($bg, $tmpPath, 80);
             }
             elseif(filesize($file) >= 800000)
             {   
-                imagejpeg($bg, $tmpPath, 72);
+                imagejpeg($bg, $tmpPath, 90);
             }
             elseif(filesize($file) >= 600000)
             {
@@ -373,11 +373,11 @@ class editProfileController extends Controller
             }
             elseif(filesize($file) >= 400000)
             {
-                imagejpeg($bg, $tmpPath, 90);
+                imagejpeg($bg, $tmpPath, 100);
             }
             elseif(filesize($file) >= 200000)
             {
-                imagejpeg($bg, $tmpPath, 90);
+                imagejpeg($bg, $tmpPath, 100);
             }
             else
             {

@@ -13,10 +13,11 @@
 @section('content')
 
 <div class="container">
-    <div class="row">
+    <div class="row" id="tagArtContainer">
         <div class="col-md-8">
             <div id="imageContainer" class="row">
-                <div class="col-md-12 grid" style="text-align: center;">
+                <div class="col-md-1"></div>
+                <div class="col-md-10 grid">
                     <select id="artHolder" class="image-picker masonry">    
                         @for ($i = ($screenNumber - 1) * 9; $i < (($screenNumber - 1) * 9) + 9; $i++)
                             @if (isset($imageDisplayLines[$i]))
@@ -35,7 +36,8 @@
                     style="text-align: center; display: inline-block;">
             </div>
         </div>
-        <div class="col-md-4 tagPanel">
+        <div class="col-md-4 tagPanel" id="tagPanel">
+            <p style="text-align: center">What kind of image is this?</p>
             <div id="tag-group" class="row" style="text-align: center;">
                 <div class="btn-group art-checkboxes" data-toggle="buttons">
                     <label id="business_cards_label" class="btn btn-primary">
@@ -103,7 +105,7 @@
                 </div>
             </div>
             <hr>
-            <div class="row" style="padding-top: 30px">
+            <div class="row">
                 <div class="col-md-6" style="text-align: center;">
                     <a href="/artistBio" style="display: inline-block"><img src="../assets/done.png"></a>
                 </div>

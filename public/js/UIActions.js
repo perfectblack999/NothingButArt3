@@ -38,6 +38,32 @@ $("select").imagepicker({
     }
 });
 
+// keep the right tag div scrolling with screen on tag page
+//$('#tagArtContainer').scroll(function() { 
+//    $('.tagPanel').css('top', $(this).scrollTop());
+//});
+
+$(function() {
+
+    var $sidebar   = $("#tagPanel"), 
+        $window    = $(window),
+        offset     = $sidebar.offset(),
+        topPadding = 15;
+
+    $window.scroll(function() {
+        if ($window.scrollTop() > offset.top) {
+            $sidebar.stop().animate({
+                marginTop: $window.scrollTop() - offset.top + topPadding
+            });
+        } else {
+            $sidebar.stop().animate({
+                marginTop: 0
+            });
+        }
+    });
+    
+});
+
 function getTags(currentSelection)
 {
     var myData = 'imageID=' + currentSelection;
@@ -209,7 +235,8 @@ function nextSearchImage(searchID, numberOfScreens, gridArtIDs)
                 var grid = $( '.grid' );
                 grid.masonry({
                     itemSelector: '.grid-item',
-                    columnWidth: 150
+                    columnWidth: 150,
+                    fitWidth: true
                 });
                 
                 //reload and layout masonry again
@@ -372,7 +399,8 @@ function nextBrowsePage(numberOfScreens, gridArtIDs, imagePaths, view)
                 var grid = $( '.grid' );
                 grid.masonry({
                     itemSelector: '.grid-item',
-                    columnWidth: 150
+                    columnWidth: 150,
+                    fitWidth: true
                 });
 
                 //reload and layout masonry again
