@@ -179,7 +179,12 @@ class editProfileController extends Controller
             {
                 $ext = strtolower($file->getClientOriginalExtension());
                 
-                if(!in_array($ext, $allowed)) 
+                if(filesize($file) > 5000000)
+                {
+                    $fileTypeError = 2;
+                    return redirect()->route('editArt', ['fileTypeError' => $fileTypeError]);
+                }
+                elseif(!in_array($ext, $allowed)) 
                 {
                     $fileTypeError = 1;
                     return redirect()->route('editArt', ['fileTypeError' => $fileTypeError]);
@@ -218,7 +223,7 @@ class editProfileController extends Controller
     private function StoreArt($files)
     {
         $fileNames = array();
-                
+
         foreach ($files as $file)
         {
             $extension = strtolower($file->getClientOriginalExtension());
@@ -238,29 +243,33 @@ class editProfileController extends Controller
         $tmpPath = "";
         
         if(strtolower($extension) == 'jpg')
-        {
+        {     
             $img = imagecreatefromjpeg($file);
             $tmpPath = $tmpDir."/".$fileName;
             
             if(filesize($file) >= 5000000)
             {
+                var_dump("Greater than 3MB");
                 imagejpeg($img, $tmpPath, 24); 
             }
             elseif(filesize($file) >= 4000000)
             {
+                var_dump("Greater than 4MB");
                 imagejpeg($img, $tmpPath, 24);
             }
             elseif(filesize($file) >= 3000000)
             {
+                var_dump("Greater than 3MB");
                 imagejpeg($img, $tmpPath, 36);
             }
             elseif(filesize($file) >= 2000000)
             {
-                imagejpeg($img, $tmpPath, 60);
+                var_dump("Greater than 2MB");
+                imagejpeg($img, $tmpPath, 40);
             }
             elseif(filesize($file) >= 1000000)
             {
-                imagejpeg($img, $tmpPath, 80);
+                imagejpeg($img, $tmpPath, 60);
             }
             elseif(filesize($file) >= 800000)
             {   
@@ -280,6 +289,7 @@ class editProfileController extends Controller
             }
             else
             {
+                var_dump("Less than 100KB");
                 imagejpeg($img, $tmpPath, 100);
             }
             
@@ -304,11 +314,11 @@ class editProfileController extends Controller
             }
             elseif(filesize($file) >= 2000000)
             {
-                imagejpeg($img, $tmpPath, 60);
+                imagejpeg($img, $tmpPath, 40);
             }
             elseif(filesize($file) >= 1000000)
             {
-                imagejpeg($img, $tmpPath, 80);
+                imagejpeg($img, $tmpPath, 60);
             }
             elseif(filesize($file) >= 800000)
             {   
@@ -357,11 +367,11 @@ class editProfileController extends Controller
             }
             elseif(filesize($file) >= 2000000)
             {
-                imagejpeg($bg, $tmpPath, 60);
+                imagejpeg($bg, $tmpPath, 40);
             }
             elseif(filesize($file) >= 1000000)
             {
-                imagejpeg($bg, $tmpPath, 80);
+                imagejpeg($bg, $tmpPath, 60);
             }
             elseif(filesize($file) >= 800000)
             {   

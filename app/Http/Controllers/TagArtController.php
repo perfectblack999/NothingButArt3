@@ -14,7 +14,6 @@ class TagArtController extends Controller
         
         if($this->CheckUser($user))
         {
-//            $images = $this->GetImages($user);
             
             $gridDetails = $this->GetImages($user);
 
@@ -22,7 +21,6 @@ class TagArtController extends Controller
             'numberOfScreens' => $gridDetails[1], 'screenNumber' => 1, 'gridArtIDs' => $gridDetails[2],
             'imagePaths' => $gridDetails[3], 'view' => 3]); 
             
-//            return view('tagArt', ['user' => $user, 'images' => $images]);
         }
         else
         {
@@ -51,7 +49,7 @@ class TagArtController extends Controller
             $artIDs = explode(",", $user->image_ids);
         }
         
-        $imagesPerScreen = 9;
+        $imagesPerScreen = 8;
         $gridArtIDPaths = DB::select("SELECT id,path FROM images WHERE user = (?) LIMIT 90", array($user->id));
         $numberOfScreens = ceil(count($gridArtIDPaths)/$imagesPerScreen);
         $artArrays = $this->createGrid($gridArtIDPaths);

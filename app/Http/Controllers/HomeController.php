@@ -97,8 +97,8 @@ class HomeController extends Controller
             $artIDs = explode(",", $user->image_ids);
         }
         
-        $imagesPerScreen = 9;
-        $gridArtIDPaths = DB::select("SELECT id,path FROM images WHERE user = (?) LIMIT 90", array($user->id));
+        $imagesPerScreen = 8;
+        $gridArtIDPaths = DB::select("SELECT id,path FROM images WHERE user = (?) LIMIT 80", array($user->id));
         $numberOfScreens = ceil(count($gridArtIDPaths)/$imagesPerScreen);
         $artArrays = $this->createGrid($gridArtIDPaths);
         return array($artArrays[2], $numberOfScreens, $artArrays[0], $artArrays[1]);

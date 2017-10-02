@@ -18,7 +18,7 @@ class SearchArtistController extends Controller
     
     public function GetArt(Request $request)
     {
-        $imagesPerScreen = 9;
+        $imagesPerScreen = 8;
         $user = Auth::user();
         $this->CompleteArtSearchValidator($request);
         $searchCriteria = $this->GetSearchCriteria();
@@ -259,7 +259,7 @@ class SearchArtistController extends Controller
         $gridIDs = array();
         $selectedArtistCount = array();
         $imageCount = count($scores[0]) + count($scores[1]) + count($scores[2]);
-        $imagesPerScreen = 9;
+        $imagesPerScreen = 8;
         $numberOfScreens = 5;
         $numTotalImages = $imagesPerScreen * $numberOfScreens;
         
