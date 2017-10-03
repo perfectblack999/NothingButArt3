@@ -82,9 +82,10 @@ class TagArtController extends Controller
         $tag1 = filter_input(INPUT_POST, 'tag1', FILTER_SANITIZE_STRING);
         $tag2 = filter_input(INPUT_POST, 'tag2', FILTER_SANITIZE_STRING);
         $tag3 = filter_input(INPUT_POST, 'tag3', FILTER_SANITIZE_STRING);
+        $story = filter_input(INPUT_POST, 'story', FILTER_SANITIZE_STRING);
 
-        $picRow = DB::update('UPDATE images SET tag1 = (?), tag2 = (?), tag3 = (?) '
-                . 'where id = (?)', array($tag1, $tag2, $tag3, $imageID));
+        $picRow = DB::update('UPDATE images SET tag1 = (?), tag2 = (?), tag3 = (?), '
+                . 'story = (?) where id = (?)', array($tag1, $tag2, $tag3, $story, $imageID));
         
         return $picRow;
     }
@@ -93,7 +94,7 @@ class TagArtController extends Controller
     {
         $imageID = filter_input(INPUT_GET, 'imageID', FILTER_SANITIZE_STRING);
 
-        $picRow = DB::select('SELECT tag1, tag2, tag3 from images where '
+        $picRow = DB::select('SELECT tag1, tag2, tag3, story from images where '
                 . 'id = (?)', array($imageID));
         
         return $picRow;

@@ -38,11 +38,6 @@ $("select").imagepicker({
     }
 });
 
-// keep the right tag div scrolling with screen on tag page
-//$('#tagArtContainer').scroll(function() { 
-//    $('.tagPanel').css('top', $(this).scrollTop());
-//});
-
 $(function() {
 
     var $sidebar   = $("#tagPanel"), 
@@ -80,10 +75,12 @@ function getTags(currentSelection)
             var tag1 = respObj[0].tag1;
             var tag2 = respObj[0].tag2;
             var tag3 = respObj[0].tag3;
+            var story = respObj[0].story;
            
             $("#" + tag1).prop('checked', true).parent().addClass('active');
             $("#" + tag2).prop('checked', true).parent().addClass('active');
             $("#" + tag3).prop('checked', true).parent().addClass('active');
+            $("#story_text").val(story);
         },
         error:function (xhr, ajaxOptions, thrownError){
                     alert(thrownError);
@@ -94,6 +91,7 @@ function getTags(currentSelection)
 function saveTags(currentSelection)
 {   
     var selectedTags = ['','',''];
+    var story = $("#story_text").val();
         
     for(i = 0; i < $('input:checked').length; i++)
     {
@@ -107,7 +105,7 @@ function saveTags(currentSelection)
     });
     
     var myData = 'imageID=' + currentSelection + '&tag1=' + selectedTags[0] + 
-            '&tag2=' + selectedTags[1] + '&tag3=' + selectedTags[2]; //build a post data structure
+            '&tag2=' + selectedTags[1] + '&tag3=' + selectedTags[2]+ '&story=' + story; //build a post data structure
     
     jQuery.ajax({
         type: "POST", // HTTP method POST or GET
@@ -116,7 +114,7 @@ function saveTags(currentSelection)
         data:myData, //Form variables
         success:function(response){
             //alert('Success');
-            $('#test').text(response);
+//            $('#test').text(response);
         },
         error:function (xhr, ajaxOptions, thrownError){
                     alert(thrownError);

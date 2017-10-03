@@ -37,6 +37,10 @@
             </div>
         </div>
         <div class="col-md-4 tagPanel" id="tagPanel">
+            <div class='row' style="text-align: center;">Image Story</div>
+            <div class='row' style="text-align: center; padding-bottom: 10px">
+                <textarea id="story_text" style="width: 100%" placeholder="Who was your client? What was your goal and inspiration with this design? Let us know to give some background."></textarea>
+            </div>
             <p style="text-align: center">What kind of image is this?</p>
             <div id="tag-group" class="row" style="text-align: center;">
                 <div class="btn-group art-checkboxes" data-toggle="buttons">
