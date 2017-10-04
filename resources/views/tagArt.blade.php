@@ -11,6 +11,7 @@
 <script src="js/modernizr.js"></script>
 
 @section('content')
+<div id="saved" style="text-align: center;"><img src="assets/save-confirmation.png"></div>
 
 <div class="container">
     <div class="row" id="tagArtContainer">

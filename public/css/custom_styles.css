@@ -162,3 +162,12 @@ input[type="image"]
 {
     color: #fff;
 }
+
+#saved
+{
+    position: fixed;
+    left:50%;
+    top:50%;
+    z-index: 100;
+    filter: alpha(opacity=50);
+}

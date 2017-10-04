@@ -21,6 +21,8 @@ $(document).ready(function()
       }
 
     });
+    
+    $("#saved").hide();
 });
 
 if(document.getElementById("art_upload") !== null)
@@ -62,7 +64,7 @@ $(function() {
 function getTags(currentSelection)
 {
     var myData = 'imageID=' + currentSelection;
-    console.log(currentSelection);
+    
     jQuery.ajax({
         type: "GET", // HTTP method POST or GET
         url: "getTag", //Where to make Ajax calls
@@ -120,6 +122,9 @@ function saveTags(currentSelection)
                     alert(thrownError);
         }
     });
+    
+    $("#saved").fadeIn();
+    $("#saved").fadeOut();
     
     myApp.animationNumber++;
 }
