@@ -447,4 +447,9 @@ class editProfileController extends Controller
         
         return redirect()->route('home');;
     }
+    
+    public function ShowStatsPage()
+    {
+        return view('profileStats');
+    }
 }

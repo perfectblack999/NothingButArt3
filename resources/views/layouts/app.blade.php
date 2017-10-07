@@ -73,6 +73,7 @@
                                 @else
                                     <li><a href="{{ url('/editRecruiterProfile?dOption=1') }}">Profile</a></li>
                                 @endif
+                                <li><a href="{{ url('/profileStats') }}">Profile Stats</a></li>
                                 <li><a href="{{ url('/logout') }}">Logout</a></li>
                             </ul>
                         </li>
@@ -83,7 +84,11 @@
     </nav>
 
     @yield('content')
-    <nav class="navbar navbar-default navbar-fixed-bottom"></
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div style="text-align:right; padding-right:40px">
+            Contact: <a style="color: #fff" href="mailto:contact@nothingbutart.co">contact@nothingbutart.co</a>
+        </div>
+    </nav>
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>

@@ -76,3 +76,5 @@ Route::post('/showArtistImages', 'SearchArtistController@ShowArtistImages');
 
 Route::get('/browseArt', 'BrowseArtController@Display');
 Route::get('/nextBrowsePage', 'BrowseArtController@NextBrowsePage');
+
+Route::get('/profileStats', 'EditProfileController@ShowStatsPage');
