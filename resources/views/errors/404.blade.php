@@ -40,7 +40,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Oops! Looks like something went wrong here.</div>
+                <div class="title">#NothingButArt...and an error. Let's try this again.</div>
                 <div style="text-align:center">404 Error</div>
                 <div style="text-align:center">Take me <a href="/home">home</a>.</div>
             </div>

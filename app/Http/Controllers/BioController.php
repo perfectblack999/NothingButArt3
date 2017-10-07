@@ -10,6 +10,11 @@ class BioController extends Controller
     public function LoadBio()
     {
         $user = Auth::user();
+
+        if(!isset($user))
+        {
+            return redirect()->route('home');
+        }
         
         return view('artistBio');
     }

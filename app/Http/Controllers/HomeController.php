@@ -53,6 +53,12 @@ class HomeController extends Controller
     private function checkProfileState($user)
     {
         $display = '';
+        $user = Auth::user();
+        
+        if(!isset($user))
+        {
+            return redirect()->route('home');
+        }
         
         if($user->profile_state == Enumerations::REGISTERED)
         {

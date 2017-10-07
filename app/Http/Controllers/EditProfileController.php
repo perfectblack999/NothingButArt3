@@ -35,6 +35,12 @@ class editProfileController extends Controller
     public function EditRecruiterProfile(Request $request)
     {
         $user = Auth::user();
+        
+        if(!isset($user))
+        {
+            return redirect()->route('home');
+        }
+        
         $dOption = $request->input('dOption');
 
         return view('editRecruiterProfile', ['user' => $user, 'dOption' => $dOption]);
@@ -43,6 +49,12 @@ class editProfileController extends Controller
     public function EditArtistProfile(Request $request)
     {
         $user = Auth::user();
+        
+        if(!isset($user))
+        {
+            return redirect()->route('home');
+        }
+        
         $images = $this->GetImages($user);
         $dOption = $request->input('dOption');
         
@@ -419,6 +431,11 @@ class editProfileController extends Controller
     public function DeleteProfile(Request $request)
     {
         $user = $request->user();
+        
+        if(!isset($user))
+        {
+            return redirect()->route('home');
+        }
         
         return view('deleteProfile', ['user' => $user]);
     }

@@ -21,6 +21,12 @@ class InviteFriendsController extends Controller
     public function Display()
     {
         $user = Auth::user();
+        
+        if(!isset($user))
+        {
+            return redirect()->route('home');
+        }
+        
         $display = view('inviteFriends', ['user' => $user]);
         
         return $display;
@@ -29,6 +35,12 @@ class InviteFriendsController extends Controller
     public function EmailInvites(Request $request)
     {
         $user = Auth::user();
+        
+        if(!isset($user))
+        {
+            return redirect()->route('home');
+        }
+        
         $images = $this->GetImages($user);
         $emails = explode(",", $request->input('emails'));
         $this->sendMail($user, $emails);

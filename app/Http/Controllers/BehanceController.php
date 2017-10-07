@@ -11,6 +11,13 @@ class BehanceController extends Controller
 {
     public function ShowForm()
     {
+        $user = Auth::user();
+        
+        if(!isset($user))
+        {
+            return redirect()->route('home');
+        }
+        
         $display = view('behance');
         
         return $display;
@@ -18,6 +25,13 @@ class BehanceController extends Controller
     
     public function GetData(Request $request)
     {
+        $user = Auth::user();
+        
+        if(!isset($user))
+        {
+            return redirect()->route('home');
+        }
+        
         $apiKey = "1BC1t2W67XUIaT8q4yiMyiibgxXPnytd";
         $apiUsername = $request->username;
 
@@ -100,7 +114,6 @@ class BehanceController extends Controller
     {
         $user = Auth::user();
         $images = $this->GetImages($user);
-//        $display = view('home', ['user' => $user, 'images' => $images, 'screenNumber' => 1]);
         
         return redirect()->route('home', ['user' => $user]);
     }

@@ -12,6 +12,11 @@ class TagArtController extends Controller
     {
         $user = Auth::user();
         
+        if(!isset($user))
+        {
+            return redirect()->route('home');
+        }
+        
         if($this->CheckUser($user))
         {
             

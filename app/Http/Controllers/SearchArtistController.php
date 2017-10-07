@@ -12,12 +12,24 @@ class SearchArtistController extends Controller
     public function NewSearch()
     {
         $user = Auth::user();
+        
+        if(!isset($user))
+        {
+            return redirect()->route('home');
+        }
 
         return view('startArtistSearch', ['user' => $user]);
     }
     
     public function GetArt(Request $request)
     {
+        $user = Auth::user();
+        
+        if(!isset($user))
+        {
+            return redirect()->route('home');
+        }
+        
         $imagesPerScreen = 8;
         $user = Auth::user();
         $this->CompleteArtSearchValidator($request);
@@ -87,6 +99,13 @@ class SearchArtistController extends Controller
     // Need to change to make less queries
     private function createGrid($gridArtIDs)
     {
+        $user = Auth::user();
+        
+        if(!isset($user))
+        {
+            return redirect()->route('home');
+        }
+        
         if(count($gridArtIDs) > 0)
         {
             $imageDisplayLines = array();
@@ -535,6 +554,13 @@ class SearchArtistController extends Controller
     
     public function SearchResults()
     {     
+        $user = Auth::user();
+        
+        if(!isset($user))
+        {
+            return redirect()->route('home');
+        }
+        
         $searchID = filter_input(INPUT_GET, 'search_id', FILTER_SANITIZE_STRING);
         $topArtists = $this->GetTopArtists($searchID);
         $topArtistsString = implode(",", $topArtists);
