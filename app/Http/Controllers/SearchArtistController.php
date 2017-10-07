@@ -541,7 +541,7 @@ class SearchArtistController extends Controller
         $topArtistData = DB::select("SELECT id, first_name, last_name, email, "
                 . "phone FROM users WHERE FIND_IN_SET(id, (?))", array($topArtistsString));
         
-        return view('searchResults', ['topArtistData' => $topArtistData]);
+        return view('searchResults', ['topArtistData' => $topArtistData, 'searchID' => $searchID]);
     }
     
     private function GetTopArtists($searchID)
@@ -610,5 +610,28 @@ class SearchArtistController extends Controller
         
         $pathToFile = "resume/".$resumeFileName[0]->resume;
         return response()->download($pathToFile);
+    }
+    
+    public function ShowArtistImages(Request $request)
+    {
+        $searchID = $request->input('search_id');
+        $artistID = $request->input('artist_id');
+        $imagePathStories = array();
+        
+        $imageFileNames = explode(',', DB::select('SELECT selected_images FROM searches WHERE id = (?)',
+                array($searchID))[0]->selected_images);
+        
+        foreach($imageFileNames as $imageFileName)
+        {
+            $imagePathStory = DB::select('SELECT path, story FROM images WHERE path = (?) AND user = (?)',
+                    array($imageFileName, $artistID));
+            
+            if($imagePathStory)
+            {
+                array_push($imagePathStories, $imagePathStory);
+            }
+        }
+        
+        return view('imagesSelected', ['imagePathStories' => $imagePathStories, 'searchID' => $searchID]);
     }
 }
