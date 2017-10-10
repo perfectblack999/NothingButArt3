@@ -87,8 +87,8 @@
                     <div class="row">
                         <div class="col-md-offset-1">
                             <div class="form-group" style="text-align: center;">
-                                <div class="col-md-6"><input type="image" src="../assets/login-btn.png"/></div>
-                                <div class="col-md-6"><a href="redirect"><img id="fbLoginBtn" src="../assets/fb-login-btn.png"></a></div>
+                                <div class="col-md-12"><input type="image" src="../assets/login-btn.png"/></div>
+                                <!--<div class="col-md-6"><a href="redirect"><img id="fbLoginBtn" src="../assets/fb-login-btn.png"></a></div>-->
                             </div>
                         </div>
                     </div>
