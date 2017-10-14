@@ -22,6 +22,11 @@ $(document).ready(function()
 
     });
     
+    $('#doneTagging').click(function(){
+        saveTags($("select").data("picker").selected_values());
+        setTimeout(window.location.href = '/artistBio', 1000);
+    });
+    
     $("#saved").hide();
 });
 
@@ -122,7 +127,7 @@ function saveTags(currentSelection)
 //            $('#test').text(response);
         },
         error:function (xhr, ajaxOptions, thrownError){
-                    alert(thrownError);
+//                    alert(thrownError);
         }
     });
     

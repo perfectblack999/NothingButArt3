@@ -112,7 +112,8 @@
             <hr>
             <div class="row">
                 <div class="col-md-6" style="text-align: center;">
-                    <a href="/artistBio" style="display: inline-block"><img src="../assets/done.png"></a>
+                    <input id="doneTagging" type="image" name="deletePic" src="../assets/done.png">
+                    <!--<a id="doneTagging" href="/artistBio" style="display: inline-block"><img src="../assets/done.png"></a>-->
                 </div>
                 <div class="col-md-6" style="text-align: center;">
                     <input type="image" name="deletePic" src="../assets/delete-image.png" onclick="deletePicClick()">
