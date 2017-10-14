@@ -9,7 +9,7 @@
     <div class="bio-form">
         <div class="row" style="text-align: center;">
             <div class="col-md-4"></div>
-            <div class="col-md-4" style="text-align: center;">{!! Form::textarea('bio', "", ['style' => 'width:100%', 'class' => 'smoothForm']) !!}</div>
+            <div class="col-md-4" style="text-align: center;">{!! Form::textarea('bio', $bio, ['style' => 'width:100%', 'class' => 'smoothForm']) !!}</div>
             <div class="col-md-4"></div>
         </div>
         <div class="row" style="padding-top: 20px;">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 class BioController extends Controller
 {
@@ -16,7 +17,9 @@ class BioController extends Controller
             return redirect()->route('home');
         }
         
-        return view('artistBio');
+        $bio = DB::select("SELECT bio FROM users WHERE id = (?)", array($user->id))[0]->bio;
+        
+        return view('artistBio', ['bio' => $bio]);
     }
     
     public function SaveBio()
