@@ -191,7 +191,7 @@ class editProfileController extends Controller
             {
                 $ext = strtolower($file->getClientOriginalExtension());
                 
-                if(filesize($file) > 5000000)
+                if(filesize($file) > 10000000)
                 {
                     $fileTypeError = 2;
                     return redirect()->route('editArt', ['fileTypeError' => $fileTypeError]);

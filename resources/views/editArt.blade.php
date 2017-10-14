@@ -46,7 +46,7 @@
         @if($fileTypeError == 1)
             <div class="row" style='text-align: center;'><p style="color:red">Sorry, we only support jpg's and png's right now!</p></div>
         @elseif($fileTypeError == 2)
-            <div class="row" style='text-align: center;'><p style="color:red">Jeez that's a big file. Try making it less than 5MB.</p></div>
+            <div class="row" style='text-align: center;'><p style="color:red">Jeez that's a big file. Try making it less than 10MB.</p></div>
         @endif
     @endif
 </div>
