@@ -31,12 +31,53 @@ class ActivationService
         $token = $this->activationRepo->createActivation($user);
 
         $link = route('user.activate', $token);
-        $message = sprintf('Thank you for signing up to #NothingButArt! Complete your registration here: %s', $link, $link);
+        $HTMLheader = "<h3 style='text-align:center;'>Almost done. Complete your registration now.</h3>";
+        $HTMLmessage = sprintf('<p>Thank you for signing up to #NothingButArt! Complete your registration here:</p>'
+                . '<p style="text-align:center;">%s</p>', $link, $link);
+        $HTMLemail = $HTMLheader.$HTMLmessage;
+        
+        $textHeader = "Almost done. Complete your regitration now. \r\n \r\n";
+        $textMessage = sprintf('Thank you for signing up to #NothingButArt! Complete your registration here: %s', $link, $link);
+        $textEmail = $textHeader.$textMessage;
 
-        $this->mailer->raw($message, function (Message $m) use ($user) {
-            $m->to($user->email)->subject('Complete Your Registration');
-        });
+//        $this->mailer->raw($message, function (Message $m) use ($user) {
+//            $m->to($user->email)->subject('Complete Your Registration');
+//        });
 
+        $url = 'https://api.elasticemail.com/v2/email/send';
+        
+        
+
+        try
+        {
+            $post = array('from' => 'contact@nothingbutart.co',
+                'fromName' => 'Nothing But Art',
+                'apikey' => 'e2076340-b467-4e59-96f7-01cab30dee9b',
+                'subject' => 'Complete Your Registration',
+                'to' => $user->email,
+                'bodyHtml' => $HTMLemail,
+                'bodyText' => $textEmail,
+                'isTransactional' => false);
+
+                $ch = curl_init();
+                curl_setopt_array($ch, array(
+                    CURLOPT_URL => $url,
+                    CURLOPT_POST => true,
+                    CURLOPT_POSTFIELDS => $post,
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_HEADER => false,
+                    CURLOPT_SSL_VERIFYPEER => false
+                ));
+
+            $result=curl_exec ($ch);
+            curl_close ($ch);
+
+            echo $result;	
+        }
+        catch(Exception $ex)
+        {
+            echo $ex->getMessage();
+        }
 
     }
 
