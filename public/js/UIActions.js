@@ -85,7 +85,8 @@ function getTags(currentSelection)
             var tag1 = respObj[0].tag1;
             var tag2 = respObj[0].tag2;
             var tag3 = respObj[0].tag3;
-            var story = respObj[0].story;
+            var story = decodeHTML(respObj[0].story);
+            
            
             $("#" + tag1).prop('checked', true).parent().addClass('active');
             $("#" + tag2).prop('checked', true).parent().addClass('active');
@@ -136,6 +137,17 @@ function saveTags(currentSelection)
     
     myApp.animationNumber++;
 }
+
+function decodeHTML(htmlString) {
+    var map = {"gt":">" /* , … */};
+    return htmlString.replace(/&(#(?:x[0-9a-f]+|\d+)|[a-z]+);?/gi, function($0, $1) {
+        if ($1[0] === "#") {
+            return String.fromCharCode($1[1].toLowerCase() === "x" ? parseInt($1.substr(2), 16)  : parseInt($1.substr(1), 10));
+        } else {
+            return map.hasOwnProperty($1) ? map[$1] : $0;
+        }
+    });
+};
 
 function tagClick(clickedID)
 {   

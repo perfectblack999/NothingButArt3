@@ -82,7 +82,6 @@ class TagArtController extends Controller
     
     public function SaveTag()
     {
-        
         $imageID = filter_input(INPUT_POST, 'imageID', FILTER_SANITIZE_STRING);
         $tag1 = filter_input(INPUT_POST, 'tag1', FILTER_SANITIZE_STRING);
         $tag2 = filter_input(INPUT_POST, 'tag2', FILTER_SANITIZE_STRING);
