@@ -445,6 +445,8 @@ class editProfileController extends Controller
         $user = Auth::user();
         $user->destroy($user->id);
         
+        DB::table('images')->where('user', '=', $user->id)->delete();
+        
         return redirect()->route('home');;
     }
     
