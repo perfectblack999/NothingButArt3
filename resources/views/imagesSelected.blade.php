@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4" style="text-align: center">
-                    <img src="art/<?php echo $imagePathStory[0]->path ?>">
+                    <img style="width:100%;" src="art/<?php echo $imagePathStory[0]->path ?>">
                 </div>
                 <div class="col-md-4"></div>
             </div>
