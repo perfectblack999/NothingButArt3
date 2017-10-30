@@ -18,17 +18,23 @@
         <?php $i = 0; ?>
         @foreach($imagePathStories as $imagePathStory)
             <div class="row">
-                <div class="col-md-2"></div>
+                <div class="col-md-4"></div>
                 <div class="col-md-4" style="text-align: center">
                     <img src="art/<?php echo $imagePathStory[0]->path ?>">
                 </div>
+                <div class="col-md-4"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4"></div>
                 <div class="col-md-4" style="text-align: center">
-                    <div class="row" style="text-align: center; padding-bottom: 10px;">
-                        <h4>What's the motivation?</h4>
-                    </div>
-                    <p><?php echo $imagePathStory[0]->story ?></p>
+                    <h4>What was the motivation?</h4>
                 </div>
-                <div class="col-md-2"></div>
+                <div class="col-md-4"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6"  style="text-align: center><?php echo $imagePathStory[0]->story ?></div>
+                <div class="col-md-3"></div>
             </div>
             @if($i < $imageCount-1)
                 <hr>
