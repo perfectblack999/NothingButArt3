@@ -18,7 +18,7 @@
         <div class="col-md-8">
             <div id="imageContainer" class="row">
                 <div class="col-md-1"></div>
-                <div class="col-md-10 grid">
+                <div class="col-md-10 grid" style="max-width: 1200px;">
                     <select id="artHolder" class="image-picker masonry">    
                         @for ($i = ($screenNumber - 1) * 8; $i < (($screenNumber - 1) * 8) + 8; $i++)
                             @if (isset($imageDisplayLines[$i]))

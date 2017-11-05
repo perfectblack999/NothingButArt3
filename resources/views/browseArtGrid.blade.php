@@ -4,7 +4,7 @@
 @section('content')
 <div class="row" id="image_container">
     <div class="col-md-1 grid"></div>
-    <div class="col-md-11 grid">
+    <div class="col-md-11 grid" style="max-width: 1200px">
         <select id="artHolder" multiple="multiple" class="image-picker masonry">    
             @for ($i = ($screenNumber - 1) * 8; $i < (($screenNumber - 1) * 8) + 8; $i++)
                 @if (isset($imageDisplayLines[$i]))
