@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use App\Utilities\Enumerations;
 use Illuminate\Http\Request;
 use App\ActivationService;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -131,5 +132,29 @@ class AuthController extends Controller
         $user = Socialize::with('facebook')->user();
 
         // $user->token;
+    }
+    
+    /**
+     * Show the application login form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showLoginForm()
+    {
+        $view = property_exists($this, 'loginView')
+                    ? $this->loginView : 'auth.authenticate';
+
+        if (view()->exists($view)) {
+            return view($view);
+        }
+        
+        $numberOfPreviews = 6;
+        $totalImageCount = DB::select('SELECT COUNT(id) as count FROM images WHERE user <> 0');
+        $numberOfBatches = floor($totalImageCount[0]->count / $numberOfPreviews);
+        $offsetBatch = rand(0, $numberOfBatches);
+        $offset = $offsetBatch * $numberOfPreviews;
+        $previewIDPaths = DB::select("SELECT id,path FROM images WHERE user <> 0 LIMIT $numberOfPreviews OFFSET $offset");                
+
+        return view('auth.login', ['previewIDPaths' => $previewIDPaths]);
     }
 }

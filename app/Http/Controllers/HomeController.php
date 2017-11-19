@@ -38,6 +38,18 @@ class HomeController extends Controller
         return $display;
     }
     
+//    public function login()
+//    {
+//        $numberOfPreviews = 6;
+//        $totalImageCount = DB::select('SELECT COUNT(id) as count FROM images WHERE user <> 0');
+//        $numberOfBatches = floor($totalImageCount[0]->count / $numberOfPreviews);
+//        $offsetBatch = rand(0, $numberOfBatches);
+//        $offset = $offsetBatch * $numberOfBatches;
+//        $previewIDPaths = DB::select("SELECT id,path FROM images WHERE user <> 0 LIMIT $numberOfPreviews OFFSET $offset");
+//
+//        return view('login', ['previewIDPaths' => $previewIDPaths]);
+//    }
+    
     private function checkUser($user)
     {
         $valid = false;
@@ -50,7 +62,7 @@ class HomeController extends Controller
         return $valid;
     }
     
-    private function checkProfileState($user)
+    private function checkProfileState()
     {
         $display = '';
         $user = Auth::user();

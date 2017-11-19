@@ -17,6 +17,10 @@
     <link rel="stylesheet" href="{{URL::asset('css/custom_styles.css')}}" type="text/css" media="screen" />
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
                
+    <!-- Slick Carousel -->
+    <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+               
     <style>
         body {
             font-family: 'Lato';
@@ -93,6 +97,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+
+    <!-- Slick Caarousel -->
+    <script type="text/javascript" src="slick/slick.min.js"></script>
 
     <!-- FlexSlider -->
     <script defer src="js/jquery.flexslider.js"></script>

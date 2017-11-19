@@ -22,11 +22,11 @@ class editProfileController extends Controller
         
         if ($user->type == "recruiter")
         {
-            $profileView = redirect()->route('editRecruiterProfile', ['user' => $user]);
+            $profileView = redirect()->route('editRecruiterProfile', ['user' => $user, 'profile_state' => $user->profile_state]);
         }
         else
         {
-            $profileView = redirect()->route('editArtistProfile', ['user' => $user]);
+            $profileView = redirect()->route('editArtistProfile', ['user' => $user, 'profile_state' => $user->profile_state]);
         }
         
         return $profileView;
@@ -43,12 +43,13 @@ class editProfileController extends Controller
         
         $dOption = $request->input('dOption');
 
-        return view('editRecruiterProfile', ['user' => $user, 'dOption' => $dOption]);
+        return view('editRecruiterProfile', ['user' => $user, 'dOption' => $dOption, 'profile_state' => $profileState]);
     }
     
     public function EditArtistProfile(Request $request)
     {
         $user = Auth::user();
+        $profileState = $user->profile_state;
         
         if(!isset($user))
         {
@@ -58,7 +59,7 @@ class editProfileController extends Controller
         $images = $this->GetImages($user);
         $dOption = $request->input('dOption');
         
-        return view('editArtistProfile', ['user' => $user, 'images' => $images, 'dOption' => $dOption]);
+        return view('editArtistProfile', ['user' => $user, 'images' => $images, 'dOption' => $dOption, 'profile_state' => $profileState]);
     }
     
     private function GetImages($user)
@@ -126,20 +127,25 @@ class editProfileController extends Controller
 
         $user = Auth::user();
         $user->first_name = $request->input('first_name');
-        $user->last_name = $request->input('last_name');
-        $user->phone = $request->input('phone');
+        $user->last_name = $request->input('last_name');      
         $user->city = $request->input('city');
         $user->state = $request->input('state');
         $user->zip = $request->input('zip_code');
         $user->latitude = $zipCodeLatLon[0]->latitude;
         $user->longitude = $zipCodeLatLon[0]->longitude;
-        if($request->hasFile('resume'))
+        
+        $user->type = "artist";
+        if ($user->profile_state > 2)
         {
-            $resumeName = $this->StoreResume($request->file('resume'));
-            $user->resume = $resumeName;
+            $user->phone = $request->input('phone');
+            $user->portfolio = $request->input('portfolio');
+            if($request->hasFile('resume'))
+            {
+                $resumeName = $this->StoreResume($request->file('resume'));
+                $user->resume = $resumeName;
+            }
         }
         $user->profile_state = Enumerations::COMPLETE;
-        $user->type = "artist";
         $user->save();
         
         return redirect()->route('home', ['user' => $user]);
@@ -148,9 +154,6 @@ class editProfileController extends Controller
     private function CompleteArtistProfileValidator($request)
     {
         $this->validate($request, [
-            'phone' => 'required',
-            'resume' => 'required',
-            'portfolio' => 'required',
             'zip_code' => 'required'
         ]);
     }

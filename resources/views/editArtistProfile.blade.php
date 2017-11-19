@@ -33,27 +33,29 @@
                 <div class="col-md-4"></div>
             </div>
             
-            <div class="row spaceForm">
-                <div class="col-md-4"></div>
-                <div class="col-md-2">Phone</div> 
-                <div class="col-md-2"></div>
-                <div class="col-md-4"></div>
-            </div>
-            <div class="row">
-                <div class="col-md-4"></div>
-                <div class="col-md-2">{!! Form::text('phone',$user->phone, array('class' => 'smoothForm')) !!}</div> 
-                <div class="col-md-2"></div>
-                <div class="col-md-4"></div>
-            </div>
-            @if ($errors->has('phone'))
-                <div class="row">
+            @if ($profile_state != 2)
+                <div class="row spaceForm">
                     <div class="col-md-4"></div>
-                    <div class="col-md-2">
-                        <span class="help-block"><strong>{{ $errors->first('phone') }}</strong></span>
-                    </div> 
+                    <div class="col-md-2">Phone</div> 
                     <div class="col-md-2"></div>
                     <div class="col-md-4"></div>
                 </div>
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-2">{!! Form::text('phone',$user->phone, array('class' => 'smoothForm')) !!}</div> 
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4"></div>
+                </div>
+                @if ($errors->has('phone'))
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-2">
+                            <span class="help-block"><strong>{{ $errors->first('phone') }}</strong></span>
+                        </div> 
+                        <div class="col-md-2"></div>
+                        <div class="col-md-4"></div>
+                    </div>
+                @endif
             @endif
             
             <div class="row spaceForm">
@@ -121,51 +123,53 @@
                     <div class="col-md-4"></div>
                 </div>
             @endif
-
-            <div class="row spaceForm">
-                <div class="col-md-4"></div>
-                <div class="col-md-2">Resume</div> 
-                <div class="col-md-2"></div>
-                <div class="col-md-4"></div>
-            </div>
-            <div class="row">
-                <div class="col-md-4"></div>
-                <div class="col-md-2">{!! Form::file('resume') !!}</div> 
-                <div class="col-md-2"></div>
-                <div class="col-md-4"></div>
-            </div>
-            @if ($errors->has('resume') && isset($first_time_completing))
-                <div class="row">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-2">
-                        <span class="help-block"><strong>{{ $errors->first('resume') }}</strong></span>
-                    </div> 
-                    <div class="col-md-2"></div>
-                    <div class="col-md-4"></div>
-                </div>
-            @endif
             
-            <div class="row spaceForm">
-                <div class="col-md-4"></div>
-                <div class="col-md-2">Portfolio</div> 
-                <div class="col-md-2"></div>
-                <div class="col-md-4"></div>
-            </div>
-            <div class="row">
-                <div class="col-md-4"></div>
-                <div class="col-md-2">{!! Form::text('portfolio', $user->portfolio, array('class' => 'smoothForm')) !!}</div> 
-                <div class="col-md-2"></div>
-                <div class="col-md-4"></div>
-            </div>
-            @if ($errors->has('portfolio'))
-                <div class="row">
+            @if ($profile_state != 2)
+                <div class="row spaceForm">
                     <div class="col-md-4"></div>
-                    <div class="col-md-2">
-                        <span class="help-block"><strong>{{ $errors->first('portfolio') }}</strong></span>
-                    </div> 
+                    <div class="col-md-2">Resume</div> 
                     <div class="col-md-2"></div>
                     <div class="col-md-4"></div>
                 </div>
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-2">{!! Form::file('resume') !!}</div> 
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4"></div>
+                </div>
+                @if ($errors->has('resume') && isset($first_time_completing))
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-2">
+                            <span class="help-block"><strong>{{ $errors->first('resume') }}</strong></span>
+                        </div> 
+                        <div class="col-md-2"></div>
+                        <div class="col-md-4"></div>
+                    </div>
+                @endif
+
+                <div class="row spaceForm">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-2">Portfolio</div> 
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-2">{!! Form::text('portfolio', $user->portfolio, array('class' => 'smoothForm')) !!}</div> 
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4"></div>
+                </div>
+                @if ($errors->has('portfolio'))
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-2">
+                            <span class="help-block"><strong>{{ $errors->first('portfolio') }}</strong></span>
+                        </div> 
+                        <div class="col-md-2"></div>
+                        <div class="col-md-4"></div>
+                    </div>
+                @endif
             @endif
 
             <div class="row spaceForm">

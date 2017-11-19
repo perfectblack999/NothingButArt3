@@ -16,9 +16,11 @@
             <div class="row" style="text-align: center;">
                 <h2>Merit based job searching for creatives</h2>
             </div>
-            <div class="row" style="text-align: center; padding-top: 100px">
+            <div class="row" style="text-align: center; padding-top: 100px; padding-bottom: 20px;">
                 <a href="/browseArt"><img src="../assets/browse-art-btn.png"></a>
             </div>
+            
+            
         </div>
         <div id="loginForm" class="col-md-3">
             <div class="row"><div class="col-md-offset-1"><h2>Login</h2></div></div>

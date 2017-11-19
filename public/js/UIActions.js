@@ -28,6 +28,37 @@ $(document).ready(function()
     });
     
     $("#saved").hide();
+    
+    $('.preview-carousel').slick({
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        adaptiveHeight: false,
+        variableWidth:false,
+        arrows:false,
+        dots:true,
+        responsive: [
+            {
+              breakpoint: 768,
+              settings: {
+                arrows: false,
+                centerMode: true,
+                centerPadding: '40px',
+                slidesToShow: 3
+              }
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                arrows: false,
+                centerMode: true,
+                centerPadding: '40px',
+                slidesToShow: 1
+              }
+            }
+      ]
+      });
 });
 
 if(document.getElementById("art_upload") !== null)

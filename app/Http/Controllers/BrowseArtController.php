@@ -14,11 +14,12 @@ class BrowseArtController extends Controller
         $browseArtView = 1;
         $imagesPerScreen = 8;
         $user = Auth::user();
+        $batchAmount = 80;
         $totalImageCount = DB::select('SELECT COUNT(id) as count FROM images WHERE user <> 0');
-        $numberOfImageRequests = floor($totalImageCount[0]->count/80);
-        $offset = rand(0, $numberOfImageRequests);
-        $offset = $offset * 80;
-        $gridArtIDPaths = DB::select("SELECT id,path FROM images WHERE user <> 0 LIMIT 90 OFFSET $offset");
+        $numberOfImageRequests = floor($totalImageCount[0]->count/$batchAmount);
+        $offsetBatch = rand(0, $numberOfImageRequests);
+        $offset = $offsetBatch * $batchAmount;
+        $gridArtIDPaths = DB::select("SELECT id,path FROM images WHERE user <> 0 LIMIT $batchAmount OFFSET $offset");
         shuffle($gridArtIDPaths);
         $numberOfScreens = ceil(count($gridArtIDPaths)/$imagesPerScreen);
         $artArrays = $this->createGrid($gridArtIDPaths);

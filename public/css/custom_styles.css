@@ -37,14 +37,14 @@ body
 
 .homeBanner
 {
-    font-size: 72px;
+    font-size: 60px;
     color: #31363d;
     font-family: arial;
 }
 
 .homeBannerDivider
 {
-    font-size: 125px;
+    font-size: 100px;
     color: #31363d;
     font-family: arial;
 }
@@ -170,4 +170,11 @@ input[type="image"]
     top:50%;
     z-index: 100;
     filter: alpha(opacity=50);
+}
+
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    width: 100%;
 }

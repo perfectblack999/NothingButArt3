@@ -17,6 +17,7 @@ Route::auth();
 Route::get('/', ['middleware' => 'web', 'uses' => 'HomeController@index']);
 Route::get('/home', ['as' => 'home', 'uses' => 'HomeController@index']);
 Route::post('/home/downloadResume', 'HomeController@downloadResume');
+//Route::get('/login', ['as' => 'login', 'uses' => 'HomeController@login']);
 
 Route::get('/recruiterProfile/{id}', 'ProfileViewController@showRecruiterProfile');
 

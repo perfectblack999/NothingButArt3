@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="row" style="text-align: center; padding-bottom: 25px">
-    <h3>Thanks for signing up. Click below to complete your registration:</h3>
+    <h3 style="color: #31363d">Thanks for signing up. Click below to complete your registration:</h3>
 </div>
 
 <form action = "activateProfile" method = "post">
