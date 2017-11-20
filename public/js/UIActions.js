@@ -59,6 +59,21 @@ $(document).ready(function()
             }
       ]
       });
+      
+    $("#progress-doughnut").circliful({
+        animation: 1,
+        animationStep: 5,
+        foregroundBorderWidth: 30,
+        backgroundBorderWidth: 30,
+        percent: progress,
+        foregroundColor: "#36bfa0",
+        showPercent: 0,
+        fontColor: '#fff',
+        fillColor: 'none',
+        percentageTextSize: 0,
+        textStyle: 'font-size: 12px;',
+        textColor: '#36bfa0'
+    });
 });
 
 if(document.getElementById("art_upload") !== null)
@@ -474,3 +489,32 @@ function resetTags()
 {
     $(":checkbox").prop('checked', false).parent().removeClass('active');
 }
+
+//$(window).load(function() {
+//    doughnutWidget.options = {
+//        container: $('#profile-progress-holder'),
+//        width: 100,
+//        height: 100,
+//        class: 'myClass',
+//        cutout: 50
+//    };
+//
+//    doughnutWidget.render(data());
+//
+//    setInterval(init, 2000);
+//});
+//
+//function init() {
+//    doughnutWidget.render(data());
+//}
+//
+//function data() {
+//    var data = {
+//        Profile: {
+//            val: progress * 20,
+//            color: '#36bfa0',
+//        }
+//    };
+//
+//  return data;
+//}

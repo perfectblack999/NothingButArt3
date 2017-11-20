@@ -93,10 +93,13 @@ class HomeController extends Controller
         elseif($user->profile_state == Enumerations::COMPLETE && $user->type == "artist")
         {
             $gridDetails = $this->GetImages($user);
+            $progressDetail = $this->calculateProfileProgress();
+            $progress = array_sum($progressDetail) * 20;
             
             $display = view('home', ['user' => $user, 'imageDisplayLines' => $gridDetails[0], 
             'numberOfScreens' => $gridDetails[1], 'screenNumber' => 1, 'gridArtIDs' => $gridDetails[2],
-            'imagePaths' => $gridDetails[3], 'homeView' => 2]);            
+            'imagePaths' => $gridDetails[3], 'homeView' => 2, 'progress' => $progress, 
+            'progressDetail' => $progressDetail]);            
         }
         else
         {
@@ -138,6 +141,79 @@ class HomeController extends Controller
         $artArrays = array($imageIDs, $imagePaths, $imageDisplayLines);
         
         return $artArrays;
+    }
+    
+    private function calculateProfileProgress()
+    {
+        $user = Auth::user();
+        $progressMeter = array("fields" => 0, "portfolio" => 0, "resume" => 0, "pics" => 0, "stories" => 0, );
+        
+        $completionMeterAttributes = array($user->first_name, $user->last_name,
+            $user->email, $user->zip, $user->portfolio, $user->resume, $user->image_ids);
+        
+        if ($completionMeterAttributes[0] != "" && 
+            $completionMeterAttributes[1] != "" &&
+            $completionMeterAttributes[2] != "" &&
+            $completionMeterAttributes[3] != "")
+        {
+            $progressMeter["fields"] = 1;
+        }
+        
+        if ($completionMeterAttributes[4] != "")
+        {
+            $progressMeter["portfolio"] = 1;
+        }
+        
+        if ($completionMeterAttributes[5] != "")
+        {
+            $progressMeter["resume"] = 1;
+        }
+        
+        if (count(explode(",", $completionMeterAttributes[6])) > 4)
+        {
+            $progressMeter["pics"] = 1;
+        }
+        
+        if($this->allStoriesComplete($completionMeterAttributes[6]) == 1)
+        {
+            $progressMeter["stories"] = 1;
+        }
+        
+        ob_start();
+        var_dump($progressMeter);
+        $output = ob_get_clean();
+
+        $outputFile = "Meter.txt";
+        $fileHandle = fopen($outputFile, 'a') or die("File creation error.");
+        fwrite($fileHandle, $output);
+        fclose($fileHandle);
+        
+        return $progressMeter;
+    }
+    
+    private function allStoriesComplete($imageIDs)
+    {
+        $allStoriesComplete = 1;
+        $imageIDsArray = explode(",", $imageIDs);
+        $stories = DB::select("SELECT story FROM images WHERE id = (?)", $imageIDsArray);
+        
+        if (isset($stories[0]))
+        {
+            foreach ($stories as $story)
+            {
+                if (!isset($story))
+                {
+                   $allStoriesComplete = 0;
+                   break;
+                }
+            }
+        }
+        else 
+        {
+            $allStoriesComplete = 0;
+        }
+        
+        return $allStoriesComplete;
     }
     
     public function downloadResume()

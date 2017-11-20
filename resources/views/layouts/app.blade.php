@@ -109,6 +109,9 @@
     <script src="js/masonry.pkgd.min.js"></script>
     <script src="js/imagesloaded.pkgd.min.js"></script>
     
+    <!-- Doughnut-->
+    <script src="js/jquery.circliful.min.js"></script>
+    
     <!-- custom javascript -->
     <script src="js/UIActions.js"></script>
 </body>

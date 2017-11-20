@@ -178,3 +178,10 @@ input[type="image"]
     vertical-align: middle;
     width: 100%;
 }
+
+.svg-container {
+    width: 200px;
+    margin: 0 auto;
+    overflow: visible;
+    position: relative;
+}

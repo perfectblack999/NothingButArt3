@@ -19,6 +19,26 @@
                 <div class="col-md-2">{!! Form::text('last_name', $user->last_name, array('class' => 'smoothForm')) !!}</div>
                 <div class="col-md-4"></div>
             </div>
+            @if ($errors->has('first_name'))
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-2">
+                        <span class="help-block"><strong>{{ $errors->first('first_name') }}</strong></span>
+                    </div> 
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4"></div>
+                </div>
+            @endif
+            @if ($errors->has('last_name'))
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-2"></div> 
+                    <div class="col-md-2">
+                        <span class="help-block"><strong>{{ $errors->first('last_name') }}</strong></span>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+            @endif
             
             <div class="row spaceForm">
                 <div class="col-md-4"></div>
@@ -109,7 +129,7 @@
             </div>
             <div class="row">
                 <div class="col-md-4"></div>
-                <div class="col-md-2">{!! Form::text('zip_code',$user->zip_code, array('class' => 'smoothForm')) !!}</div> 
+                <div class="col-md-2">{!! Form::text('zip_code',$user->zip, array('class' => 'smoothForm')) !!}</div> 
                 <div class="col-md-2"></div>
                 <div class="col-md-4"></div>
             </div>

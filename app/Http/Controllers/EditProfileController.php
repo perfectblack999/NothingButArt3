@@ -154,7 +154,9 @@ class editProfileController extends Controller
     private function CompleteArtistProfileValidator($request)
     {
         $this->validate($request, [
-            'zip_code' => 'required'
+            'zip_code' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required'
         ]);
     }
     
