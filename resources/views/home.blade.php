@@ -14,39 +14,42 @@
     @if($user->type == "artist")
     <!--<div class="row" id="profile-progress-holder">Profile Progress</div>-->
     <div class="row"><p style="text-align: center">Get the most out of #NothingButArt by completing your profile.</p></div>
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-4"><div id="progress-doughnut"></div></div>
-        <div class="col-md-4">
+    <div class="row" style="display: flex; align-items: center;">
+        <div class="col-md-3"></div>
+        <div class="col-md-3"><div id="progress-doughnut"></div></div>
+        <div class="col-md-3">
             <ul>
                 @if ($progressDetail['fields'] == 1)
                     <li><img src='assets/check.png' style='max-width: 15px;'>&nbspBasic details</li>
                 @else
-                    <li><img src='assets/x.png' style='max-width: 15px;'>&nbspBasic details</li>
+                <li><img src='assets/x.png' style='max-width: 15px;'>&nbsp<a href="/editArtistProfile?dOption=1" style="text-decoration: underline">Basic details</a></li>
                 @endif
                 @if ($progressDetail['portfolio'] == 1)
                 <li><img src='assets/check.png' style='max-width: 15px;'>&nbspPortfolio</li>
                 @else
-                    <li><img src='assets/x.png' style='max-width: 15px;'>&nbsp<a href="/editArtistProfile?dOption=1">Portfolio</a></li>
+                    <li><img src='assets/x.png' style='max-width: 15px;'>&nbsp<a href="/editArtistProfile?dOption=1" style="text-decoration: underline">Portfolio</a></li>
                 @endif
                 @if ($progressDetail['resume'] == 1)
                     <li><img src='assets/check.png' style='max-width: 15px;'>&nbspResume</li>
                 @else
-                    <li><img src='assets/x.png' style='max-width: 15px;'>&nbsp<a href="/editArtistProfile?dOption=1">Resume</a></li>
+                    <li><img src='assets/x.png' style='max-width: 15px;'>&nbsp<a href="/editArtistProfile?dOption=1" style="text-decoration: underline">Resume</a></li>
                 @endif
                 @if ($progressDetail['pics'] == 1)
                     <li><img src='assets/check.png' style='max-width: 15px;'>&nbspUpload at least 5 images</li>
                 @else
-                    <li><img src='assets/x.png' style='max-width: 15px;'>&nbsp<a href="/editArtistProfile?dOption=1">Upload at least 5 images</a></li>
+                    <li><img src='assets/x.png' style='max-width: 15px;'>&nbsp<a href="/editArt" style="text-decoration: underline">Upload at least 5 images</a></li>
                 @endif
                 @if ($progressDetail['pics'] == 1)
                     <li><img src='assets/check.png' style='max-width: 15px;'>&nbspComplete image stories</li>
                 @else
-                    <li><img src='assets/x.png' style='max-width: 15px;'>&nbsp<a href="/editArtistProfile?dOption=1">Complete image stories</a></li>
+                    <li><img src='assets/x.png' style='max-width: 15px;'>&nbsp<a href="/tagArt" style="text-decoration: underline">Complete image stories</a></li>
                 @endif
             </ul>
         </div>
-        <div class="col-md-2"></div>
+        <div class="col-md-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-12" style="text-align: center;">{{$progress}}% Complete</div>
     </div>
     <div class="row" style="text-align: center; padding-bottom: 25px"><h1>Your Portfolio</h1></div>
         <div id="imageContainer" class="row">
