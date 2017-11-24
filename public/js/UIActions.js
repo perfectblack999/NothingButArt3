@@ -6,6 +6,11 @@ myApp = {
 
 $(document).ready(function() 
 {
+    if (typeof(progress) == "undefined")
+    {
+        progress="";
+    }
+    
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

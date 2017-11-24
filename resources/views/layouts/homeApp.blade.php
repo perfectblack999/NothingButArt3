@@ -96,6 +96,9 @@
     <!-- FlexSlider -->
     <script defer src="js/jquery.flexslider.js"></script>
     
+    <!-- Doughnut-->
+    <script src="js/jquery.circliful.min.js"></script>
+    
     <!-- Image Picker -->
     <script src="js/image-picker.js"></script>
     <script src="js/masonry.pkgd.min.js"></script>
