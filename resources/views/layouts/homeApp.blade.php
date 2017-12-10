@@ -71,6 +71,7 @@
                                 <li><a href="{{ url('/inviteFriends') }}"><i class="fa fa-btn"></i>Invite Friends</a></li>
                                 @if (Auth::user()->type == 'artist')
                                     <li><a href="{{ url('/editArtistProfile?dOption=1') }}"><i class="fa fa-btn"></i>Profile</a></li>
+                                    <li><a href="{{ url('/tagArt') }}">Edit Art</a></li>
                                 @else
                                     <li><a href="{{ url('/editRecruiterProfile?dOption=1') }}"><i class="fa fa-btn"></i>Profile</a></li>
                                 @endif

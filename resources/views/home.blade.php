@@ -38,7 +38,7 @@
                         @else
                             <li><img src='assets/x.png' style='max-width: 15px;'>&nbsp<a href="/editArt" style="text-decoration: underline">Upload at least 5 images</a></li>
                         @endif
-                        @if ($progressDetail['pics'] == 1)
+                        @if ($progressDetail['stories'] == 1)
                             <li><img src='assets/check.png' style='max-width: 15px;'>&nbspComplete image stories</li>
                         @else
                             <li><img src='assets/x.png' style='max-width: 15px;'>&nbsp<a href="/tagArt" style="text-decoration: underline">Complete image stories</a></li>
@@ -49,14 +49,15 @@
             </div>
         @endif
         <div class="row">
+            <p style="text-align: center">Congrats, your profile is at 100%. Don't forget to add your latest creations.</p>
             <div class="col-md-12" style="text-align: center;">{{$progress}}% Complete</div>
+        </div>
+        <div class="row" style="text-align: center;">
+            <a href="/editArt"><img style="max-width: 100%" src="assets/add-pic-btn.png"></a>
         </div>
         @if($imageDisplayLines != null)
             <div class="row" style="text-align: center; padding-bottom: 25px"><h1>Your Portfolio</h1></div>
         @endif
-        <div class="row" style="text-align: center;">
-            <a href="/editArt"><img style="max-width: 100%" src="assets/add-pic-btn.png"></a>
-        </div>
         <div id="imageContainer" class="row">
             <div class="col-md-1"></div>
             <div class="col-md-10 grid">

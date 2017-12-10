@@ -163,7 +163,12 @@ function getTags(currentSelection)
 function saveTags(currentSelection)
 {   
     var selectedTags = ['','',''];
-    var story = $("#story_text").val();
+    var story = null;
+    
+    if ($("#story_text").val() !== null)
+    {
+        story = $("#story_text").val();
+    }
         
     for(i = 0; i < $('input:checked').length; i++)
     {
