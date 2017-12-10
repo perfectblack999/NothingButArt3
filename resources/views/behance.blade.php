@@ -26,26 +26,33 @@
         </div>
 
         <?php if(!empty($images)){ ?>
-                <div class="row" id="image_container">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-8 grid" style="text-align: center">
-
-                        <select id="artHolder" multiple="multiple" class="image-picker masonry">
-                            <?php foreach($images as $image){ ?>
-                                <option data-img-src="<?php echo $image ?>" value="<?php echo $image ?>"><?php echo $image ?></option>          
+            <div class="row" id="image_container">
+                <div class="col-md-2"></div>
+                <div class="col-md-8 grid" style="text-align: center">
+                    <select id="behanceArtHolder" multiple="multiple" class="image-picker masonry">
+                        <?php for($i = ($screenNumber - 1) * 8; $i < (($screenNumber - 1) * 8) + 8; $i++){ ?>
+                            <?php if(isset($images[$i])){ ?>
+                                <option data-img-src="<?php echo $images[$i] ?>" value="<?php echo $images[$i] ?>"><?php echo $images[$i] ?></option>
                             <?php } ?>
-                        </select>
-                    </div>
-                    <div class="col-md-2"></div>          
+                        <?php } ?>
+                    </select>
                 </div>
-                <div class="row">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4" style="text-align:center">
-                        <input type="image" name="importImages" src="../assets/import-images.png"
-                        onclick="saveBehanceImages()" style="text-align: center; display: inline-block;">
-                    </div>
-                    <div class="col-md-4"></div>
+                <div class="col-md-2"></div>          
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-3"  style="text-align:center">
+                    <input type="image" name="next" src="../assets/next.png"
+                        onclick="nextBehanacePage(<?php echo $numberOfScreens ?>, 
+                        <?php echo htmlspecialchars(json_encode($images)) ?>)" 
+                        style="text-align: center; display: inline-block;">
                 </div>
+                <div class="col-md-3" style="text-align:center">
+                    <input type="image" name="importImages" src="../assets/import-images.png"
+                    onclick="saveBehanceImages()" style="text-align: center; display: inline-block;">
+                </div>
+                <div class="col-md-3"></div>
+            </div>
         <?php } else { ?>
             <span>No Images</span>
         <?php } ?> 

@@ -43,7 +43,7 @@ class editProfileController extends Controller
         
         $dOption = $request->input('dOption');
 
-        return view('editRecruiterProfile', ['user' => $user, 'dOption' => $dOption, 'profile_state' => $profileState]);
+        return view('editRecruiterProfile', ['user' => $user, 'dOption' => $dOption, 'profile_state' => $user->profile_state]);
     }
     
     public function EditArtistProfile(Request $request)

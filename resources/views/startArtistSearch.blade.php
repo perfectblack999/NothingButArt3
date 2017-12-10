@@ -115,5 +115,3 @@
     </div>
 </div>
 @endsection
-
-<script src="js/startSearch.js"></script>

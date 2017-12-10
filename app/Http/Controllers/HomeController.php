@@ -103,7 +103,11 @@ class HomeController extends Controller
         }
         else
         {
-            $display = view('home', ['user' => $user]);
+            $progressDetail = $this->calculateProfileProgress();
+            $progress = array_sum($progressDetail) * 20;
+            
+            $display = view('home', ['user' => $user, 'progress' => $progress, 
+            'progressDetail' => $progressDetail]);
         }
         
         return $display;
@@ -178,15 +182,6 @@ class HomeController extends Controller
         {
             $progressMeter["stories"] = 1;
         }
-        
-        ob_start();
-        var_dump($progressMeter);
-        $output = ob_get_clean();
-
-        $outputFile = "Meter.txt";
-        $fileHandle = fopen($outputFile, 'a') or die("File creation error.");
-        fwrite($fileHandle, $output);
-        fclose($fileHandle);
         
         return $progressMeter;
     }

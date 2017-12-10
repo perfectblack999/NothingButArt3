@@ -6,7 +6,7 @@ myApp = {
 
 $(document).ready(function() 
 {
-    if (typeof(progress) == "undefined")
+    if (typeof(progress) === "undefined")
     {
         progress="";
     }
@@ -89,10 +89,16 @@ if(document.getElementById("art_upload") !== null)
 }
 
 // initialize the image-picker
-$("select").imagepicker({
+$("#artHolder").imagepicker({
     changed: function(previousSelection, currentSelection){
         saveTags(previousSelection);
         getTags(currentSelection);
+    }
+});
+
+// initialize the image-picker
+$("#behanceArtHolder").imagepicker({
+    changed: function(){
     }
 });
 
@@ -136,7 +142,11 @@ function getTags(currentSelection)
             var tag1 = respObj[0].tag1;
             var tag2 = respObj[0].tag2;
             var tag3 = respObj[0].tag3;
-            var story = decodeHTML(respObj[0].story);
+            
+            if (respObj[0].story !== null)
+            {
+                var story = decodeHTML(respObj[0].story);
+            }
             
            
             $("#" + tag1).prop('checked', true).parent().addClass('active');
@@ -175,11 +185,10 @@ function saveTags(currentSelection)
         dataType:"text", // Data type, HTML, json etc.
         data:myData, //Form variables
         success:function(response){
-            //alert('Success');
-//            $('#test').text(response);
+            
         },
         error:function (xhr, ajaxOptions, thrownError){
-//                    alert(thrownError);
+
         }
     });
     
@@ -299,7 +308,6 @@ function nextSearchImage(searchID, numberOfScreens, gridArtIDs)
                 });
                 
                 // update the images selected for the grid
-//                $('#artHolderFake').html(response);
                 $('#artHolder').html(response);
                 
                 // re-initialize the image-picker
@@ -345,7 +353,7 @@ function saveSelectedImages()
     return myData;
 }
 
-function saveBehanceImages()
+function saveBehanceImages(nextButton)
 {
     var myData = '';
     
@@ -363,7 +371,6 @@ function saveBehanceImages()
     myData = myApp.selectedImages;
     myData.toString();
     myData = "selected_images=" + myData;
-//    console.log(myData);
     
     $.ajax({
             type: "POST",
@@ -371,9 +378,10 @@ function saveBehanceImages()
             dataType:"text", // Data type, HTML, json etc.
             data: myData,
             success: function(response) {   
-//                console.log(myData);
-//                console.log("Screen number js: " + myApp.screenNumber);
-                window.location.href = '/homeBehanceImport';
+                if (!nextButton)
+                {
+                    window.location.href = '/homeBehanceImport';
+                }
             }
     });
 }
@@ -390,8 +398,6 @@ function deletePicClick(clickedID)
         success:function(response)
         {
             window.location.href = '/tagArt';
-//            console.log("deleted \n");
-//            console.log(response);
         },
         error:function (xhr, ajaxOptions, thrownError){
             console.log(thrownError);
@@ -458,7 +464,6 @@ function nextBrowsePage(numberOfScreens, gridArtIDs, imagePaths, view)
                 });
 
                 // update the images selected for the grid
-//                $('#artHolderFake').html(response);
                 $('#artHolder').html('<option value="0"></option>' + response);
 
                 // re-initialize the image-picker
@@ -495,31 +500,77 @@ function resetTags()
     $(":checkbox").prop('checked', false).parent().removeClass('active');
 }
 
-//$(window).load(function() {
-//    doughnutWidget.options = {
-//        container: $('#profile-progress-holder'),
-//        width: 100,
-//        height: 100,
-//        class: 'myClass',
-//        cutout: 50
-//    };
-//
-//    doughnutWidget.render(data());
-//
-//    setInterval(init, 2000);
-//});
-//
-//function init() {
-//    doughnutWidget.render(data());
-//}
-//
-//function data() {
-//    var data = {
-//        Profile: {
-//            val: progress * 20,
-//            color: '#36bfa0',
-//        }
-//    };
-//
-//  return data;
-//}
+function nextBehanacePage(numberOfScreens, images)
+{
+    myApp.screenNumber++;
+    var myData = '';
+    var nextButton = true;
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    
+    saveBehanceImages(nextButton);
+    console.log(myApp.selectedImages);
+
+    if (myApp.screenNumber > numberOfScreens)
+    {
+
+    }
+    else
+    {        
+        myData = myData + '&screen_number=' + myApp.screenNumber +
+            '&images=' + images + '&number_of_screens=' + numberOfScreens;
+        
+        $.ajax({
+            type: "GET",
+            url: "nextBehancePage",
+            dataType:"text", // Data type, HTML, json etc.
+            data: myData,
+            success: function(response) {   
+
+                $('#image_container').imagesLoaded()
+                .always( function( instance ) {
+                  console.log('all images loaded');
+                })
+                .done( function( instance ) {
+                  console.log('all images successfully loaded');
+                })
+                .fail( function() {
+                  console.log('all images loaded, at least one is broken');
+                })
+                .progress( function( instance, image ) {
+                  var result = image.isLoaded ? 'loaded' : 'broken';
+                  console.log( 'image is ' + result + ' for ' + image.img.src );
+                });
+                
+                console.log(response);
+                // update the images selected for the grid
+                $('#behanceArtHolder').html('<option value="0"></option>' + response);
+                
+                // re-initialize the image-picker
+                $("#behanceArtHolder").imagepicker({});
+
+
+                // re-initialize masonry 
+                var grid = $( '.grid' );
+                grid.masonry({
+                    itemSelector: '.grid-item',
+                    columnWidth: 150,
+                    fitWidth: true
+                });
+
+                //reload and layout masonry again
+                $(grid).masonry('reloadItems');
+                $grid.imagesLoaded().progress( function() {
+                    $grid.masonry('layout');
+                });
+            },
+            error:function (xhr, ajaxOptions, thrownError){
+                console.log(thrownError);
+            }
+        });
+    }
+}

@@ -47,8 +47,8 @@ class BehanceController extends Controller
             {
                 array_push($dataProjectIds, $dataProject->id);
             }
-            
-            $images = $this->GetUserImages($dataProjectIds, $apiKey);
+
+            $gridInputs = $this->GetUserImages($dataProjectIds, $apiKey);
         }
         else
         {
@@ -56,7 +56,8 @@ class BehanceController extends Controller
         }
         
         
-        $display = view('behance', ['images' => $images]);
+        $display = view('behance', ['images' => $gridInputs[0], 'numberOfScreens' => $gridInputs[1],
+                'screenNumber' => 1]);
         
         return $display;
     }
@@ -64,17 +65,30 @@ class BehanceController extends Controller
     private function GetUserImages($dataProjectIds, $apiKey)
     {
         $images = [];
+        $imagesPerScreen = 8;
         
-        foreach ($dataProjectIds as $dataProjectId)
+        try
         {
-            foreach (json_decode(file_get_contents("https://api.behance.net/v2/projects/".
-                    $dataProjectId."?api_key=".$apiKey))->project->modules as $module)
+            foreach ($dataProjectIds as $dataProjectId)
             {
-                array_push($images, $module->src);
+                foreach (json_decode(file_get_contents("https://api.behance.net/v2/projects/".
+                        $dataProjectId."?api_key=".$apiKey))->project->modules as $module)
+                {
+                    if (isset($module->src))
+                    {
+                        array_push($images, $module->src);
+                    }
+                }
             }
         }
+        catch (ErrorException $e)
+        {
+            return [0, 0];
+        }
         
-        return $images;
+        $numberOfScreens = ceil(count($images)/$imagesPerScreen);
+        
+        return [$images, $numberOfScreens];
     }
     
     public function ImportImages()
@@ -170,5 +184,19 @@ class BehanceController extends Controller
         }
         
         $user->save();
+    }
+    
+    public function NextBehancePage()
+    {   
+        $screenNumber = filter_input(INPUT_GET, 'screen_number', FILTER_SANITIZE_STRING);
+        $images = explode(",", filter_input(INPUT_GET, 'images', FILTER_SANITIZE_STRING));
+
+        for ($i = ($screenNumber - 1) * 8; $i < (($screenNumber - 1) * 8) + 8; $i++)
+        {
+            if (isset($images[$i]))
+            {
+                echo "<option data-img-src='".$images[$i]."' value='".$images[$i]."'>Image ".$images[$i]."</option>";
+            }
+        }
     }
 }

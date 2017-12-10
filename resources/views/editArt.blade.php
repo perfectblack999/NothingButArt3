@@ -10,8 +10,9 @@
         <h1>Craft Your Portfolio</h1>
         <p>Show the world what you've made.</p>
     </div>
-    <div class="row" style="text-align:center; padding-bottom: 25px; vertical-align: central">
-        <div class="col-md-3" style="text-align: center">
+    <div class="row" style="text-align:center; padding-bottom: 25px; display: flex; align-items: center; text-align: center;">
+        <div class="col-md-3"></div>
+        <div class="col-md-3" style="text-align: center;">
             {!! Form::open(array('url' => '/editArt/uploadArt', 
                 'enctype' => 'multipart/form-data', 'method' => 'POST',
                 'files' => true, 'id' => 'img-upload-form')) !!}
@@ -24,23 +25,11 @@
                 </div>
             {!! Form::close() !!}
         </div>
-        <div class="col-md-3" style="text-align: center">
-            <div class="row" style="text-align: center"><p>Import from Behance:</p></div>
-            <div class="row" style="text-align: center">
-                <a href="/behance"><img src="assets/behance_icon.png"></a>
-            </div>
+        <div class="col-md-3" style="text-align: center;">
+            <a href="/behance"><img src="assets/behance_icon.png"></a>
+            <p>Import from Behance</p>
         </div>
-        <div class="col-md-3" style="text-align: center">
-            <h1>Then</h1>
-        </div>
-        <div class="col-md-3" style="text-align: center">
-            <div class="row" style="text-align: center">
-                <p>Tag your work to have employers find you.</p>
-            </div>
-            <div class="row" style="text-align: center">
-                <a href="/tagArt"><img src="../assets/tag-btn.png"></a>
-            </div>
-        </div>
+        <div class="col-md-3"></div>
     </div>
     @if(isset($fileTypeError))
         @if($fileTypeError == 1)
