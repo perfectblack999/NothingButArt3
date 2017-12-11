@@ -49,8 +49,11 @@
             </div>
         @endif
         <div class="row">
-            <p style="text-align: center">Congrats, your profile is at 100%. Don't forget to add your latest creations.</p>
-            <div class="col-md-12" style="text-align: center;">{{$progress}}% Complete</div>
+            @if ($progress == 100)
+                <p style="text-align: center">Congrats, your profile is at 100%. Don't forget to add your latest creations.</p>
+            @else
+                <div class="col-md-12" style="text-align: center;">{{$progress}}% Complete</div>
+            @endif
         </div>
         <div class="row" style="text-align: center;">
             <a href="/editArt"><img style="max-width: 100%" src="assets/add-pic-btn.png"></a>

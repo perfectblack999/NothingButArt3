@@ -190,7 +190,8 @@ class HomeController extends Controller
     {
         $allStoriesComplete = 1;
         $imageIDsArray = explode(",", $imageIDs);
-        $stories = DB::select("SELECT story FROM images WHERE id = (?)", $imageIDsArray);
+        $input = join(',', array_fill(0, count($imageIDsArray), '?'));
+        $stories = DB::select("SELECT story FROM images WHERE id IN ($input)", $imageIDsArray);
         
         if (isset($stories[0]))
         {
